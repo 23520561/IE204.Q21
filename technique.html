@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kỹ Thuật Tập — IRON YOUTH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #FF2D00; --yellow: #FFD100; --black: #080808;
+    --surface: #111111; --surface2: #1a1a1a; --text: #F0EDE8;
+    --muted: #888; --border: rgba(255,255,255,0.07); --green: #00D46A;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--black); color: var(--text); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; background: rgba(8,8,8,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 2px; color: var(--text); text-decoration: none; }
+  .nav-logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 8px; }
+  .nav-links a { font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 6px 14px; border-radius: 4px; transition: color .2s, background .2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface2); }
+  .nav-links a.active { color: var(--yellow); }
+
+  .page-header { padding: 120px 60px 60px; background: linear-gradient(180deg, rgba(255,209,0,.05) 0%, transparent 100%); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .page-header::before { content: 'TECHNIQUE'; position: absolute; right: 40px; bottom: -20px; font-family: 'Bebas Neue', sans-serif; font-size: 10rem; color: rgba(255,255,255,.025); line-height: 1; pointer-events: none; white-space: nowrap; }
+  .breadcrumb { font-size: .75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+  .breadcrumb a { color: var(--red); text-decoration: none; }
+  .page-header h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 7rem); line-height: .95; }
+  .page-header h1 span { color: var(--yellow); }
+  .page-header p { margin-top: 20px; color: #999; max-width: 600px; line-height: 1.8; font-size: 1rem; }
+
+  /* BENCH GUIDE — HERO SECTION */
+  .bench-hero { padding: 80px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .bench-visual { position: relative; }
+  .bench-diagram {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 48px 40px; position: relative; overflow: hidden;
+  }
+  .bench-diagram::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,45,0,.04), rgba(255,209,0,.03)); }
+  .body-label {
+    font-family: 'Bebas Neue', sans-serif; font-size: 5rem; letter-spacing: -2px;
+    color: rgba(255,255,255,.12); line-height: 1;
+  }
+  .cue-list { list-style: none; margin-top: 20px; }
+  .cue-item { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .cue-item:last-child { border-bottom: none; }
+  .cue-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--red); min-width: 32px; line-height: 1; }
+  .cue-text h4 { font-weight: 700; font-size: .95rem; margin-bottom: 3px; }
+  .cue-text p { color: #888; font-size: .85rem; line-height: 1.6; }
+
+  .bench-steps h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: 1; margin-bottom: 8px; }
+  .bench-steps .lead { color: #999; font-size: 1rem; line-height: 1.8; margin-bottom: 32px; }
+
+  /* STEP CARDS */
+  .step-list { display: flex; flex-direction: column; gap: 12px; }
+  .step-card { display: grid; grid-template-columns: 48px 1fr; gap: 16px; padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; align-items: flex-start; transition: border-color .2s, background .2s; }
+  .step-card:hover { border-color: var(--red); background: var(--surface2); }
+  .step-icon { width: 48px; height: 48px; background: rgba(255,45,0,.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+  .step-body h4 { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+  .step-body p { color: #888; font-size: .88rem; line-height: 1.6; }
+
+  /* ERRORS */
+  .errors-section { padding: 0 60px 80px; }
+  .section-h { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin-bottom: 8px; }
+  .section-sub { color: #777; font-size: .88rem; margin-bottom: 32px; }
+  .error-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .error-card { border-radius: 10px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); }
+  .error-header { padding: 16px 20px; display: flex; align-items: center; gap: 10px; }
+  .error-header.bad { background: rgba(255,45,0,.1); border-bottom: 1px solid rgba(255,45,0,.15); }
+  .error-header.good { background: rgba(0,212,106,.08); border-bottom: 1px solid rgba(0,212,106,.15); }
+  .error-badge { font-size: .65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; }
+  .badge-bad { background: rgba(255,45,0,.2); color: var(--red); }
+  .badge-good { background: rgba(0,212,106,.15); color: var(--green); }
+  .error-card h4 { font-weight: 700; font-size: .95rem; flex: 1; }
+  .error-body { padding: 16px 20px; }
+  .error-body p { color: #888; font-size: .88rem; line-height: 1.7; }
+
+  /* EXERCISE CATALOG */
+  .catalog { padding: 80px 60px; background: var(--surface); }
+  .ex-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 32px; }
+  .ex-card { background: var(--black); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color .2s, transform .2s; }
+  .ex-card:hover { border-color: var(--red); transform: translateY(-4px); }
+  .ex-thumb { height: 140px; display: flex; align-items: center; justify-content: center; font-size: 4rem; background: var(--surface2); position: relative; }
+  .ex-thumb-label { position: absolute; bottom: 12px; left: 12px; font-size: .65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; }
+  .label-main { background: rgba(255,45,0,.2); color: var(--red); }
+  .label-sup { background: rgba(255,209,0,.15); color: var(--yellow); }
+  .label-acc { background: rgba(0,212,106,.12); color: var(--green); }
+  .ex-info { padding: 20px; }
+  .ex-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; margin-bottom: 6px; }
+  .ex-info p { color: #888; font-size: .85rem; line-height: 1.6; }
+  .ex-meta { display: flex; gap: 16px; margin-top: 14px; }
+  .ex-meta span { font-size: .75rem; font-weight: 700; color: var(--muted); display: flex; gap: 4px; align-items: center; }
+  .ex-meta strong { color: var(--yellow); }
+
+  /* BREATHING */
+  .breathing { padding: 80px 60px; }
+  .breath-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+  .breath-card { padding: 28px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); }
+  .breath-phase { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 2px; margin-bottom: 8px; }
+  .breath-action { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; line-height: 1; margin-bottom: 8px; }
+  .breath-down .breath-action { color: var(--yellow); }
+  .breath-up .breath-action { color: var(--red); }
+  .breath-desc { color: #888; font-size: .88rem; line-height: 1.7; }
+
+  .divider { height: 1px; background: var(--border); margin: 0 60px; }
+  footer { padding: 40px 60px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  footer p { color: var(--muted); font-size: .82rem; }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page-header, .errors-section, .catalog, .breathing { padding-left: 24px; padding-right: 24px; }
+    .bench-hero { grid-template-columns: 1fr; padding: 40px 24px; }
+    .breath-visual { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; padding: 32px 24px; }
+    .divider { margin: 0 24px; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">IRON<span>YOUTH</span></a>
+  <div class="nav-links">
+    <a href="index.html">Tổng quan</a>
+    <a href="roadmap.html">Lộ trình</a>
+    <a href="technique.html" class="active">Kỹ thuật</a>
+    <a href="nutrition.html">Dinh dưỡng</a>
+    <a href="safety.html">An toàn</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Trang chủ</a> / Kỹ thuật</div>
+  <h1>KỸ THUẬT<br><span>BENCHPRESS</span></h1>
+  <p>Kỹ thuật hoàn hảo là nền tảng để đạt 100kg an toàn. Một chút sai trong form có thể mất nhiều tháng do chấn thương. Học đúng ngay từ đầu.</p>
+</div>
+
+<div class="bench-hero">
+  <div class="bench-visual">
+    <div class="bench-diagram">
+      <div class="body-label">SETUP<br>MATTERS</div>
+      <ul class="cue-list">
+        <li class="cue-item">
+          <div class="cue-num">01</div>
+          <div class="cue-text"><h4>Mắt dưới bar</h4><p>Nằm xuống bench sao cho bar thẳng đứng ngang tầm mắt — không trước, không sau.</p></div>
+        </li>
+        <li class="cue-item">
+          <div class="cue-num">02</div>
+          <div class="cue-text"><h4>Vị trí grip</h4><p>Grip rộng hơn vai khoảng một nắm tay mỗi bên. Ngón cái phải ôm vòng quanh bar (không dùng false grip).</p></div>
+        </li>
+        <li class="cue-item">
+          <div class="cue-num">03</div>
+          <div class="cue-text"><h4>Vai thu vào và xuống</h4><p>Tưởng tượng kéo vai về phía sau lưng và ép vào bench. Không để vai nổi lên khi đẩy.</p></div>
+        </li>
+        <li class="cue-item">
+          <div class="cue-num">04</div>
+          <div class="cue-text"><h4>Bàn chân chắc trên sàn</h4><p>Cả lòng bàn chân tiếp đất, dùng leg drive — đẩy chân xuống sàn khi đẩy bar lên.</p></div>
+        </li>
+        <li class="cue-item">
+          <div class="cue-num">05</div>
+          <div class="cue-text"><h4>5 điểm tiếp xúc</h4><p>Đầu, vai trên, hai mông, hai bàn chân — luôn giữ 5 điểm này chắc trong suốt set.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="bench-steps">
+    <h2>THỰC HIỆN<br>TỪNG BƯỚC</h2>
+    <p class="lead">Mỗi rep cần được thực hiện có chủ ý. Không có rep "dễ" hay "chỉ warm-up thôi" — mọi rep đều xây dựng hoặc phá vỡ thói quen.</p>
+    <div class="step-list">
+      <div class="step-card"><div class="step-icon">🫁</div><div class="step-body"><h4>Hít thở sâu & brace</h4><p>Trước khi unrack bar, hít sâu vào bụng (không phải ngực), giữ hơi, tạo áp lực trong bụng (Valsalva). Đây là core bracing.</p></div></div>
+      <div class="step-card"><div class="step-icon">⬇️</div><div class="step-body"><h4>Unrack có kiểm soát</h4><p>Đẩy bar ra khỏi rack, đặt thẳng đứng trên cổ tay — không để cổ tay bị gập. Giữ im trong 1 giây để ổn định.</p></div></div>
+      <div class="step-card"><div class="step-icon">📐</div><div class="step-body"><h4>Hạ bar xuống có kiểm soát</h4><p>Hạ bar về phía ngực giữa-dưới (ngang núm vú), khuỷu tay tạo góc 45–75° với thân người, không vung rộng ra.</p></div></div>
+      <div class="step-card"><div class="step-icon">💥</div><div class="step-body"><h4>Chạm ngực — Pause 1 giây</h4><p>Bar chạm nhẹ vào ngực (không bouncing). Giữ hơi và áp lực. Bắt đầu đẩy ngay sau đó.</p></div></div>
+      <div class="step-card"><div class="step-icon">⬆️</div><div class="step-body"><h4>Đẩy lên mạnh — Thở ra</h4><p>Đẩy bar lên và hơi về phía sau (arc movement), thở ra khi bar qua điểm giữa. Không để hông rời khỏi bench.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="errors-section">
+  <div class="section-h">LỖI PHỔ BIẾN & CÁCH SỬA</div>
+  <div class="section-sub">Nhận biết và sửa ngay trước khi thành thói quen xấu</div>
+  <div class="error-grid">
+    <div class="error-card">
+      <div class="error-header bad"><span class="error-badge badge-bad">❌ Sai</span><h4>Cổ tay bị gập ra sau</h4></div>
+      <div class="error-body"><p>Bar nằm trên đầu ngón tay thay vì lòng bàn tay → cổ tay chịu áp lực cực lớn, dễ chấn thương. Luôn grip chắc, bar nằm sát gốc ngón cái.</p></div>
+    </div>
+    <div class="error-card">
+      <div class="error-header good"><span class="error-badge badge-good">✅ Đúng</span><h4>Bar nằm trên lòng bàn tay</h4></div>
+      <div class="error-body"><p>Bar thẳng hàng với cổ tay và cẳng tay. Lực truyền thẳng xuống, không tạo moment xoắn. Grip chắc như bóp nắm tay.</p></div>
+    </div>
+    <div class="error-card">
+      <div class="error-header bad"><span class="error-badge badge-bad">❌ Sai</span><h4>Vai nổi lên khỏi bench</h4></div>
+      <div class="error-body"><p>Vai bị kéo lên phía tai khi đẩy → mất ổn định, rotator cuff chịu áp lực. Luôn nhớ: "vai xuống và vào sau lưng".</p></div>
+    </div>
+    <div class="error-card">
+      <div class="error-header bad"><span class="error-badge badge-bad">❌ Sai</span><h4>Khuỷu tay vung ra 90°</span></h4></div>
+      <div class="error-body"><p>Flared elbows làm vai và pec bị căng bất thường. Khuỷu phải tạo góc 45–75° với thân người để bảo vệ khớp vai.</p></div>
+    </div>
+    <div class="error-card">
+      <div class="error-header bad"><span class="error-badge badge-bad">❌ Sai</span><h4>Hông rời khỏi bench</h4></div>
+      <div class="error-body"><p>Butt off the bench làm giảm phạm vi chuyển động và mất điểm ổn định. Trong thi đấu còn bị disqualify. Giữ mông luôn tiếp xúc bench.</p></div>
+    </div>
+    <div class="error-card">
+      <div class="error-header bad"><span class="error-badge badge-bad">❌ Sai</span><h4>Bar bouncing khỏi ngực</h4></div>
+      <div class="error-body"><p>Thả bar rơi tự do và nảy lên → không kiểm soát, mất sức mạnh thực sự, nguy hiểm. Luôn hạ có kiểm soát và pause 1 giây.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="breathing">
+  <div class="section-h">KỸ THUẬT HÍT THỞ</div>
+  <div class="section-sub">Đúng nhịp thở = thêm 5–10% sức mạnh và bảo vệ cột sống</div>
+  <div class="breath-visual">
+    <div class="breath-card breath-down">
+      <div class="breath-phase">KHI HẠ BAR XUỐNG</div>
+      <div class="breath-action">GIỮ HƠI THỞ</div>
+      <p class="breath-desc">Hít sâu vào bụng trước khi hạ bar. Giữ hơi trong suốt quá trình hạ xuống và khi bar đang ở ngực. Áp lực trong bụng = áo giáp bảo vệ cột sống.</p>
+    </div>
+    <div class="breath-card breath-up">
+      <div class="breath-phase">KHI ĐẨY LÊN</div>
+      <div class="breath-action">THỞ RA MẠNH</div>
+      <p class="breath-desc">Bắt đầu thở ra khi bar vượt qua điểm khó nhất (sticking point) hoặc khi bar đã gần thẳng. Không thở ra ngay khi bắt đầu đẩy.</p>
+    </div>
+    <div class="breath-card" style="grid-column: 1 / -1;">
+      <div class="breath-phase">⚠️ VALSALVA MANEUVER</div>
+      <div class="breath-action" style="color:var(--yellow);font-size:1.6rem;">TĂNG ÁP LỰC NỘI Ổ BỤNG</div>
+      <p class="breath-desc">Kỹ thuật chuyên nghiệp: hít thật sâu, đóng thanh quản, đẩy hơi xuống bụng như khi rặn nhẹ. Tạo "corset tự nhiên" cực mạnh. Chỉ áp dụng khi tập nặng trên 85% 1RM. Với trẻ dưới 12 tuổi: chỉ cần học thở đều, không cần Valsalva.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="catalog">
+  <div class="section-h">THƯ VIỆN BÀI TẬP HỖ TRỢ BENCHPRESS</div>
+  <div class="section-sub">Những bài tập giúp tăng benchpress nhanh nhất</div>
+  <div class="ex-grid">
+    <div class="ex-card">
+      <div class="ex-thumb">🏋️<span class="ex-thumb-label label-main">BÀI CHÍNH</span></div>
+      <div class="ex-info">
+        <h3>Flat Barbell Bench Press</h3>
+        <p>Bài tập cốt lõi. Tất cả sức mạnh đều bắt đầu từ đây. Không có shortcut.</p>
+        <div class="ex-meta"><span>⚙️ Nhóm cơ: <strong>Ngực, Vai trước, Triceps</strong></span></div>
+      </div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-thumb">📐<span class="ex-thumb-label label-sup">HỖ TRỢ</span></div>
+      <div class="ex-info">
+        <h3>Close-Grip Bench Press</h3>
+        <p>Grip hẹp hơn tập trung vào triceps — nhóm cơ quyết định lock-out. Tăng CGBP = tăng bench.</p>
+        <div class="ex-meta"><span>⚙️ Nhóm cơ: <strong>Triceps, Ngực</strong></span></div>
+      </div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-thumb">⬆️<span class="ex-thumb-label label-sup">HỖ TRỢ</span></div>
+      <div class="ex-info">
+        <h3>Incline Dumbbell Press</h3>
+        <p>Tập ngực trên và vai trước — giúp cải thiện sức mạnh ở đầu chuyển động bench.</p>
+        <div class="ex-meta"><span>⚙️ Nhóm cơ: <strong>Ngực trên, Vai trước</strong></span></div>
+      </div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-thumb">💪<span class="ex-thumb-label label-sup">HỖ TRỢ</span></div>
+      <div class="ex-info">
+        <h3>Weighted Dips</h3>
+        <p>Bài tập đa khớp tuyệt vời cho ngực và triceps. Thêm tạ khi body-weight quá dễ.</p>
+        <div class="ex-meta"><span>⚙️ Nhóm cơ: <strong>Ngực dưới, Triceps</strong></span></div>
+      </div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-thumb">🎯<span class="ex-thumb-label label-acc">BẢO VỆ</span></div>
+      <div class="ex-info">
+        <h3>Face Pull</h3>
+        <p>Tập vai sau và rotator cuff. Bắt buộc phải có trong mọi chương trình bench để cân bằng và tránh chấn thương vai.</p>
+        <div class="ex-meta"><span>⚙️ Nhóm cơ: <strong>Vai sau, Rotator Cuff</strong></span></div>
+      </div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-thumb">🦅<span class="ex-thumb-label label-acc">BẢO VỆ</span></div>
+      <div class="ex-info">
+        <h3>Band Pull-Apart</h3>
+        <p>Dùng dây kháng lực, kéo thẳng ra hai bên. Làm warm-up và giữa các set để kích hoạt vai sau.</p>
+        <div class="ex-meta"><span>⚙️ Nhóm cơ: <strong>Vai sau, Rhomboids</strong></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>IRON YOUTH — Kỹ thuật đúng, tập mãi không sợ chấn thương.</p>
+  <div style="display:flex;gap:20px;">
+    <a href="nutrition.html" style="color:var(--red);font-size:.85rem;font-weight:700;text-decoration:none;">Dinh dưỡng →</a>
+    <a href="safety.html" style="color:var(--muted);font-size:.85rem;text-decoration:none;">An toàn →</a>
+  </div>
+</footer>
+</body>
+</html>

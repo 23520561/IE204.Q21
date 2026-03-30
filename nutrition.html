@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dinh Dưỡng & Phục Hồi — IRON YOUTH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #FF2D00; --yellow: #FFD100; --black: #080808;
+    --surface: #111111; --surface2: #1a1a1a; --text: #F0EDE8;
+    --muted: #888; --border: rgba(255,255,255,0.07);
+    --green: #00D46A; --orange: #FF8C00;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--black); color: var(--text); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; background: rgba(8,8,8,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 2px; color: var(--text); text-decoration: none; }
+  .nav-logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 8px; }
+  .nav-links a { font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 6px 14px; border-radius: 4px; transition: color .2s, background .2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface2); }
+  .nav-links a.active { color: var(--yellow); }
+
+  .page-header { padding: 120px 60px 60px; background: linear-gradient(180deg, rgba(0,212,106,.05) 0%, transparent 100%); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .page-header::before { content: 'FUEL'; position: absolute; right: 40px; bottom: -20px; font-family: 'Bebas Neue', sans-serif; font-size: 16rem; color: rgba(255,255,255,.02); line-height: 1; pointer-events: none; }
+  .breadcrumb { font-size: .75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+  .breadcrumb a { color: var(--red); text-decoration: none; }
+  .page-header h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 7rem); line-height: .95; }
+  .page-header h1 span { color: var(--green); }
+  .page-header p { margin-top: 20px; color: #999; max-width: 620px; line-height: 1.8; }
+
+  /* MACRO CALCULATOR */
+  .macro-section { padding: 80px 60px; }
+  .section-h { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; margin-bottom: 8px; }
+  .section-sub { color: #777; font-size: .88rem; margin-bottom: 32px; }
+
+  .calc-wrapper { display: grid; grid-template-columns: 360px 1fr; gap: 32px; margin-top: 32px; }
+  .calc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
+  .calc-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; margin-bottom: 24px; }
+  .form-group { margin-bottom: 20px; }
+  .form-label { font-size: .75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 8px; }
+  .form-row { display: flex; gap: 12px; }
+  .form-input { flex: 1; background: var(--surface2); border: 1px solid var(--border); color: var(--text); font-family: 'Barlow', sans-serif; font-size: 1rem; font-weight: 600; padding: 12px 16px; border-radius: 8px; outline: none; transition: border-color .2s; }
+  .form-input:focus { border-color: var(--green); }
+  .form-select { appearance: none; cursor: pointer; }
+  .btn-calc { width: 100%; padding: 14px; background: var(--green); color: #000; font-family: 'Barlow', sans-serif; font-size: .85rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; margin-top: 8px; transition: opacity .2s; }
+  .btn-calc:hover { opacity: .85; }
+  .results-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; display: flex; flex-direction: column; justify-content: center; }
+  .results-panel h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; margin-bottom: 24px; color: var(--muted); }
+  .macro-display { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+  .macro-item { text-align: center; padding: 20px; background: var(--surface2); border-radius: 10px; border: 1px solid var(--border); }
+  .macro-val { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1; }
+  .macro-val.protein { color: var(--red); }
+  .macro-val.carbs { color: var(--yellow); }
+  .macro-val.fat { color: var(--orange); }
+  .macro-label { font-size: .7rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  .kcal-display { text-align: center; padding: 20px; background: rgba(0,212,106,.06); border: 1px solid rgba(0,212,106,.15); border-radius: 10px; }
+  .kcal-val { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--green); }
+  .kcal-label { font-size: .75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+  .result-note { color: #666; font-size: .82rem; line-height: 1.7; margin-top: 16px; text-align: center; }
+
+  /* MEAL PLAN */
+  .meal-section { padding: 80px 60px; background: var(--surface); }
+  .meal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 32px; }
+  .meal-card { background: var(--black); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color .2s; }
+  .meal-card:hover { border-color: rgba(0,212,106,.3); }
+  .meal-header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .meal-time { font-size: .72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .meal-kcal { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--green); }
+  .meal-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; padding: 0 20px 16px; }
+  .meal-items { padding: 0 20px 20px; list-style: none; }
+  .meal-items li { font-size: .88rem; color: #888; padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+  .meal-items li:last-child { border-bottom: none; }
+  .meal-items li strong { color: var(--text); }
+
+  /* NUTRIENTS FOCUS */
+  .nutrients { padding: 80px 60px; }
+  .nutrient-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 32px; }
+  .nutrient-card { border-radius: 12px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); }
+  .nutrient-top { padding: 28px; }
+  .nutrient-icon { font-size: 2rem; margin-bottom: 12px; }
+  .nutrient-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; margin-bottom: 8px; }
+  .nutrient-card p { color: #888; font-size: .88rem; line-height: 1.7; }
+  .nutrient-sources { padding: 16px 28px; background: var(--surface2); border-top: 1px solid var(--border); }
+  .source-label { font-size: .65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .source-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .source-tag { font-size: .75rem; font-weight: 600; padding: 4px 10px; border-radius: 4px; background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+
+  /* SLEEP */
+  .sleep-section { padding: 80px 60px; background: var(--surface); }
+  .sleep-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 32px; align-items: start; }
+  .sleep-timeline { background: var(--black); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+  .sleep-timeline h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; margin-bottom: 20px; }
+  .time-row { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); align-items: center; }
+  .time-row:last-child { border-bottom: none; }
+  .time-clock { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--yellow); min-width: 80px; }
+  .time-event { font-size: .88rem; }
+  .time-event strong { display: block; margin-bottom: 2px; }
+  .time-event span { color: #666; font-size: .8rem; }
+  .sleep-tips { display: flex; flex-direction: column; gap: 16px; }
+  .sleep-tip { background: var(--black); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 14px; align-items: flex-start; transition: border-color .2s; }
+  .sleep-tip:hover { border-color: var(--yellow); }
+  .tip-ic { font-size: 1.4rem; flex-shrink: 0; }
+  .tip-t strong { display: block; font-weight: 700; margin-bottom: 4px; }
+  .tip-t p { color: #888; font-size: .85rem; line-height: 1.6; }
+
+  /* SUPPLEMENTS */
+  .supps { padding: 80px 60px; }
+  .supp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 32px; }
+  .supp-card { padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+  .supp-status { font-size: .65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; display: inline-block; margin-bottom: 12px; }
+  .status-ok { background: rgba(0,212,106,.12); color: var(--green); }
+  .status-maybe { background: rgba(255,209,0,.12); color: var(--yellow); }
+  .status-no { background: rgba(255,45,0,.12); color: var(--red); }
+  .supp-card h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; margin-bottom: 6px; }
+  .supp-card p { color: #888; font-size: .85rem; line-height: 1.6; }
+
+  .divider { height: 1px; background: var(--border); margin: 0 60px; }
+  footer { padding: 40px 60px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  footer p { color: var(--muted); font-size: .82rem; }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page-header, .macro-section, .meal-section, .nutrients, .sleep-section, .supps { padding-left: 24px; padding-right: 24px; }
+    .calc-wrapper, .sleep-grid { grid-template-columns: 1fr; }
+    .macro-display { grid-template-columns: 1fr 1fr 1fr; }
+    footer { flex-direction: column; gap: 12px; padding: 32px 24px; }
+    .divider { margin: 0 24px; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">IRON<span>YOUTH</span></a>
+  <div class="nav-links">
+    <a href="index.html">Tổng quan</a>
+    <a href="roadmap.html">Lộ trình</a>
+    <a href="technique.html">Kỹ thuật</a>
+    <a href="nutrition.html" class="active">Dinh dưỡng</a>
+    <a href="safety.html">An toàn</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Trang chủ</a> / Dinh dưỡng</div>
+  <h1>DINH DƯỠNG<br><span>& PHỤC HỒI</span></h1>
+  <p>Bạn có thể tập cật lực nhưng nếu ăn uống và ngủ nghỉ sai, kết quả sẽ chỉ bằng 50%. Dinh dưỡng là đòn bẩy quan trọng nhất để tăng trưởng cơ bắp ở thiếu niên.</p>
+</div>
+
+<!-- MACRO CALCULATOR -->
+<div class="macro-section">
+  <div class="section-h">TÍNH TOÁN LƯỢNG ĂN</div>
+  <div class="section-sub">Nhập thông số để xem nhu cầu dinh dưỡng khuyến nghị</div>
+  <div class="calc-wrapper">
+    <div class="calc-card">
+      <h3>THÔNG SỐ CỦA BẠN</h3>
+      <div class="form-group">
+        <label class="form-label">Độ tuổi</label>
+        <input type="number" class="form-input" id="age" placeholder="VD: 13" min="8" max="15">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Cân nặng (kg)</label>
+        <input type="number" class="form-input" id="weight" placeholder="VD: 50">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Chiều cao (cm)</label>
+        <input type="number" class="form-input" id="height" placeholder="VD: 160">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mức độ hoạt động</label>
+        <select class="form-input form-select" id="activity">
+          <option value="1.4">Ít vận động (ít hơn 2 buổi/tuần)</option>
+          <option value="1.55" selected>Vận động vừa (2–3 buổi/tuần)</option>
+          <option value="1.7">Vận động nhiều (4+ buổi/tuần)</option>
+          <option value="1.9">Vận động rất nhiều (thi đấu)</option>
+        </select>
+      </div>
+      <button class="btn-calc" onclick="calculate()">TÍNH TOÁN NGAY</button>
+    </div>
+    <div class="results-panel" id="results-panel">
+      <h3>NHẬP THÔNG SỐ ĐỂ XEM KẾT QUẢ</h3>
+      <div class="macro-display">
+        <div class="macro-item"><div class="macro-val protein" id="r-protein">—</div><div class="macro-label">Protein (g)</div></div>
+        <div class="macro-item"><div class="macro-val carbs" id="r-carbs">—</div><div class="macro-label">Carbs (g)</div></div>
+        <div class="macro-item"><div class="macro-val fat" id="r-fat">—</div><div class="macro-label">Chất béo (g)</div></div>
+      </div>
+      <div class="kcal-display">
+        <div class="kcal-val" id="r-kcal">— kcal</div>
+        <div class="kcal-label">Tổng lượng calo mỗi ngày</div>
+      </div>
+      <p class="result-note" id="r-note">Đây là ước tính cho trẻ đang tập luyện sức mạnh. Hãy điều chỉnh theo phản hồi cơ thể (tăng cân, cảm giác năng lượng). Tham khảo chuyên gia dinh dưỡng để có kế hoạch cá nhân hóa.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- MEAL PLAN -->
+<div class="meal-section">
+  <div class="section-h">THỰC ĐƠN MẪU 1 NGÀY</div>
+  <div class="section-sub">Dành cho thiếu niên 12–14 tuổi, ~2400–2600 kcal</div>
+  <div class="meal-grid">
+    <div class="meal-card">
+      <div class="meal-header"><span class="meal-time">06:30 — Bữa sáng</span><span class="meal-kcal">~600 kcal</span></div>
+      <div class="meal-name">NĂNG LƯỢNG KHỞI ĐỘNG</div>
+      <ul class="meal-items">
+        <li><strong>Cơm trắng</strong><span>150g (nấu chín)</span></li>
+        <li><strong>Trứng gà</strong><span>3 quả luộc/chiên ít dầu</span></li>
+        <li><strong>Đậu phụ / Thịt gà</strong><span>100g</span></li>
+        <li><strong>Rau luộc</strong><span>1 chén</span></li>
+        <li><strong>Sữa tươi không đường</strong><span>240ml</span></li>
+      </ul>
+    </div>
+    <div class="meal-card">
+      <div class="meal-header"><span class="meal-time">10:00 — Bữa phụ sáng</span><span class="meal-kcal">~300 kcal</span></div>
+      <div class="meal-name">SNACK PROTEIN</div>
+      <ul class="meal-items">
+        <li><strong>Chuối</strong><span>2 quả vừa</span></li>
+        <li><strong>Bơ đậu phộng</strong><span>2 muỗng canh</span></li>
+        <li><strong>Yaourt không đường</strong><span>150g</span></li>
+      </ul>
+    </div>
+    <div class="meal-card">
+      <div class="meal-header"><span class="meal-time">12:00 — Bữa trưa</span><span class="meal-kcal">~700 kcal</span></div>
+      <div class="meal-name">NẠP NHIÊN LIỆU CHÍNH</div>
+      <ul class="meal-items">
+        <li><strong>Cơm trắng</strong><span>200g</span></li>
+        <li><strong>Thịt bò/gà/cá</strong><span>150g</span></li>
+        <li><strong>Rau xào / luộc</strong><span>1 đĩa</span></li>
+        <li><strong>Canh</strong><span>1 tô</span></li>
+        <li><strong>Trái cây</strong><span>1 phần</span></li>
+      </ul>
+    </div>
+    <div class="meal-card">
+      <div class="meal-header"><span class="meal-time">Pre-workout — 30–60 phút trước tập</span><span class="meal-kcal">~350 kcal</span></div>
+      <div class="meal-name">FUEL TRƯỚC TẬP</div>
+      <ul class="meal-items">
+        <li><strong>Bánh mì nguyên cám</strong><span>2 lát</span></li>
+        <li><strong>Trứng</strong><span>2 quả</span></li>
+        <li><strong>Chuối</strong><span>1 quả</span></li>
+        <li><strong>Nước</strong><span>500ml</span></li>
+      </ul>
+    </div>
+    <div class="meal-card">
+      <div class="meal-header"><span class="meal-time">Post-workout — Trong 30 phút sau tập</span><span class="meal-kcal">~350 kcal</span></div>
+      <div class="meal-name">PHỤC HỒI SAU TẬP</div>
+      <ul class="meal-items">
+        <li><strong>Sữa tươi hoặc sữa chua</strong><span>400ml</span></li>
+        <li><strong>Chuối hoặc gạo</strong><span>50–100g carbs</span></li>
+        <li><strong>Nước</strong><span>500–750ml</span></li>
+      </ul>
+    </div>
+    <div class="meal-card">
+      <div class="meal-header"><span class="meal-time">19:00 — Bữa tối</span><span class="meal-kcal">~600 kcal</span></div>
+      <div class="meal-name">XÂY DỰNG QUA ĐÊM</div>
+      <ul class="meal-items">
+        <li><strong>Cơm trắng</strong><span>150g</span></li>
+        <li><strong>Cá / Tôm / Thịt gà</strong><span>150g</span></li>
+        <li><strong>Rau luộc</strong><span>1 đĩa</span></li>
+        <li><strong>Sữa ấm trước ngủ</strong><span>240ml (casein)</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- KEY NUTRIENTS -->
+<div class="nutrients">
+  <div class="section-h">DƯỠNG CHẤT THIẾT YẾU</div>
+  <div class="section-sub">Những gì thiếu niên tập sức mạnh cần đặc biệt chú trọng</div>
+  <div class="nutrient-grid">
+    <div class="nutrient-card">
+      <div class="nutrient-top">
+        <div class="nutrient-icon">🥩</div>
+        <h3>Protein — Xây cơ</h3>
+        <p>1.4–1.8g protein / kg cân nặng mỗi ngày. Phân bổ đều qua 4–5 bữa ăn để tối ưu tổng hợp cơ. Trẻ 50kg cần ~75–90g/ngày.</p>
+      </div>
+      <div class="nutrient-sources">
+        <div class="source-label">Nguồn tốt nhất</div>
+        <div class="source-tags">
+          <span class="source-tag">🥚 Trứng</span>
+          <span class="source-tag">🍗 Ức gà</span>
+          <span class="source-tag">🐟 Cá</span>
+          <span class="source-tag">🥛 Sữa</span>
+          <span class="source-tag">🫘 Đậu</span>
+        </div>
+      </div>
+    </div>
+    <div class="nutrient-card">
+      <div class="nutrient-top">
+        <div class="nutrient-icon">🍚</div>
+        <h3>Carbohydrate — Nhiên liệu</h3>
+        <p>50–60% tổng calo. Không cắt carbs khi đang ở độ tuổi phát triển và tập luyện. Carbs là nhiên liệu chính cho cơ và não bộ.</p>
+      </div>
+      <div class="nutrient-sources">
+        <div class="source-label">Nguồn tốt nhất</div>
+        <div class="source-tags">
+          <span class="source-tag">🍚 Cơm</span>
+          <span class="source-tag">🍞 Bánh mì</span>
+          <span class="source-tag">🍠 Khoai</span>
+          <span class="source-tag">🍌 Trái cây</span>
+          <span class="source-tag">🌽 Ngô</span>
+        </div>
+      </div>
+    </div>
+    <div class="nutrient-card">
+      <div class="nutrient-top">
+        <div class="nutrient-icon">🦴</div>
+        <h3>Calcium & Vitamin D — Xương</h3>
+        <p>Cực kỳ quan trọng vì xương đang phát triển! 1200–1500mg Ca/ngày. Thiếu calcium khi tập tạ nặng là nguy cơ stress fracture.</p>
+      </div>
+      <div class="nutrient-sources">
+        <div class="source-label">Nguồn tốt nhất</div>
+        <div class="source-tags">
+          <span class="source-tag">🥛 Sữa</span>
+          <span class="source-tag">🧀 Phô mai</span>
+          <span class="source-tag">🥦 Bông cải</span>
+          <span class="source-tag">☀️ Ánh nắng</span>
+          <span class="source-tag">🐟 Cá béo</span>
+        </div>
+      </div>
+    </div>
+    <div class="nutrient-card">
+      <div class="nutrient-top">
+        <div class="nutrient-icon">💧</div>
+        <h3>Nước — Hiệu suất & Phục hồi</h3>
+        <p>Mất 2% nước = giảm 10% sức mạnh. Uống 2.5–3 lít mỗi ngày khi tập. Thêm 500ml cho mỗi giờ tập. Nước tiểu màu vàng nhạt = đủ nước.</p>
+      </div>
+      <div class="nutrient-sources">
+        <div class="source-label">Uống thế nào</div>
+        <div class="source-tags">
+          <span class="source-tag">💧 Trước tập: 500ml</span>
+          <span class="source-tag">🏋️ Trong tập: từng ngụm</span>
+          <span class="source-tag">✅ Sau tập: 500–750ml</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SLEEP -->
+<div class="sleep-section">
+  <div class="section-h">NGỦ — VŨ KHÍ BÍ MẬT</div>
+  <div class="section-sub">Cơ bắp phát triển khi ngủ, không phải khi tập. Không ngủ đủ = không tăng sức mạnh.</div>
+  <div class="sleep-grid">
+    <div class="sleep-timeline">
+      <h3>LỊCH TRÌNH LÝ TƯỞNG</h3>
+      <div class="time-row"><span class="time-clock">20:30</span><div class="time-event"><strong>Giảm màn hình</strong><span>Tắt điện thoại, tivi, máy tính</span></div></div>
+      <div class="time-row"><span class="time-clock">21:00</span><div class="time-event"><strong>Uống sữa ấm</strong><span>Casein protein giúp phục hồi qua đêm</span></div></div>
+      <div class="time-row"><span class="time-clock">21:30</span><div class="time-event"><strong>Đọc sách / Thư giãn</strong><span>Không xem video hay game</span></div></div>
+      <div class="time-row"><span class="time-clock">22:00</span><div class="time-event"><strong>ĐI NGỦ</strong><span>🎯 8–10 tiếng cho thiếu niên</span></div></div>
+      <div class="time-row"><span class="time-clock">01:00</span><div class="time-event"><strong>GH Peak — Đỉnh tăng trưởng</strong><span>Growth hormone tiết ra nhiều nhất trong giấc ngủ sâu</span></div></div>
+      <div class="time-row"><span class="time-clock">06:00</span><div class="time-event"><strong>Thức dậy tự nhiên</strong><span>Không dùng báo thức nếu có thể</span></div></div>
+    </div>
+    <div class="sleep-tips">
+      <div class="sleep-tip">
+        <span class="tip-ic">🌡️</span>
+        <div class="tip-t"><strong>Nhiệt độ phòng mát</strong><p>18–22°C là lý tưởng cho giấc ngủ sâu. Nhiệt độ thấp giúp cơ thể tiết melatonin tốt hơn.</p></div>
+      </div>
+      <div class="sleep-tip">
+        <span class="tip-ic">📵</span>
+        <div class="tip-t"><strong>Không điện thoại 1 tiếng trước khi ngủ</strong><p>Ánh sáng xanh từ màn hình ức chế melatonin, làm khó ngủ sâu và ảnh hưởng đến tiết growth hormone.</p></div>
+      </div>
+      <div class="sleep-tip">
+        <span class="tip-ic">⏰</span>
+        <div class="tip-t"><strong>Giờ ngủ cố định</strong><p>Ngủ và thức dậy cùng một giờ mỗi ngày — kể cả cuối tuần. Đồng hồ sinh học ổn định = ngủ sâu hơn.</p></div>
+      </div>
+      <div class="sleep-tip">
+        <span class="tip-ic">🚫</span>
+        <div class="tip-t"><strong>Không tập nặng sau 19:00</strong><p>Tập tạ nặng kích hoạt cortisol và adrenaline, khiến khó ngủ. Tập nhẹ hoặc stretching thì được.</p></div>
+      </div>
+      <div class="sleep-tip">
+        <span class="tip-ic">😴</span>
+        <div class="tip-t"><strong>Nap trưa 20–30 phút</strong><p>Nếu điều kiện cho phép, nap ngắn giúp phục hồi cơ và cải thiện hiệu suất tập chiều rất nhiều.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SUPPLEMENTS -->
+<div class="supps">
+  <div class="section-h">SUPPLEMENT — CÁI NÀO PHÙ HỢP?</div>
+  <div class="section-sub">Hầu hết thiếu niên không cần supplement — thực phẩm thật luôn là ưu tiên hàng đầu</div>
+  <div class="supp-grid">
+    <div class="supp-card">
+      <span class="supp-status status-ok">✅ An toàn & Phù hợp</span>
+      <h4>Sữa tươi / Sữa chua</h4>
+      <p>Nguồn protein và calcium tuyệt vời. Uống sau tập cực kỳ hiệu quả. Whey từ sữa tươi đủ tốt.</p>
+    </div>
+    <div class="supp-card">
+      <span class="supp-status status-ok">✅ An toàn & Phù hợp</span>
+      <h4>Vitamin D3</h4>
+      <p>Nếu ít ra nắng, bổ sung 1000–2000 IU/ngày với bữa ăn. Hỗ trợ calcium hấp thu và tăng trưởng xương.</p>
+    </div>
+    <div class="supp-card">
+      <span class="supp-status status-ok">✅ An toàn & Phù hợp</span>
+      <h4>Omega-3 (Dầu cá)</h4>
+      <p>Giảm viêm, hỗ trợ phục hồi khớp và não bộ. 1–2g EPA+DHA mỗi ngày. Hoặc ăn cá 3 lần/tuần.</p>
+    </div>
+    <div class="supp-card">
+      <span class="supp-status status-maybe">⚠️ Cân nhắc cẩn thận</span>
+      <h4>Creatine Monohydrate</h4>
+      <p>An toàn với người trên 16 tuổi theo nghiên cứu. Dưới 16 tuổi: tham khảo bác sĩ trước. Không cần loading phase.</p>
+    </div>
+    <div class="supp-card">
+      <span class="supp-status status-no">❌ Không phù hợp</span>
+      <h4>Pre-workout có caffeine</h4>
+      <p>Caffeine liều cao ảnh hưởng tiêu cực đến tim mạch và giấc ngủ của thiếu niên. Hoàn toàn không cần thiết.</p>
+    </div>
+    <div class="supp-card">
+      <span class="supp-status status-no">❌ Tuyệt đối không</span>
+      <h4>Hormone / Steroid</h4>
+      <p>Cực kỳ nguy hiểm cho thiếu niên — làm đóng sụn tăng trưởng sớm, ảnh hưởng nội tiết tố suốt đời. KHÔNG BAO GIỜ.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>IRON YOUTH — Ăn đúng, ngủ đủ, tập sức mạnh.</p>
+  <div style="display:flex;gap:20px;">
+    <a href="safety.html" style="color:var(--red);font-size:.85rem;font-weight:700;text-decoration:none;">An toàn →</a>
+    <a href="technique.html" style="color:var(--muted);font-size:.85rem;text-decoration:none;">← Kỹ thuật</a>
+  </div>
+</footer>
+
+<script>
+function calculate() {
+  const age = parseFloat(document.getElementById('age').value);
+  const weight = parseFloat(document.getElementById('weight').value);
+  const height = parseFloat(document.getElementById('height').value);
+  const activity = parseFloat(document.getElementById('activity').value);
+  if (!age || !weight || !height || age < 8 || age > 15) {
+    alert('Vui lòng nhập đúng thông số (tuổi 8–15)');
+    return;
+  }
+  // Schofield equation for children
+  let bmr;
+  if (age < 10) bmr = 22.706 * weight + 504.3;
+  else if (age < 18) bmr = 17.686 * weight + 658.2;
+  else bmr = 15.3 * weight + 679;
+  const tdee = Math.round(bmr * activity);
+  const protein = Math.round(weight * 1.6);
+  const fat = Math.round((tdee * 0.25) / 9);
+  const carbs = Math.round((tdee - protein * 4 - fat * 9) / 4);
+  document.getElementById('r-protein').textContent = protein;
+  document.getElementById('r-carbs').textContent = carbs;
+  document.getElementById('r-fat').textContent = fat;
+  document.getElementById('r-kcal').textContent = tdee + ' kcal';
+  document.querySelector('.results-panel h3').textContent = 'KẾT QUẢ ĐỀ XUẤT';
+}
+</script>
+</body>
+</html>
