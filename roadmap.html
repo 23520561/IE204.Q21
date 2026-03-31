@@ -1,474 +1,1315 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lộ Trình Theo Tuổi — IRON YOUTH</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --red: #FF2D00; --yellow: #FFD100; --black: #080808;
-    --surface: #111111; --surface2: #1a1a1a; --text: #F0EDE8;
-    --muted: #888; --border: rgba(255,255,255,0.07);
-    --green: #00D46A; --blue: #0099FF;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--black); color: var(--text); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 40px; height: 64px;
-    background: rgba(8,8,8,0.92); backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 2px; color: var(--text); text-decoration: none; }
-  .nav-logo span { color: var(--red); }
-  .nav-links { display: flex; gap: 8px; }
-  .nav-links a { font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 6px 14px; border-radius: 4px; transition: color .2s, background .2s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface2); }
-  .nav-links a.active { color: var(--yellow); }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lộ Trình Theo Tuổi — IRON YOUTH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: #ff2d00;
+        --yellow: #ffd100;
+        --black: #080808;
+        --surface: #111111;
+        --surface2: #1a1a1a;
+        --text: #f0ede8;
+        --muted: #888;
+        --border: rgba(255, 255, 255, 0.07);
+        --green: #00d46a;
+        --blue: #0099ff;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--black);
+        color: var(--text);
+        font-family: "Barlow", sans-serif;
+        overflow-x: hidden;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        height: 64px;
+        background: rgba(8, 8, 8, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+        color: var(--text);
+        text-decoration: none;
+      }
+      .nav-logo span {
+        color: var(--red);
+      }
+      .nav-links {
+        display: flex;
+        gap: 8px;
+      }
+      .nav-links a {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 6px 14px;
+        border-radius: 4px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--text);
+        background: var(--surface2);
+      }
+      .nav-links a.active {
+        color: var(--yellow);
+      }
 
-  /* PAGE HEADER */
-  .page-header {
-    padding: 120px 60px 60px;
-    background: linear-gradient(180deg, rgba(255,45,0,.06) 0%, transparent 100%);
-    border-bottom: 1px solid var(--border);
-    position: relative; overflow: hidden;
-  }
-  .page-header::before {
-    content: 'ROADMAP';
-    position: absolute; right: 40px; bottom: -20px;
-    font-family: 'Bebas Neue', sans-serif; font-size: 12rem;
-    color: rgba(255,255,255,.025); line-height: 1; pointer-events: none;
-    white-space: nowrap;
-  }
-  .breadcrumb { font-size: .75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
-  .breadcrumb a { color: var(--red); text-decoration: none; }
-  .page-header h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 7rem); line-height: .95; }
-  .page-header h1 span { color: var(--red); }
-  .page-header p { margin-top: 20px; color: #999; max-width: 600px; line-height: 1.8; font-size: 1rem; }
+      /* PAGE HEADER */
+      .page-header {
+        padding: 120px 60px 60px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 45, 0, 0.06) 0%,
+          transparent 100%
+        );
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+      .page-header::before {
+        content: "ROADMAP";
+        position: absolute;
+        right: 40px;
+        bottom: -20px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 12rem;
+        color: rgba(255, 255, 255, 0.025);
+        line-height: 1;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      .breadcrumb {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+      .breadcrumb a {
+        color: var(--red);
+        text-decoration: none;
+      }
+      .page-header h1 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(3rem, 8vw, 7rem);
+        line-height: 0.95;
+      }
+      .page-header h1 span {
+        color: var(--red);
+      }
+      .page-header p {
+        margin-top: 20px;
+        color: #999;
+        max-width: 600px;
+        line-height: 1.8;
+        font-size: 1rem;
+      }
 
-  /* SELECTOR TABS */
-  .phase-tabs {
-    display: flex; gap: 0; padding: 40px 60px 0;
-    border-bottom: 1px solid var(--border);
-    overflow-x: auto;
-  }
-  .phase-tab {
-    padding: 16px 28px; cursor: pointer; border: none; background: transparent;
-    font-family: 'Barlow', sans-serif; font-size: .78rem; font-weight: 700;
-    letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
-    border-bottom: 3px solid transparent; margin-bottom: -1px;
-    transition: color .2s, border-color .2s; white-space: nowrap;
-  }
-  .phase-tab:hover { color: var(--text); }
-  .phase-tab.active { color: var(--yellow); border-bottom-color: var(--yellow); }
+      /* SELECTOR TABS */
+      .phase-tabs {
+        display: flex;
+        gap: 0;
+        padding: 40px 60px 0;
+        border-bottom: 1px solid var(--border);
+        overflow-x: auto;
+      }
+      .phase-tab {
+        padding: 16px 28px;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        font-family: "Barlow", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        border-bottom: 3px solid transparent;
+        margin-bottom: -1px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+        white-space: nowrap;
+      }
+      .phase-tab:hover {
+        color: var(--text);
+      }
+      .phase-tab.active {
+        color: var(--yellow);
+        border-bottom-color: var(--yellow);
+      }
 
-  /* PHASE CONTENT */
-  .phase-content-area { padding: 60px; display: none; }
-  .phase-content-area.active { display: block; }
+      /* PHASE CONTENT */
+      .phase-content-area {
+        padding: 60px;
+        display: none;
+      }
+      .phase-content-area.active {
+        display: block;
+      }
 
-  .phase-hero { display: grid; grid-template-columns: 1fr 380px; gap: 48px; margin-bottom: 60px; }
-  .phase-tag {
-    display: inline-block; padding: 5px 14px; border-radius: 4px; margin-bottom: 16px;
-    font-size: .72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-  }
-  .tag-1 { background: rgba(0,212,106,.12); color: var(--green); }
-  .tag-2 { background: rgba(0,153,255,.12); color: var(--blue); }
-  .tag-3 { background: rgba(255,209,0,.12); color: var(--yellow); }
-  .tag-4 { background: rgba(255,120,0,.15); color: #ff7800; }
-  .tag-5 { background: rgba(255,45,0,.15); color: var(--red); }
+      .phase-hero {
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 48px;
+        margin-bottom: 60px;
+      }
+      .phase-tag {
+        display: inline-block;
+        padding: 5px 14px;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      .tag-1 {
+        background: rgba(0, 212, 106, 0.12);
+        color: var(--green);
+      }
+      .tag-2 {
+        background: rgba(0, 153, 255, 0.12);
+        color: var(--blue);
+      }
+      .tag-3 {
+        background: rgba(255, 209, 0, 0.12);
+        color: var(--yellow);
+      }
+      .tag-4 {
+        background: rgba(255, 120, 0, 0.15);
+        color: #ff7800;
+      }
+      .tag-5 {
+        background: rgba(255, 45, 0, 0.15);
+        color: var(--red);
+      }
 
-  .phase-info h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; margin-bottom: 16px; }
-  .phase-info p { color: #999; line-height: 1.8; font-size: 1rem; }
-  .phase-info .goal-box {
-    margin-top: 24px; padding: 20px 24px;
-    border: 1px solid var(--border); border-radius: 8px;
-    background: var(--surface);
-  }
-  .goal-box h4 { font-size: .72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-  .goal-box .goal-val { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--yellow); }
-  .goal-box .goal-sub { color: #777; font-size: .85rem; margin-top: 4px; }
+      .phase-info h2 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 3.5rem;
+        line-height: 1;
+        margin-bottom: 16px;
+      }
+      .phase-info p {
+        color: #999;
+        line-height: 1.8;
+        font-size: 1rem;
+      }
+      .phase-info .goal-box {
+        margin-top: 24px;
+        padding: 20px 24px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--surface);
+      }
+      .goal-box h4 {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .goal-box .goal-val {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 2.2rem;
+        color: var(--yellow);
+      }
+      .goal-box .goal-sub {
+        color: #777;
+        font-size: 0.85rem;
+        margin-top: 4px;
+      }
 
-  /* PROGRESS BAR */
-  .progress-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 12px; padding: 28px;
-  }
-  .progress-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; margin-bottom: 20px; }
-  .prog-item { margin-bottom: 20px; }
-  .prog-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: .85rem; }
-  .prog-label { font-weight: 600; }
-  .prog-val { color: var(--yellow); font-weight: 700; }
-  .prog-bar { height: 8px; background: var(--surface2); border-radius: 100px; overflow: hidden; }
-  .prog-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--red), var(--yellow)); transition: width 1s ease; }
+      /* PROGRESS BAR */
+      .progress-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px;
+      }
+      .progress-card h3 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+      }
+      .prog-item {
+        margin-bottom: 20px;
+      }
+      .prog-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-size: 0.85rem;
+      }
+      .prog-label {
+        font-weight: 600;
+      }
+      .prog-val {
+        color: var(--yellow);
+        font-weight: 700;
+      }
+      .prog-bar {
+        height: 8px;
+        background: var(--surface2);
+        border-radius: 100px;
+        overflow: hidden;
+      }
+      .prog-fill {
+        height: 100%;
+        border-radius: 100px;
+        background: linear-gradient(90deg, var(--red), var(--yellow));
+        transition: width 1s ease;
+      }
 
-  /* SCHEDULE */
-  .schedule-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 32px; }
-  .day-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 10px; text-align: center; }
-  .day-card.active-day { border-color: var(--red); background: rgba(255,45,0,.08); }
-  .day-card.rest-day { opacity: .5; }
-  .day-name { font-size: .65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  .day-type { font-size: .78rem; font-weight: 700; color: var(--text); }
-  .day-card.active-day .day-type { color: var(--red); }
+      /* SCHEDULE */
+      .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+        margin-top: 32px;
+      }
+      .day-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 14px 10px;
+        text-align: center;
+      }
+      .day-card.active-day {
+        border-color: var(--red);
+        background: rgba(255, 45, 0, 0.08);
+      }
+      .day-card.rest-day {
+        opacity: 0.5;
+      }
+      .day-name {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .day-type {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .day-card.active-day .day-type {
+        color: var(--red);
+      }
 
-  /* EXERCISE TABLE */
-  .ex-table { width: 100%; border-collapse: collapse; margin-top: 32px; }
-  .ex-table th { text-align: left; padding: 12px 16px; font-size: .72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
-  .ex-table td { padding: 16px; border-bottom: 1px solid var(--border); font-size: .92rem; vertical-align: top; }
-  .ex-table tr:last-child td { border-bottom: none; }
-  .ex-table tr:hover td { background: var(--surface2); }
-  .ex-name { font-weight: 700; color: var(--text); display: block; }
-  .ex-note { font-size: .82rem; color: var(--muted); margin-top: 3px; }
-  .ex-sets { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--yellow); }
-  .ex-focus { display: inline-block; padding: 3px 10px; border-radius: 3px; font-size: .7rem; font-weight: 700; background: rgba(255,45,0,.12); color: var(--red); }
+      /* EXERCISE TABLE */
+      .ex-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 32px;
+      }
+      .ex-table th {
+        text-align: left;
+        padding: 12px 16px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        border-bottom: 1px solid var(--border);
+      }
+      .ex-table td {
+        padding: 16px;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.92rem;
+        vertical-align: top;
+      }
+      .ex-table tr:last-child td {
+        border-bottom: none;
+      }
+      .ex-table tr:hover td {
+        background: var(--surface2);
+      }
+      .ex-name {
+        font-weight: 700;
+        color: var(--text);
+        display: block;
+      }
+      .ex-note {
+        font-size: 0.82rem;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+      .ex-sets {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.3rem;
+        color: var(--yellow);
+      }
+      .ex-focus {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 3px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        background: rgba(255, 45, 0, 0.12);
+        color: var(--red);
+      }
 
-  /* TIPS */
-  .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 32px; }
-  .tip-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
-  .tip-icon { font-size: 1.5rem; margin-bottom: 12px; }
-  .tip-card h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; margin-bottom: 8px; }
-  .tip-card p { color: #888; font-size: .88rem; line-height: 1.7; }
+      /* TIPS */
+      .tips-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+        margin-top: 32px;
+      }
+      .tip-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 24px;
+      }
+      .tip-icon {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+      }
+      .tip-card h4 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+      }
+      .tip-card p {
+        color: #888;
+        font-size: 0.88rem;
+        line-height: 1.7;
+      }
 
-  .section-h { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin-bottom: 8px; margin-top: 48px; }
-  .section-sub { color: #777; font-size: .88rem; margin-bottom: 24px; }
-  .divider { height: 1px; background: var(--border); margin: 48px 0; }
+      .section-h {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+        margin-top: 48px;
+      }
+      .section-sub {
+        color: #777;
+        font-size: 0.88rem;
+        margin-bottom: 24px;
+      }
+      .divider {
+        height: 1px;
+        background: var(--border);
+        margin: 48px 0;
+      }
 
-  footer { padding: 40px 60px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-  footer p { color: var(--muted); font-size: .82rem; }
+      footer {
+        padding: 40px 60px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      footer p {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
 
-  @media (max-width: 900px) {
-    nav { padding: 0 20px; }
-    .nav-links { display: none; }
-    .page-header, .phase-content-area { padding: 100px 24px 40px; }
-    .phase-tabs { padding: 0 24px; }
-    .phase-hero { grid-template-columns: 1fr; }
-    .schedule-grid { grid-template-columns: repeat(4, 1fr); }
-    footer { flex-direction: column; gap: 12px; padding: 32px 24px; }
-  }
-</style>
-</head>
-<body>
-<nav>
-  <a href="index.html" class="nav-logo">IRON<span>YOUTH</span></a>
-  <div class="nav-links">
-    <a href="index.html">Tổng quan</a>
-    <a href="roadmap.html" class="active">Lộ trình</a>
-    <a href="technique.html">Kỹ thuật</a>
-    <a href="nutrition.html">Dinh dưỡng</a>
-    <a href="safety.html">An toàn</a>
-  </div>
-</nav>
+      @media (max-width: 900px) {
+        nav {
+          padding: 0 20px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .page-header,
+        .phase-content-area {
+          padding: 100px 24px 40px;
+        }
+        .phase-tabs {
+          padding: 0 24px;
+        }
+        .phase-hero {
+          grid-template-columns: 1fr;
+        }
+        .schedule-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        footer {
+          flex-direction: column;
+          gap: 12px;
+          padding: 32px 24px;
+        }
+      }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G8R2RZ8G73"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-<div class="page-header">
-  <div class="breadcrumb"><a href="index.html">Trang chủ</a> / Lộ trình</div>
-  <h1>LỘ TRÌNH <span>5 GIAI ĐOẠN</span></h1>
-  <p>Chọn giai đoạn phù hợp với độ tuổi của bạn để xem chương trình tập luyện chi tiết, mục tiêu cụ thể và lịch tập hàng tuần.</p>
-</div>
+      gtag("config", "G-G8R2RZ8G73");
+    </script>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="nav-logo">IRON<span>YOUTH</span></a>
+      <div class="nav-links">
+        <a href="index.html">Tổng quan</a>
+        <a href="roadmap.html" class="active">Lộ trình</a>
+        <a href="technique.html">Kỹ thuật</a>
+        <a href="nutrition.html">Dinh dưỡng</a>
+        <a href="safety.html">An toàn</a>
+      </div>
+    </nav>
 
-<div class="phase-tabs">
-  <button class="phase-tab active" onclick="showPhase(1, this)">Giai đoạn 1 — 8–9 tuổi</button>
-  <button class="phase-tab" onclick="showPhase(2, this)">Giai đoạn 2 — 10–11 tuổi</button>
-  <button class="phase-tab" onclick="showPhase(3, this)">Giai đoạn 3 — 12–13 tuổi</button>
-  <button class="phase-tab" onclick="showPhase(4, this)">Giai đoạn 4 — 14 tuổi</button>
-  <button class="phase-tab" onclick="showPhase(5, this)">Giai đoạn 5 — 15 tuổi</button>
-</div>
+    <div class="page-header">
+      <div class="breadcrumb">
+        <a href="index.html">Trang chủ</a> / Lộ trình
+      </div>
+      <h1>LỘ TRÌNH <span>5 GIAI ĐOẠN</span></h1>
+      <p>
+        Chọn giai đoạn phù hợp với độ tuổi của bạn để xem chương trình tập luyện
+        chi tiết, mục tiêu cụ thể và lịch tập hàng tuần.
+      </p>
+    </div>
 
-<!-- PHASE 1 -->
-<div class="phase-content-area active" id="phase-1">
-  <div class="phase-hero">
-    <div class="phase-info">
-      <span class="phase-tag tag-1">Giai đoạn 1 / Nền tảng</span>
-      <h2>TẬP LUYỆN BẰNG TRỌNG LƯỢNG CƠ THỂ</h2>
-      <p>Ở độ tuổi 8–9, xương và gân của trẻ đang phát triển rất nhanh. Chưa nên dùng tạ thanh. Mục tiêu là xây dựng sức mạnh tương đối, tính linh hoạt và thói quen tập luyện đúng cách. Đây là nền tảng không thể bỏ qua.</p>
-      <div class="goal-box">
-        <h4>Mục tiêu cuối giai đoạn</h4>
-        <div class="goal-val">20 Push-ups</div>
-        <div class="goal-sub">Liên tiếp, đúng kỹ thuật — không nghỉ giữa chừng</div>
+    <div class="phase-tabs">
+      <button class="phase-tab active" onclick="showPhase(1, this)">
+        Giai đoạn 1 — 8–9 tuổi
+      </button>
+      <button class="phase-tab" onclick="showPhase(2, this)">
+        Giai đoạn 2 — 10–11 tuổi
+      </button>
+      <button class="phase-tab" onclick="showPhase(3, this)">
+        Giai đoạn 3 — 12–13 tuổi
+      </button>
+      <button class="phase-tab" onclick="showPhase(4, this)">
+        Giai đoạn 4 — 14 tuổi
+      </button>
+      <button class="phase-tab" onclick="showPhase(5, this)">
+        Giai đoạn 5 — 15 tuổi
+      </button>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="phase-content-area active" id="phase-1">
+      <div class="phase-hero">
+        <div class="phase-info">
+          <span class="phase-tag tag-1">Giai đoạn 1 / Nền tảng</span>
+          <h2>TẬP LUYỆN BẰNG TRỌNG LƯỢNG CƠ THỂ</h2>
+          <p>
+            Ở độ tuổi 8–9, xương và gân của trẻ đang phát triển rất nhanh. Chưa
+            nên dùng tạ thanh. Mục tiêu là xây dựng sức mạnh tương đối, tính
+            linh hoạt và thói quen tập luyện đúng cách. Đây là nền tảng không
+            thể bỏ qua.
+          </p>
+          <div class="goal-box">
+            <h4>Mục tiêu cuối giai đoạn</h4>
+            <div class="goal-val">20 Push-ups</div>
+            <div class="goal-sub">
+              Liên tiếp, đúng kỹ thuật — không nghỉ giữa chừng
+            </div>
+          </div>
+        </div>
+        <div class="progress-card">
+          <h3>SỨC MẠNH MỤC TIÊU</h3>
+          <div class="prog-item">
+            <div class="prog-header">
+              <span class="prog-label">Push-up</span
+              ><span class="prog-val">20 reps</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 20%"></div>
+            </div>
+          </div>
+          <div class="prog-item">
+            <div class="prog-header">
+              <span class="prog-label">Plank</span
+              ><span class="prog-val">60 giây</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 15%"></div>
+            </div>
+          </div>
+          <div class="prog-item">
+            <div class="prog-header">
+              <span class="prog-label">Squat</span
+              ><span class="prog-val">30 reps</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 12%"></div>
+            </div>
+          </div>
+          <div class="prog-item">
+            <div class="prog-header">
+              <span class="prog-label">Tiến độ đến 100kg</span
+              ><span class="prog-val">0% → Nền tảng</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 5%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-h">LỊCH TẬP HÀNG TUẦN</div>
+      <div class="section-sub">
+        2–3 buổi mỗi tuần — không tập liên tiếp 2 ngày
+      </div>
+      <div class="schedule-grid">
+        <div class="day-card active-day">
+          <div class="day-name">Thứ 2</div>
+          <div class="day-type">Toàn thân</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">Thứ 3</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
+        <div class="day-card active-day">
+          <div class="day-name">Thứ 4</div>
+          <div class="day-type">Toàn thân</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">Thứ 5</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
+        <div class="day-card active-day">
+          <div class="day-name">Thứ 6</div>
+          <div class="day-type">Vui chơi</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">Thứ 7</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">CN</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-h">CHƯƠNG TRÌNH TẬP MẪU</div>
+      <table class="ex-table">
+        <thead>
+          <tr>
+            <th>Bài tập</th>
+            <th>Sets × Reps</th>
+            <th>Nhóm cơ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="ex-name">Push-up cơ bản</span
+              ><span class="ex-note"
+                >Giữ lưng thẳng, hạ ngực xuống sát sàn</span
+              >
+            </td>
+            <td><span class="ex-sets">3 × 8</span></td>
+            <td><span class="ex-focus">Ngực</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Plank</span
+              ><span class="ex-note">Giữ vững core, không để hông võng</span>
+            </td>
+            <td><span class="ex-sets">3 × 20s</span></td>
+            <td><span class="ex-focus">Core</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Squat trọng lượng cơ thể</span
+              ><span class="ex-note"
+                >Gối không vượt qua mũi chân, lưng thẳng</span
+              >
+            </td>
+            <td><span class="ex-sets">3 × 10</span></td>
+            <td><span class="ex-focus">Chân</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Negative Pull-up</span
+              ><span class="ex-note"
+                >Lên bằng ghế, hạ xuống từ từ trong 5 giây</span
+              >
+            </td>
+            <td><span class="ex-sets">3 × 5</span></td>
+            <td><span class="ex-focus">Lưng</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Mountain Climber</span
+              ><span class="ex-note">Tốc độ vừa phải, không gù lưng</span>
+            </td>
+            <td><span class="ex-sets">2 × 20s</span></td>
+            <td><span class="ex-focus">Core + Tim</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="section-h" style="margin-top: 48px">LƯU Ý QUAN TRỌNG</div>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon">✅</div>
+          <h4>Luôn khởi động 10 phút</h4>
+          <p>
+            Chạy nhẹ, xoay khớp, dynamic stretching trước mỗi buổi tập để tránh
+            chấn thương.
+          </p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">📏</div>
+          <h4>Kỹ thuật trên số lượng</h4>
+          <p>
+            Thà 5 reps đúng còn hơn 20 reps sai. Chụp video để kiểm tra tư thế
+            của bản thân.
+          </p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">😴</div>
+          <h4>Ngủ đủ 9–10 tiếng</h4>
+          <p>
+            Cơ bắp phát triển khi ngủ, không phải khi tập. Thiếu ngủ sẽ ảnh
+            hưởng cả tăng trưởng chiều cao.
+          </p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🎮</div>
+          <h4>Kết hợp vui chơi</h4>
+          <p>
+            Bơi lội, leo trèo, bóng rổ đều giúp phát triển sức mạnh và sự phối
+            hợp. Không cần gym 100%.
+          </p>
+        </div>
       </div>
     </div>
-    <div class="progress-card">
-      <h3>SỨC MẠNH MỤC TIÊU</h3>
-      <div class="prog-item">
-        <div class="prog-header"><span class="prog-label">Push-up</span><span class="prog-val">20 reps</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:20%"></div></div>
-      </div>
-      <div class="prog-item">
-        <div class="prog-header"><span class="prog-label">Plank</span><span class="prog-val">60 giây</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:15%"></div></div>
-      </div>
-      <div class="prog-item">
-        <div class="prog-header"><span class="prog-label">Squat</span><span class="prog-val">30 reps</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:12%"></div></div>
-      </div>
-      <div class="prog-item">
-        <div class="prog-header"><span class="prog-label">Tiến độ đến 100kg</span><span class="prog-val">0% → Nền tảng</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:5%"></div></div>
-      </div>
-    </div>
-  </div>
 
-  <div class="section-h">LỊCH TẬP HÀNG TUẦN</div>
-  <div class="section-sub">2–3 buổi mỗi tuần — không tập liên tiếp 2 ngày</div>
-  <div class="schedule-grid">
-    <div class="day-card active-day"><div class="day-name">Thứ 2</div><div class="day-type">Toàn thân</div></div>
-    <div class="day-card rest-day"><div class="day-name">Thứ 3</div><div class="day-type">Nghỉ</div></div>
-    <div class="day-card active-day"><div class="day-name">Thứ 4</div><div class="day-type">Toàn thân</div></div>
-    <div class="day-card rest-day"><div class="day-name">Thứ 5</div><div class="day-type">Nghỉ</div></div>
-    <div class="day-card active-day"><div class="day-name">Thứ 6</div><div class="day-type">Vui chơi</div></div>
-    <div class="day-card rest-day"><div class="day-name">Thứ 7</div><div class="day-type">Nghỉ</div></div>
-    <div class="day-card rest-day"><div class="day-name">CN</div><div class="day-type">Nghỉ</div></div>
-  </div>
-
-  <div class="divider"></div>
-  <div class="section-h">CHƯƠNG TRÌNH TẬP MẪU</div>
-  <table class="ex-table">
-    <thead><tr><th>Bài tập</th><th>Sets × Reps</th><th>Nhóm cơ</th></tr></thead>
-    <tbody>
-      <tr><td><span class="ex-name">Push-up cơ bản</span><span class="ex-note">Giữ lưng thẳng, hạ ngực xuống sát sàn</span></td><td><span class="ex-sets">3 × 8</span></td><td><span class="ex-focus">Ngực</span></td></tr>
-      <tr><td><span class="ex-name">Plank</span><span class="ex-note">Giữ vững core, không để hông võng</span></td><td><span class="ex-sets">3 × 20s</span></td><td><span class="ex-focus">Core</span></td></tr>
-      <tr><td><span class="ex-name">Squat trọng lượng cơ thể</span><span class="ex-note">Gối không vượt qua mũi chân, lưng thẳng</span></td><td><span class="ex-sets">3 × 10</span></td><td><span class="ex-focus">Chân</span></td></tr>
-      <tr><td><span class="ex-name">Negative Pull-up</span><span class="ex-note">Lên bằng ghế, hạ xuống từ từ trong 5 giây</span></td><td><span class="ex-sets">3 × 5</span></td><td><span class="ex-focus">Lưng</span></td></tr>
-      <tr><td><span class="ex-name">Mountain Climber</span><span class="ex-note">Tốc độ vừa phải, không gù lưng</span></td><td><span class="ex-sets">2 × 20s</span></td><td><span class="ex-focus">Core + Tim</span></td></tr>
-    </tbody>
-  </table>
-
-  <div class="section-h" style="margin-top:48px;">LƯU Ý QUAN TRỌNG</div>
-  <div class="tips-grid">
-    <div class="tip-card"><div class="tip-icon">✅</div><h4>Luôn khởi động 10 phút</h4><p>Chạy nhẹ, xoay khớp, dynamic stretching trước mỗi buổi tập để tránh chấn thương.</p></div>
-    <div class="tip-card"><div class="tip-icon">📏</div><h4>Kỹ thuật trên số lượng</h4><p>Thà 5 reps đúng còn hơn 20 reps sai. Chụp video để kiểm tra tư thế của bản thân.</p></div>
-    <div class="tip-card"><div class="tip-icon">😴</div><h4>Ngủ đủ 9–10 tiếng</h4><p>Cơ bắp phát triển khi ngủ, không phải khi tập. Thiếu ngủ sẽ ảnh hưởng cả tăng trưởng chiều cao.</p></div>
-    <div class="tip-card"><div class="tip-icon">🎮</div><h4>Kết hợp vui chơi</h4><p>Bơi lội, leo trèo, bóng rổ đều giúp phát triển sức mạnh và sự phối hợp. Không cần gym 100%.</p></div>
-  </div>
-</div>
-
-<!-- PHASE 2 -->
-<div class="phase-content-area" id="phase-2">
-  <div class="phase-hero">
-    <div class="phase-info">
-      <span class="phase-tag tag-2">Giai đoạn 2 / Làm quen tạ</span>
-      <h2>GIỚI THIỆU BARBELL & DUMBBELL</h2>
-      <p>Ở 10–11 tuổi, trẻ có thể bắt đầu tập với thanh tạ rỗng (20kg) hoặc tạ tay nhẹ 5–10kg. Ưu tiên tuyệt đối là học kỹ thuật đúng trước khi tăng trọng lượng. Luôn có người lớn giám sát.</p>
-      <div class="goal-box">
-        <h4>Mục tiêu cuối giai đoạn</h4>
-        <div class="goal-val">30kg × 5 reps</div>
-        <div class="goal-sub">Benchpress với barbell — kỹ thuật hoàn chỉnh</div>
+    <!-- PHASE 2 -->
+    <div class="phase-content-area" id="phase-2">
+      <div class="phase-hero">
+        <div class="phase-info">
+          <span class="phase-tag tag-2">Giai đoạn 2 / Làm quen tạ</span>
+          <h2>GIỚI THIỆU BARBELL & DUMBBELL</h2>
+          <p>
+            Ở 10–11 tuổi, trẻ có thể bắt đầu tập với thanh tạ rỗng (20kg) hoặc
+            tạ tay nhẹ 5–10kg. Ưu tiên tuyệt đối là học kỹ thuật đúng trước khi
+            tăng trọng lượng. Luôn có người lớn giám sát.
+          </p>
+          <div class="goal-box">
+            <h4>Mục tiêu cuối giai đoạn</h4>
+            <div class="goal-val">30kg × 5 reps</div>
+            <div class="goal-sub">
+              Benchpress với barbell — kỹ thuật hoàn chỉnh
+            </div>
+          </div>
+        </div>
+        <div class="progress-card">
+          <h3>TIẾN ĐỘ MỤC TIÊU 100KG</h3>
+          <div class="prog-item">
+            <div class="prog-header">
+              <span class="prog-label">Benchpress 1RM (ước tính)</span
+              ><span class="prog-val">35–40 kg</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 38%"></div>
+            </div>
+          </div>
+          <div class="prog-item">
+            <div class="prog-header">
+              <span class="prog-label">Push-up</span
+              ><span class="prog-val">30+ reps</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 30%"></div>
+            </div>
+          </div>
+          <div class="prog-item">
+            <div class="prog-header">
+              <span class="prog-label">Tiến độ đến 100kg</span
+              ><span class="prog-val">~35–40%</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 38%"></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="progress-card">
-      <h3>TIẾN ĐỘ MỤC TIÊU 100KG</h3>
-      <div class="prog-item">
-        <div class="prog-header"><span class="prog-label">Benchpress 1RM (ước tính)</span><span class="prog-val">35–40 kg</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:38%"></div></div>
+
+      <div class="section-h">LỊCH TẬP HÀNG TUẦN</div>
+      <div class="section-sub">2–3 buổi mỗi tuần — tập toàn thân mỗi buổi</div>
+      <div class="schedule-grid">
+        <div class="day-card active-day">
+          <div class="day-name">Thứ 2</div>
+          <div class="day-type">Toàn thân</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">Thứ 3</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
+        <div class="day-card active-day">
+          <div class="day-name">Thứ 4</div>
+          <div class="day-type">Toàn thân</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">Thứ 5</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
+        <div class="day-card active-day">
+          <div class="day-name">Thứ 6</div>
+          <div class="day-type">Toàn thân</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">Thứ 7</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">CN</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
       </div>
-      <div class="prog-item">
-        <div class="prog-header"><span class="prog-label">Push-up</span><span class="prog-val">30+ reps</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:30%"></div></div>
-      </div>
-      <div class="prog-item">
-        <div class="prog-header"><span class="prog-label">Tiến độ đến 100kg</span><span class="prog-val">~35–40%</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:38%"></div></div>
-      </div>
-    </div>
-  </div>
 
-  <div class="section-h">LỊCH TẬP HÀNG TUẦN</div>
-  <div class="section-sub">2–3 buổi mỗi tuần — tập toàn thân mỗi buổi</div>
-  <div class="schedule-grid">
-    <div class="day-card active-day"><div class="day-name">Thứ 2</div><div class="day-type">Toàn thân</div></div>
-    <div class="day-card rest-day"><div class="day-name">Thứ 3</div><div class="day-type">Nghỉ</div></div>
-    <div class="day-card active-day"><div class="day-name">Thứ 4</div><div class="day-type">Toàn thân</div></div>
-    <div class="day-card rest-day"><div class="day-name">Thứ 5</div><div class="day-type">Nghỉ</div></div>
-    <div class="day-card active-day"><div class="day-name">Thứ 6</div><div class="day-type">Toàn thân</div></div>
-    <div class="day-card rest-day"><div class="day-name">Thứ 7</div><div class="day-type">Nghỉ</div></div>
-    <div class="day-card rest-day"><div class="day-name">CN</div><div class="day-type">Nghỉ</div></div>
-  </div>
+      <div class="divider"></div>
+      <div class="section-h">CHƯƠNG TRÌNH TẬP MẪU</div>
+      <table class="ex-table">
+        <thead>
+          <tr>
+            <th>Bài tập</th>
+            <th>Sets × Reps</th>
+            <th>Nhóm cơ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="ex-name"
+                >Barbell Bench Press (thanh rỗng → 30kg)</span
+              ><span class="ex-note"
+                >Grip rộng hơn vai, hạ bar xuống ngực giữa, đẩy lên thẳng</span
+              >
+            </td>
+            <td><span class="ex-sets">4 × 5</span></td>
+            <td><span class="ex-focus">Ngực</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Dumbbell Row</span
+              ><span class="ex-note">Lưng phẳng, kéo tạ lên ngang hông</span>
+            </td>
+            <td><span class="ex-sets">3 × 8</span></td>
+            <td><span class="ex-focus">Lưng</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Goblet Squat</span
+              ><span class="ex-note">Tạ tay ôm trước ngực, ngồi xuống sâu</span>
+            </td>
+            <td><span class="ex-sets">3 × 8</span></td>
+            <td><span class="ex-focus">Chân</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Overhead Press (thanh rỗng)</span
+              ><span class="ex-note">Đẩy thẳng lên đầu, không gù vai</span>
+            </td>
+            <td><span class="ex-sets">3 × 6</span></td>
+            <td><span class="ex-focus">Vai</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Pull-up hoặc Lat Pulldown</span
+              ><span class="ex-note"
+                >Bắt đầu với pulldown nếu chưa pull-up được</span
+              >
+            </td>
+            <td><span class="ex-sets">3 × 6</span></td>
+            <td><span class="ex-focus">Lưng</span></td>
+          </tr>
+        </tbody>
+      </table>
 
-  <div class="divider"></div>
-  <div class="section-h">CHƯƠNG TRÌNH TẬP MẪU</div>
-  <table class="ex-table">
-    <thead><tr><th>Bài tập</th><th>Sets × Reps</th><th>Nhóm cơ</th></tr></thead>
-    <tbody>
-      <tr><td><span class="ex-name">Barbell Bench Press (thanh rỗng → 30kg)</span><span class="ex-note">Grip rộng hơn vai, hạ bar xuống ngực giữa, đẩy lên thẳng</span></td><td><span class="ex-sets">4 × 5</span></td><td><span class="ex-focus">Ngực</span></td></tr>
-      <tr><td><span class="ex-name">Dumbbell Row</span><span class="ex-note">Lưng phẳng, kéo tạ lên ngang hông</span></td><td><span class="ex-sets">3 × 8</span></td><td><span class="ex-focus">Lưng</span></td></tr>
-      <tr><td><span class="ex-name">Goblet Squat</span><span class="ex-note">Tạ tay ôm trước ngực, ngồi xuống sâu</span></td><td><span class="ex-sets">3 × 8</span></td><td><span class="ex-focus">Chân</span></td></tr>
-      <tr><td><span class="ex-name">Overhead Press (thanh rỗng)</span><span class="ex-note">Đẩy thẳng lên đầu, không gù vai</span></td><td><span class="ex-sets">3 × 6</span></td><td><span class="ex-focus">Vai</span></td></tr>
-      <tr><td><span class="ex-name">Pull-up hoặc Lat Pulldown</span><span class="ex-note">Bắt đầu với pulldown nếu chưa pull-up được</span></td><td><span class="ex-sets">3 × 6</span></td><td><span class="ex-focus">Lưng</span></td></tr>
-    </tbody>
-  </table>
-
-  <div class="section-h" style="margin-top:48px;">NGUYÊN TẮC TĂNG TIẾN</div>
-  <div class="tips-grid">
-    <div class="tip-card"><div class="tip-icon">📈</div><h4>Tăng 2.5kg mỗi tuần</h4><p>Chỉ tăng tạ khi hoàn thành đủ tất cả sets và reps với form hoàn hảo trong 2 buổi liên tiếp.</p></div>
-    <div class="tip-card"><div class="tip-icon">👀</div><h4>Luôn có spotter</h4><p>Không tập bench press một mình. Người giám sát phải đứng đúng vị trí sau đầu, sẵn sàng đỡ bar bất cứ lúc nào.</p></div>
-    <div class="tip-card"><div class="tip-icon">📹</div><h4>Quay video kiểm tra</h4><p>Quay từ góc nghiêng để kiểm tra đường đi của bar, vị trí khuỷu tay và độ sâu khi hạ bar.</p></div>
-  </div>
-</div>
-
-<!-- PHASE 3 -->
-<div class="phase-content-area" id="phase-3">
-  <div class="phase-hero">
-    <div class="phase-info">
-      <span class="phase-tag tag-3">Giai đoạn 3 / Tăng tải</span>
-      <h2>PROGRESSIVE OVERLOAD CÓ KIỂM SOÁT</h2>
-      <p>12–13 tuổi là giai đoạn testosterone bắt đầu tăng, cơ thể phản ứng tốt hơn với tạ nặng. Tăng trọng lượng có hệ thống, bắt đầu chia nhóm cơ. Tần suất tập tăng lên 3 buổi/tuần.</p>
-      <div class="goal-box">
-        <h4>Mục tiêu cuối giai đoạn</h4>
-        <div class="goal-val">55–60kg × 3 reps</div>
-        <div class="goal-sub">Benchpress — tiến gần mức bodyweight</div>
-      </div>
-    </div>
-    <div class="progress-card">
-      <h3>TIẾN ĐỘ MỤC TIÊU 100KG</h3>
-      <div class="prog-item">
-        <div class="prog-header"><span class="prog-label">Benchpress 1RM (ước tính)</span><span class="prog-val">65–70 kg</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:67%"></div></div>
-      </div>
-      <div class="prog-item">
-        <div class="prog-header"><span class="prog-label">Tiến độ đến 100kg</span><span class="prog-val">~65–70%</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:67%"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-h">LỊCH TẬP 3 NGÀY / TUẦN — UPPER/LOWER SPLIT</div>
-  <div class="schedule-grid">
-    <div class="day-card active-day"><div class="day-name">Thứ 2</div><div class="day-type">Upper A</div></div>
-    <div class="day-card rest-day"><div class="day-name">Thứ 3</div><div class="day-type">Nghỉ/Cardio</div></div>
-    <div class="day-card active-day"><div class="day-name">Thứ 4</div><div class="day-type">Lower</div></div>
-    <div class="day-card rest-day"><div class="day-name">Thứ 5</div><div class="day-type">Nghỉ</div></div>
-    <div class="day-card active-day"><div class="day-name">Thứ 6</div><div class="day-type">Upper B</div></div>
-    <div class="day-card rest-day"><div class="day-name">Thứ 7</div><div class="day-type">Nghỉ</div></div>
-    <div class="day-card rest-day"><div class="day-name">CN</div><div class="day-type">Nghỉ</div></div>
-  </div>
-
-  <div class="divider"></div>
-  <div class="section-h">UPPER A — NGÀY NGỰC + LƯNG</div>
-  <table class="ex-table">
-    <thead><tr><th>Bài tập</th><th>Sets × Reps</th><th>Nhóm cơ</th></tr></thead>
-    <tbody>
-      <tr><td><span class="ex-name">Flat Barbell Bench Press</span><span class="ex-note">Tập trung tăng tải — đây là bài chính</span></td><td><span class="ex-sets">4 × 5</span></td><td><span class="ex-focus">Ngực</span></td></tr>
-      <tr><td><span class="ex-name">Barbell Row</span><span class="ex-note">Kéo bar vào rốn, giữ lưng phẳng 45°</span></td><td><span class="ex-sets">4 × 5</span></td><td><span class="ex-focus">Lưng</span></td></tr>
-      <tr><td><span class="ex-name">Incline Dumbbell Press</span><span class="ex-note">Góc 30°, bổ trợ cho bench press</span></td><td><span class="ex-sets">3 × 8</span></td><td><span class="ex-focus">Ngực</span></td></tr>
-      <tr><td><span class="ex-name">Pull-up</span><span class="ex-note">Thêm tạ đeo nếu đã pull-up được 10+ reps</span></td><td><span class="ex-sets">3 × Max</span></td><td><span class="ex-focus">Lưng</span></td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- PHASE 4 -->
-<div class="phase-content-area" id="phase-4">
-  <div class="phase-hero">
-    <div class="phase-info">
-      <span class="phase-tag tag-4">Giai đoạn 4 / Sức mạnh</span>
-      <h2>CHƯƠNG TRÌNH SỨC MẠNH 5×5</h2>
-      <p>Năm 14 tuổi, hormone tăng trưởng và testosterone đạt mức cao — đây là thời điểm vàng để tăng sức mạnh. Áp dụng chương trình 5×5 hoặc Texas Method. Luôn có spotter khi tập nặng.</p>
-      <div class="goal-box">
-        <h4>Mục tiêu cuối giai đoạn</h4>
-        <div class="goal-val">80–85kg × 1 rep</div>
-        <div class="goal-sub">Benchpress — tiến gần cột mốc 100kg</div>
+      <div class="section-h" style="margin-top: 48px">NGUYÊN TẮC TĂNG TIẾN</div>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon">📈</div>
+          <h4>Tăng 2.5kg mỗi tuần</h4>
+          <p>
+            Chỉ tăng tạ khi hoàn thành đủ tất cả sets và reps với form hoàn hảo
+            trong 2 buổi liên tiếp.
+          </p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">👀</div>
+          <h4>Luôn có spotter</h4>
+          <p>
+            Không tập bench press một mình. Người giám sát phải đứng đúng vị trí
+            sau đầu, sẵn sàng đỡ bar bất cứ lúc nào.
+          </p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">📹</div>
+          <h4>Quay video kiểm tra</h4>
+          <p>
+            Quay từ góc nghiêng để kiểm tra đường đi của bar, vị trí khuỷu tay
+            và độ sâu khi hạ bar.
+          </p>
+        </div>
       </div>
     </div>
-    <div class="progress-card">
-      <h3>TIẾN ĐỘ MỤC TIÊU 100KG</h3>
-      <div class="prog-item">
-        <div class="prog-header"><span class="prog-label">Benchpress 1RM</span><span class="prog-val">80–90 kg</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:85%"></div></div>
+
+    <!-- PHASE 3 -->
+    <div class="phase-content-area" id="phase-3">
+      <div class="phase-hero">
+        <div class="phase-info">
+          <span class="phase-tag tag-3">Giai đoạn 3 / Tăng tải</span>
+          <h2>PROGRESSIVE OVERLOAD CÓ KIỂM SOÁT</h2>
+          <p>
+            12–13 tuổi là giai đoạn testosterone bắt đầu tăng, cơ thể phản ứng
+            tốt hơn với tạ nặng. Tăng trọng lượng có hệ thống, bắt đầu chia nhóm
+            cơ. Tần suất tập tăng lên 3 buổi/tuần.
+          </p>
+          <div class="goal-box">
+            <h4>Mục tiêu cuối giai đoạn</h4>
+            <div class="goal-val">55–60kg × 3 reps</div>
+            <div class="goal-sub">Benchpress — tiến gần mức bodyweight</div>
+          </div>
+        </div>
+        <div class="progress-card">
+          <h3>TIẾN ĐỘ MỤC TIÊU 100KG</h3>
+          <div class="prog-item">
+            <div class="prog-header">
+              <span class="prog-label">Benchpress 1RM (ước tính)</span
+              ><span class="prog-val">65–70 kg</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 67%"></div>
+            </div>
+          </div>
+          <div class="prog-item">
+            <div class="prog-header">
+              <span class="prog-label">Tiến độ đến 100kg</span
+              ><span class="prog-val">~65–70%</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 67%"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="prog-item">
-        <div class="prog-header"><span class="prog-label">Tiến độ đến 100kg</span><span class="prog-val">~85%</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:85%"></div></div>
+
+      <div class="section-h">LỊCH TẬP 3 NGÀY / TUẦN — UPPER/LOWER SPLIT</div>
+      <div class="schedule-grid">
+        <div class="day-card active-day">
+          <div class="day-name">Thứ 2</div>
+          <div class="day-type">Upper A</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">Thứ 3</div>
+          <div class="day-type">Nghỉ/Cardio</div>
+        </div>
+        <div class="day-card active-day">
+          <div class="day-name">Thứ 4</div>
+          <div class="day-type">Lower</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">Thứ 5</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
+        <div class="day-card active-day">
+          <div class="day-name">Thứ 6</div>
+          <div class="day-type">Upper B</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">Thứ 7</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">CN</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-h">UPPER A — NGÀY NGỰC + LƯNG</div>
+      <table class="ex-table">
+        <thead>
+          <tr>
+            <th>Bài tập</th>
+            <th>Sets × Reps</th>
+            <th>Nhóm cơ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="ex-name">Flat Barbell Bench Press</span
+              ><span class="ex-note"
+                >Tập trung tăng tải — đây là bài chính</span
+              >
+            </td>
+            <td><span class="ex-sets">4 × 5</span></td>
+            <td><span class="ex-focus">Ngực</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Barbell Row</span
+              ><span class="ex-note">Kéo bar vào rốn, giữ lưng phẳng 45°</span>
+            </td>
+            <td><span class="ex-sets">4 × 5</span></td>
+            <td><span class="ex-focus">Lưng</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Incline Dumbbell Press</span
+              ><span class="ex-note">Góc 30°, bổ trợ cho bench press</span>
+            </td>
+            <td><span class="ex-sets">3 × 8</span></td>
+            <td><span class="ex-focus">Ngực</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Pull-up</span
+              ><span class="ex-note"
+                >Thêm tạ đeo nếu đã pull-up được 10+ reps</span
+              >
+            </td>
+            <td><span class="ex-sets">3 × Max</span></td>
+            <td><span class="ex-focus">Lưng</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase-content-area" id="phase-4">
+      <div class="phase-hero">
+        <div class="phase-info">
+          <span class="phase-tag tag-4">Giai đoạn 4 / Sức mạnh</span>
+          <h2>CHƯƠNG TRÌNH SỨC MẠNH 5×5</h2>
+          <p>
+            Năm 14 tuổi, hormone tăng trưởng và testosterone đạt mức cao — đây
+            là thời điểm vàng để tăng sức mạnh. Áp dụng chương trình 5×5 hoặc
+            Texas Method. Luôn có spotter khi tập nặng.
+          </p>
+          <div class="goal-box">
+            <h4>Mục tiêu cuối giai đoạn</h4>
+            <div class="goal-val">80–85kg × 1 rep</div>
+            <div class="goal-sub">Benchpress — tiến gần cột mốc 100kg</div>
+          </div>
+        </div>
+        <div class="progress-card">
+          <h3>TIẾN ĐỘ MỤC TIÊU 100KG</h3>
+          <div class="prog-item">
+            <div class="prog-header">
+              <span class="prog-label">Benchpress 1RM</span
+              ><span class="prog-val">80–90 kg</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="prog-item">
+            <div class="prog-header">
+              <span class="prog-label">Tiến độ đến 100kg</span
+              ><span class="prog-val">~85%</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 85%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-h">LỊCH 4 NGÀY — UPPER/LOWER + INTENSITY/VOLUME</div>
+      <div class="schedule-grid">
+        <div class="day-card active-day">
+          <div class="day-name">Thứ 2</div>
+          <div class="day-type">Upper Intensity</div>
+        </div>
+        <div class="day-card active-day">
+          <div class="day-name">Thứ 3</div>
+          <div class="day-type">Lower Intensity</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">Thứ 4</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
+        <div class="day-card active-day">
+          <div class="day-name">Thứ 5</div>
+          <div class="day-type">Upper Volume</div>
+        </div>
+        <div class="day-card active-day">
+          <div class="day-name">Thứ 6</div>
+          <div class="day-type">Lower Volume</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">Thứ 7</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
+        <div class="day-card rest-day">
+          <div class="day-name">CN</div>
+          <div class="day-type">Nghỉ</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-h">UPPER INTENSITY — NGÀY NẶNG</div>
+      <table class="ex-table">
+        <thead>
+          <tr>
+            <th>Bài tập</th>
+            <th>Sets × Reps</th>
+            <th>Nhóm cơ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="ex-name">Flat Bench Press — Tập nặng</span
+              ><span class="ex-note">85–90% 1RM, spotter bắt buộc</span>
+            </td>
+            <td><span class="ex-sets">5 × 3</span></td>
+            <td><span class="ex-focus">Ngực</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Close-Grip Bench Press</span
+              ><span class="ex-note"
+                >Bổ trợ triceps — cực kỳ quan trọng cho bench</span
+              >
+            </td>
+            <td><span class="ex-sets">4 × 6</span></td>
+            <td><span class="ex-focus">Triceps</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Weighted Dips</span
+              ><span class="ex-note">Thêm đĩa tạ nếu body-weight dễ dàng</span>
+            </td>
+            <td><span class="ex-sets">3 × 8</span></td>
+            <td><span class="ex-focus">Ngực + Tri</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Weighted Pull-up</span
+              ><span class="ex-note">Thêm 5–10kg đĩa tạ</span>
+            </td>
+            <td><span class="ex-sets">4 × 5</span></td>
+            <td><span class="ex-focus">Lưng</span></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name">Face Pull</span
+              ><span class="ex-note">Bảo vệ rotator cuff — không bỏ qua</span>
+            </td>
+            <td><span class="ex-sets">3 × 15</span></td>
+            <td><span class="ex-focus">Vai sau</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase-content-area" id="phase-5">
+      <div class="phase-hero">
+        <div class="phase-info">
+          <span class="phase-tag tag-5">Giai đoạn 5 / Chinh phục</span>
+          <h2>PEAKING — CHINH PHỤC 100KG</h2>
+          <p>
+            Năm 15 tuổi — đây là thời điểm thực hiện chương trình peaking 6–8
+            tuần để đạt 1RM 100kg. Giảm volume, tăng intensity. Tối ưu kỹ thuật
+            thi đấu: arch lưng, leg drive, grip width.
+          </p>
+          <div class="goal-box">
+            <h4>Mục tiêu cuối giai đoạn</h4>
+            <div class="goal-val">100kg × 1 Rep</div>
+            <div class="goal-sub">🏆 Benchpress 100kg — cột mốc lịch sử!</div>
+          </div>
+        </div>
+        <div class="progress-card">
+          <h3>TIẾN ĐỘ MỤC TIÊU 100KG</h3>
+          <div class="prog-item">
+            <div class="prog-header">
+              <span class="prog-label">Benchpress 1RM</span
+              ><span class="prog-val">100 kg ✅</span>
+            </div>
+            <div class="prog-bar">
+              <div
+                class="prog-fill"
+                style="
+                  width: 100%;
+                  background: linear-gradient(90deg, var(--yellow), #fff);
+                "
+              ></div>
+            </div>
+          </div>
+          <div class="prog-item">
+            <div class="prog-header">
+              <span class="prog-label">HOÀN THÀNH</span
+              ><span class="prog-val">100%</span>
+            </div>
+            <div class="prog-bar">
+              <div
+                class="prog-fill"
+                style="width: 100%; background: var(--yellow)"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-h">PEAKING PROGRAM — 6 TUẦN</div>
+      <div class="section-sub">Mỗi tuần giảm volume, tăng intensity</div>
+      <table class="ex-table">
+        <thead>
+          <tr>
+            <th>Tuần</th>
+            <th>Sets × Reps</th>
+            <th>% 1RM</th>
+            <th>Mục tiêu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="ex-name">Tuần 1–2</span></td>
+            <td><span class="ex-sets">5 × 5</span></td>
+            <td>70–75%</td>
+            <td>Xây volume, giữ form</td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Tuần 3</span></td>
+            <td><span class="ex-sets">4 × 4</span></td>
+            <td>80–82%</td>
+            <td>Tăng tải có kiểm soát</td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Tuần 4</span></td>
+            <td><span class="ex-sets">3 × 3</span></td>
+            <td>85–87%</td>
+            <td>Sức mạnh thần kinh</td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Tuần 5</span></td>
+            <td><span class="ex-sets">2 × 2</span></td>
+            <td>90–92%</td>
+            <td>Gần đỉnh</td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Tuần 6 — DELOAD</span></td>
+            <td><span class="ex-sets">3 × 3</span></td>
+            <td>65%</td>
+            <td>Nghỉ phục hồi, chuẩn bị max</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="ex-name" style="color: var(--yellow)"
+                >🏆 NGÀY MAX</span
+              >
+            </td>
+            <td>
+              <span class="ex-sets" style="color: var(--red)">1 × 1</span>
+            </td>
+            <td style="color: var(--yellow); font-weight: 700">100%</td>
+            <td style="color: var(--yellow); font-weight: 700">100KG!</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tips-grid" style="margin-top: 48px">
+        <div class="tip-card">
+          <div class="tip-icon">🏥</div>
+          <h4>Khám sức khỏe trước max day</h4>
+          <p>
+            Gặp bác sĩ thể thao để kiểm tra cột sống, vai và tim mạch trước khi
+            thử 1RM.
+          </p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">💪</div>
+          <h4>Kỹ thuật thi đấu</h4>
+          <p>
+            Học arch lưng, leg drive, brea a pause tại ngực. Mỗi chi tiết có thể
+            tăng thêm 5–10kg.
+          </p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🎯</div>
+          <h4>Chọn ngày max lý tưởng</h4>
+          <p>
+            Chọn ngày nghỉ ngơi 2 ngày trước, ăn uống đầy đủ, không tập gym 48
+            tiếng trước max.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="section-h">LỊCH 4 NGÀY — UPPER/LOWER + INTENSITY/VOLUME</div>
-  <div class="schedule-grid">
-    <div class="day-card active-day"><div class="day-name">Thứ 2</div><div class="day-type">Upper Intensity</div></div>
-    <div class="day-card active-day"><div class="day-name">Thứ 3</div><div class="day-type">Lower Intensity</div></div>
-    <div class="day-card rest-day"><div class="day-name">Thứ 4</div><div class="day-type">Nghỉ</div></div>
-    <div class="day-card active-day"><div class="day-name">Thứ 5</div><div class="day-type">Upper Volume</div></div>
-    <div class="day-card active-day"><div class="day-name">Thứ 6</div><div class="day-type">Lower Volume</div></div>
-    <div class="day-card rest-day"><div class="day-name">Thứ 7</div><div class="day-type">Nghỉ</div></div>
-    <div class="day-card rest-day"><div class="day-name">CN</div><div class="day-type">Nghỉ</div></div>
-  </div>
-
-  <div class="divider"></div>
-  <div class="section-h">UPPER INTENSITY — NGÀY NẶNG</div>
-  <table class="ex-table">
-    <thead><tr><th>Bài tập</th><th>Sets × Reps</th><th>Nhóm cơ</th></tr></thead>
-    <tbody>
-      <tr><td><span class="ex-name">Flat Bench Press — Tập nặng</span><span class="ex-note">85–90% 1RM, spotter bắt buộc</span></td><td><span class="ex-sets">5 × 3</span></td><td><span class="ex-focus">Ngực</span></td></tr>
-      <tr><td><span class="ex-name">Close-Grip Bench Press</span><span class="ex-note">Bổ trợ triceps — cực kỳ quan trọng cho bench</span></td><td><span class="ex-sets">4 × 6</span></td><td><span class="ex-focus">Triceps</span></td></tr>
-      <tr><td><span class="ex-name">Weighted Dips</span><span class="ex-note">Thêm đĩa tạ nếu body-weight dễ dàng</span></td><td><span class="ex-sets">3 × 8</span></td><td><span class="ex-focus">Ngực + Tri</span></td></tr>
-      <tr><td><span class="ex-name">Weighted Pull-up</span><span class="ex-note">Thêm 5–10kg đĩa tạ</span></td><td><span class="ex-sets">4 × 5</span></td><td><span class="ex-focus">Lưng</span></td></tr>
-      <tr><td><span class="ex-name">Face Pull</span><span class="ex-note">Bảo vệ rotator cuff — không bỏ qua</span></td><td><span class="ex-sets">3 × 15</span></td><td><span class="ex-focus">Vai sau</span></td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- PHASE 5 -->
-<div class="phase-content-area" id="phase-5">
-  <div class="phase-hero">
-    <div class="phase-info">
-      <span class="phase-tag tag-5">Giai đoạn 5 / Chinh phục</span>
-      <h2>PEAKING — CHINH PHỤC 100KG</h2>
-      <p>Năm 15 tuổi — đây là thời điểm thực hiện chương trình peaking 6–8 tuần để đạt 1RM 100kg. Giảm volume, tăng intensity. Tối ưu kỹ thuật thi đấu: arch lưng, leg drive, grip width.</p>
-      <div class="goal-box">
-        <h4>Mục tiêu cuối giai đoạn</h4>
-        <div class="goal-val">100kg × 1 Rep</div>
-        <div class="goal-sub">🏆 Benchpress 100kg — cột mốc lịch sử!</div>
+    <footer>
+      <p>IRON YOUTH — Chương trình sức mạnh thiếu niên</p>
+      <div style="display: flex; gap: 20px">
+        <a
+          href="technique.html"
+          style="
+            color: var(--red);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+          "
+          >Kỹ thuật →</a
+        >
+        <a
+          href="safety.html"
+          style="color: var(--muted); font-size: 0.85rem; text-decoration: none"
+          >An toàn →</a
+        >
       </div>
-    </div>
-    <div class="progress-card">
-      <h3>TIẾN ĐỘ MỤC TIÊU 100KG</h3>
-      <div class="prog-item">
-        <div class="prog-header"><span class="prog-label">Benchpress 1RM</span><span class="prog-val">100 kg ✅</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:100%; background: linear-gradient(90deg, var(--yellow), #fff);"></div></div>
-      </div>
-      <div class="prog-item">
-        <div class="prog-header"><span class="prog-label">HOÀN THÀNH</span><span class="prog-val">100%</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:100%; background: var(--yellow);"></div></div>
-      </div>
-    </div>
-  </div>
+    </footer>
 
-  <div class="section-h">PEAKING PROGRAM — 6 TUẦN</div>
-  <div class="section-sub">Mỗi tuần giảm volume, tăng intensity</div>
-  <table class="ex-table">
-    <thead><tr><th>Tuần</th><th>Sets × Reps</th><th>% 1RM</th><th>Mục tiêu</th></tr></thead>
-    <tbody>
-      <tr><td><span class="ex-name">Tuần 1–2</span></td><td><span class="ex-sets">5 × 5</span></td><td>70–75%</td><td>Xây volume, giữ form</td></tr>
-      <tr><td><span class="ex-name">Tuần 3</span></td><td><span class="ex-sets">4 × 4</span></td><td>80–82%</td><td>Tăng tải có kiểm soát</td></tr>
-      <tr><td><span class="ex-name">Tuần 4</span></td><td><span class="ex-sets">3 × 3</span></td><td>85–87%</td><td>Sức mạnh thần kinh</td></tr>
-      <tr><td><span class="ex-name">Tuần 5</span></td><td><span class="ex-sets">2 × 2</span></td><td>90–92%</td><td>Gần đỉnh</td></tr>
-      <tr><td><span class="ex-name">Tuần 6 — DELOAD</span></td><td><span class="ex-sets">3 × 3</span></td><td>65%</td><td>Nghỉ phục hồi, chuẩn bị max</td></tr>
-      <tr><td><span class="ex-name" style="color:var(--yellow)">🏆 NGÀY MAX</span></td><td><span class="ex-sets" style="color:var(--red)">1 × 1</span></td><td style="color:var(--yellow);font-weight:700;">100%</td><td style="color:var(--yellow);font-weight:700;">100KG!</td></tr>
-    </tbody>
-  </table>
-
-  <div class="tips-grid" style="margin-top:48px;">
-    <div class="tip-card"><div class="tip-icon">🏥</div><h4>Khám sức khỏe trước max day</h4><p>Gặp bác sĩ thể thao để kiểm tra cột sống, vai và tim mạch trước khi thử 1RM.</p></div>
-    <div class="tip-card"><div class="tip-icon">💪</div><h4>Kỹ thuật thi đấu</h4><p>Học arch lưng, leg drive, brea a pause tại ngực. Mỗi chi tiết có thể tăng thêm 5–10kg.</p></div>
-    <div class="tip-card"><div class="tip-icon">🎯</div><h4>Chọn ngày max lý tưởng</h4><p>Chọn ngày nghỉ ngơi 2 ngày trước, ăn uống đầy đủ, không tập gym 48 tiếng trước max.</p></div>
-  </div>
-</div>
-
-<footer>
-  <p>IRON YOUTH — Chương trình sức mạnh thiếu niên</p>
-  <div style="display:flex;gap:20px;">
-    <a href="technique.html" style="color:var(--red);font-size:.85rem;font-weight:700;text-decoration:none;">Kỹ thuật →</a>
-    <a href="safety.html" style="color:var(--muted);font-size:.85rem;text-decoration:none;">An toàn →</a>
-  </div>
-</footer>
-
-<script>
-function showPhase(num, el) {
-  document.querySelectorAll('.phase-content-area').forEach(a => a.classList.remove('active'));
-  document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('phase-' + num).classList.add('active');
-  el.classList.add('active');
-}
-</script>
-</body>
+    <script>
+      function showPhase(num, el) {
+        document
+          .querySelectorAll(".phase-content-area")
+          .forEach((a) => a.classList.remove("active"));
+        document
+          .querySelectorAll(".phase-tab")
+          .forEach((t) => t.classList.remove("active"));
+        document.getElementById("phase-" + num).classList.add("active");
+        el.classList.add("active");
+      }
+    </script>
+  </body>
 </html>

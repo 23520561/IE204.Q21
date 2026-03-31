@@ -1,471 +1,1305 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>An Toàn & Chấn Thương — IRON YOUTH</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --red: #FF2D00; --yellow: #FFD100; --black: #080808;
-    --surface: #111111; --surface2: #1a1a1a; --text: #F0EDE8;
-    --muted: #888; --border: rgba(255,255,255,0.07);
-    --green: #00D46A; --orange: #FF8C00;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--black); color: var(--text); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; background: rgba(8,8,8,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 2px; color: var(--text); text-decoration: none; }
-  .nav-logo span { color: var(--red); }
-  .nav-links { display: flex; gap: 8px; }
-  .nav-links a { font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 6px 14px; border-radius: 4px; transition: color .2s, background .2s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface2); }
-  .nav-links a.active { color: var(--yellow); }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>An Toàn & Chấn Thương — IRON YOUTH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: #ff2d00;
+        --yellow: #ffd100;
+        --black: #080808;
+        --surface: #111111;
+        --surface2: #1a1a1a;
+        --text: #f0ede8;
+        --muted: #888;
+        --border: rgba(255, 255, 255, 0.07);
+        --green: #00d46a;
+        --orange: #ff8c00;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--black);
+        color: var(--text);
+        font-family: "Barlow", sans-serif;
+        overflow-x: hidden;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        height: 64px;
+        background: rgba(8, 8, 8, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+        color: var(--text);
+        text-decoration: none;
+      }
+      .nav-logo span {
+        color: var(--red);
+      }
+      .nav-links {
+        display: flex;
+        gap: 8px;
+      }
+      .nav-links a {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 6px 14px;
+        border-radius: 4px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--text);
+        background: var(--surface2);
+      }
+      .nav-links a.active {
+        color: var(--yellow);
+      }
 
-  .page-header { padding: 120px 60px 60px; background: linear-gradient(180deg, rgba(255,140,0,.06) 0%, transparent 100%); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
-  .page-header::before { content: 'SAFE'; position: absolute; right: 40px; bottom: -20px; font-family: 'Bebas Neue', sans-serif; font-size: 18rem; color: rgba(255,255,255,.02); line-height: 1; pointer-events: none; }
-  .breadcrumb { font-size: .75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
-  .breadcrumb a { color: var(--red); text-decoration: none; }
-  .page-header h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 7rem); line-height: .95; }
-  .page-header h1 span { color: var(--orange); }
-  .page-header p { margin-top: 20px; color: #999; max-width: 620px; line-height: 1.8; }
+      .page-header {
+        padding: 120px 60px 60px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 140, 0, 0.06) 0%,
+          transparent 100%
+        );
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+      .page-header::before {
+        content: "SAFE";
+        position: absolute;
+        right: 40px;
+        bottom: -20px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 18rem;
+        color: rgba(255, 255, 255, 0.02);
+        line-height: 1;
+        pointer-events: none;
+      }
+      .breadcrumb {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+      .breadcrumb a {
+        color: var(--red);
+        text-decoration: none;
+      }
+      .page-header h1 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(3rem, 8vw, 7rem);
+        line-height: 0.95;
+      }
+      .page-header h1 span {
+        color: var(--orange);
+      }
+      .page-header p {
+        margin-top: 20px;
+        color: #999;
+        max-width: 620px;
+        line-height: 1.8;
+      }
 
-  /* EMERGENCY BANNER */
-  .emergency { padding: 24px 60px; background: rgba(255,45,0,.08); border-bottom: 2px solid rgba(255,45,0,.2); display: flex; align-items: center; gap: 16px; }
-  .emergency-icon { font-size: 1.5rem; flex-shrink: 0; }
-  .emergency-text { font-size: .88rem; line-height: 1.6; }
-  .emergency-text strong { color: var(--red); font-size: 1rem; display: block; margin-bottom: 3px; }
-  .emergency-text p { color: #999; }
+      /* EMERGENCY BANNER */
+      .emergency {
+        padding: 24px 60px;
+        background: rgba(255, 45, 0, 0.08);
+        border-bottom: 2px solid rgba(255, 45, 0, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .emergency-icon {
+        font-size: 1.5rem;
+        flex-shrink: 0;
+      }
+      .emergency-text {
+        font-size: 0.88rem;
+        line-height: 1.6;
+      }
+      .emergency-text strong {
+        color: var(--red);
+        font-size: 1rem;
+        display: block;
+        margin-bottom: 3px;
+      }
+      .emergency-text p {
+        color: #999;
+      }
 
-  /* GOLDEN RULES */
-  .rules-section { padding: 80px 60px; }
-  .section-h { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; margin-bottom: 8px; }
-  .section-sub { color: #777; font-size: .88rem; margin-bottom: 32px; }
-  .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3px; background: var(--border); border: 1px solid var(--border); }
-  .rule-card { background: var(--surface); padding: 32px; position: relative; overflow: hidden; transition: background .2s; }
-  .rule-card:hover { background: var(--surface2); }
-  .rule-num { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: rgba(255,140,0,.15); position: absolute; top: 12px; right: 20px; line-height: 1; }
-  .rule-icon { font-size: 1.8rem; margin-bottom: 14px; }
-  .rule-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; margin-bottom: 8px; color: var(--orange); }
-  .rule-card p { color: #888; font-size: .88rem; line-height: 1.7; }
+      /* GOLDEN RULES */
+      .rules-section {
+        padding: 80px 60px;
+      }
+      .section-h {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 2.2rem;
+        margin-bottom: 8px;
+      }
+      .section-sub {
+        color: #777;
+        font-size: 0.88rem;
+        margin-bottom: 32px;
+      }
+      .rules-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3px;
+        background: var(--border);
+        border: 1px solid var(--border);
+      }
+      .rule-card {
+        background: var(--surface);
+        padding: 32px;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.2s;
+      }
+      .rule-card:hover {
+        background: var(--surface2);
+      }
+      .rule-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 4rem;
+        color: rgba(255, 140, 0, 0.15);
+        position: absolute;
+        top: 12px;
+        right: 20px;
+        line-height: 1;
+      }
+      .rule-icon {
+        font-size: 1.8rem;
+        margin-bottom: 14px;
+      }
+      .rule-card h3 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+        color: var(--orange);
+      }
+      .rule-card p {
+        color: #888;
+        font-size: 0.88rem;
+        line-height: 1.7;
+      }
 
-  /* INJURY GUIDE */
-  .injury-section { padding: 80px 60px; background: var(--surface); }
-  .injury-accordion { margin-top: 32px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-  .injury-item { border-bottom: 1px solid var(--border); }
-  .injury-item:last-child { border-bottom: none; }
-  .injury-header { padding: 24px 28px; display: flex; align-items: center; gap: 16px; cursor: pointer; transition: background .2s; user-select: none; }
-  .injury-header:hover { background: var(--surface2); }
-  .injury-severity { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .sev-high { background: var(--red); }
-  .sev-med { background: var(--yellow); }
-  .sev-low { background: var(--green); }
-  .injury-title { flex: 1; font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; }
-  .injury-toggle { color: var(--muted); font-size: 1.2rem; transition: transform .3s; }
-  .injury-body { padding: 0 28px 24px; display: none; }
-  .injury-item.open .injury-body { display: block; }
-  .injury-item.open .injury-toggle { transform: rotate(180deg); }
-  .injury-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 16px; }
-  .injury-col h5 { font-size: .7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  .injury-col p { font-size: .88rem; color: #aaa; line-height: 1.7; }
-  .stop-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 4px; font-size: .72rem; font-weight: 700; background: rgba(255,45,0,.12); color: var(--red); margin-top: 8px; }
+      /* INJURY GUIDE */
+      .injury-section {
+        padding: 80px 60px;
+        background: var(--surface);
+      }
+      .injury-accordion {
+        margin-top: 32px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .injury-item {
+        border-bottom: 1px solid var(--border);
+      }
+      .injury-item:last-child {
+        border-bottom: none;
+      }
+      .injury-header {
+        padding: 24px 28px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        cursor: pointer;
+        transition: background 0.2s;
+        user-select: none;
+      }
+      .injury-header:hover {
+        background: var(--surface2);
+      }
+      .injury-severity {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .sev-high {
+        background: var(--red);
+      }
+      .sev-med {
+        background: var(--yellow);
+      }
+      .sev-low {
+        background: var(--green);
+      }
+      .injury-title {
+        flex: 1;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.3rem;
+      }
+      .injury-toggle {
+        color: var(--muted);
+        font-size: 1.2rem;
+        transition: transform 0.3s;
+      }
+      .injury-body {
+        padding: 0 28px 24px;
+        display: none;
+      }
+      .injury-item.open .injury-body {
+        display: block;
+      }
+      .injury-item.open .injury-toggle {
+        transform: rotate(180deg);
+      }
+      .injury-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+        margin-top: 16px;
+      }
+      .injury-col h5 {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .injury-col p {
+        font-size: 0.88rem;
+        color: #aaa;
+        line-height: 1.7;
+      }
+      .stop-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        background: rgba(255, 45, 0, 0.12);
+        color: var(--red);
+        margin-top: 8px;
+      }
 
-  /* WARM UP / COOL DOWN */
-  .warmup { padding: 80px 60px; }
-  .wu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px; }
-  .wu-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-  .wu-header { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
-  .wu-icon { font-size: 1.5rem; }
-  .wu-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; }
-  .wu-sub { font-size: .72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
-  .wu-list { padding: 0; list-style: none; }
-  .wu-item { padding: 14px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
-  .wu-item:last-child { border-bottom: none; }
-  .wu-time { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--yellow); min-width: 56px; }
-  .wu-ex { font-size: .88rem; }
-  .wu-ex strong { display: block; }
-  .wu-ex span { color: #666; font-size: .8rem; }
+      /* WARM UP / COOL DOWN */
+      .warmup {
+        padding: 80px 60px;
+      }
+      .wu-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 32px;
+      }
+      .wu-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .wu-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .wu-icon {
+        font-size: 1.5rem;
+      }
+      .wu-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.4rem;
+      }
+      .wu-sub {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .wu-list {
+        padding: 0;
+        list-style: none;
+      }
+      .wu-item {
+        padding: 14px 24px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .wu-item:last-child {
+        border-bottom: none;
+      }
+      .wu-time {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.2rem;
+        color: var(--yellow);
+        min-width: 56px;
+      }
+      .wu-ex {
+        font-size: 0.88rem;
+      }
+      .wu-ex strong {
+        display: block;
+      }
+      .wu-ex span {
+        color: #666;
+        font-size: 0.8rem;
+      }
 
-  /* READINESS CHECKER */
-  .readiness { padding: 80px 60px; background: var(--surface); }
-  .checker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px; }
-  .checker-side h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; margin-bottom: 16px; }
-  .check-list { list-style: none; }
-  .check-item { padding: 12px 16px; border-radius: 8px; margin-bottom: 8px; display: flex; gap: 12px; align-items: flex-start; font-size: .9rem; }
-  .check-item.go { background: rgba(0,212,106,.08); border: 1px solid rgba(0,212,106,.15); }
-  .check-item.stop { background: rgba(255,45,0,.08); border: 1px solid rgba(255,45,0,.15); }
-  .check-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
-  .check-text { line-height: 1.6; }
-  .check-item.go .check-text { color: #ccc; }
-  .check-item.stop .check-text { color: #ccc; }
-  .check-text strong { display: block; font-size: .95rem; margin-bottom: 2px; }
-  .check-text span { font-size: .82rem; color: #777; }
+      /* READINESS CHECKER */
+      .readiness {
+        padding: 80px 60px;
+        background: var(--surface);
+      }
+      .checker-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 32px;
+      }
+      .checker-side h3 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.6rem;
+        margin-bottom: 16px;
+      }
+      .check-list {
+        list-style: none;
+      }
+      .check-item {
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        font-size: 0.9rem;
+      }
+      .check-item.go {
+        background: rgba(0, 212, 106, 0.08);
+        border: 1px solid rgba(0, 212, 106, 0.15);
+      }
+      .check-item.stop {
+        background: rgba(255, 45, 0, 0.08);
+        border: 1px solid rgba(255, 45, 0, 0.15);
+      }
+      .check-icon {
+        font-size: 1rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .check-text {
+        line-height: 1.6;
+      }
+      .check-item.go .check-text {
+        color: #ccc;
+      }
+      .check-item.stop .check-text {
+        color: #ccc;
+      }
+      .check-text strong {
+        display: block;
+        font-size: 0.95rem;
+        margin-bottom: 2px;
+      }
+      .check-text span {
+        font-size: 0.82rem;
+        color: #777;
+      }
 
-  /* WHEN TO SEE A DOCTOR */
-  .doctor { padding: 80px 60px; }
-  .doctor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 32px; }
-  .doctor-card { border-radius: 10px; overflow: hidden; }
-  .doctor-card.urgent { background: rgba(255,45,0,.06); border: 1px solid rgba(255,45,0,.2); }
-  .doctor-card.soon { background: rgba(255,140,0,.06); border: 1px solid rgba(255,140,0,.2); }
-  .doctor-card.monitor { background: rgba(255,209,0,.05); border: 1px solid rgba(255,209,0,.15); }
-  .doctor-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
-  .doctor-label { font-size: .65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; }
-  .label-urgent { background: rgba(255,45,0,.2); color: var(--red); }
-  .label-soon { background: rgba(255,140,0,.2); color: var(--orange); }
-  .label-monitor { background: rgba(255,209,0,.15); color: var(--yellow); }
-  .doctor-header h4 { font-weight: 700; }
-  .doctor-body { padding: 16px 20px; }
-  .doctor-body ul { list-style: none; }
-  .doctor-body li { font-size: .88rem; color: #888; padding: 5px 0; padding-left: 16px; position: relative; line-height: 1.6; }
-  .doctor-body li::before { content: '—'; position: absolute; left: 0; color: var(--muted); }
+      /* WHEN TO SEE A DOCTOR */
+      .doctor {
+        padding: 80px 60px;
+      }
+      .doctor-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px;
+        margin-top: 32px;
+      }
+      .doctor-card {
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .doctor-card.urgent {
+        background: rgba(255, 45, 0, 0.06);
+        border: 1px solid rgba(255, 45, 0, 0.2);
+      }
+      .doctor-card.soon {
+        background: rgba(255, 140, 0, 0.06);
+        border: 1px solid rgba(255, 140, 0, 0.2);
+      }
+      .doctor-card.monitor {
+        background: rgba(255, 209, 0, 0.05);
+        border: 1px solid rgba(255, 209, 0, 0.15);
+      }
+      .doctor-header {
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .doctor-label {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 3px 10px;
+        border-radius: 3px;
+      }
+      .label-urgent {
+        background: rgba(255, 45, 0, 0.2);
+        color: var(--red);
+      }
+      .label-soon {
+        background: rgba(255, 140, 0, 0.2);
+        color: var(--orange);
+      }
+      .label-monitor {
+        background: rgba(255, 209, 0, 0.15);
+        color: var(--yellow);
+      }
+      .doctor-header h4 {
+        font-weight: 700;
+      }
+      .doctor-body {
+        padding: 16px 20px;
+      }
+      .doctor-body ul {
+        list-style: none;
+      }
+      .doctor-body li {
+        font-size: 0.88rem;
+        color: #888;
+        padding: 5px 0;
+        padding-left: 16px;
+        position: relative;
+        line-height: 1.6;
+      }
+      .doctor-body li::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: var(--muted);
+      }
 
-  /* FINAL CTA */
-  .final-cta { padding: 80px 60px; text-align: center; background: linear-gradient(135deg, rgba(255,45,0,.06), rgba(255,209,0,.03)); border-top: 1px solid var(--border); }
-  .final-cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); margin-bottom: 16px; }
-  .final-cta p { color: #888; max-width: 560px; margin: 0 auto 40px; line-height: 1.8; }
-  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: .85rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; }
-  .btn-primary { background: var(--red); color: #fff; }
-  .btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+      /* FINAL CTA */
+      .final-cta {
+        padding: 80px 60px;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 45, 0, 0.06),
+          rgba(255, 209, 0, 0.03)
+        );
+        border-top: 1px solid var(--border);
+      }
+      .final-cta h2 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        margin-bottom: 16px;
+      }
+      .final-cta p {
+        color: #888;
+        max-width: 560px;
+        margin: 0 auto 40px;
+        line-height: 1.8;
+      }
+      .cta-buttons {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 16px 32px;
+        border-radius: 6px;
+        font-family: "Barlow", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+      .btn-primary {
+        background: var(--red);
+        color: #fff;
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--text);
+        border: 2px solid var(--border);
+      }
 
-  .divider { height: 1px; background: var(--border); margin: 0 60px; }
-  footer { padding: 40px 60px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-  footer p { color: var(--muted); font-size: .82rem; }
+      .divider {
+        height: 1px;
+        background: var(--border);
+        margin: 0 60px;
+      }
+      footer {
+        padding: 40px 60px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      footer p {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
 
-  @media (max-width: 900px) {
-    nav { padding: 0 20px; }
-    .nav-links { display: none; }
-    .page-header, .rules-section, .injury-section, .warmup, .readiness, .doctor, .final-cta { padding-left: 24px; padding-right: 24px; }
-    .emergency { padding: 20px 24px; }
-    .wu-grid, .checker-grid { grid-template-columns: 1fr; }
-    .injury-row { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 12px; padding: 32px 24px; }
-    .divider { margin: 0 24px; }
-  }
-</style>
-</head>
-<body>
-<nav>
-  <a href="index.html" class="nav-logo">IRON<span>YOUTH</span></a>
-  <div class="nav-links">
-    <a href="index.html">Tổng quan</a>
-    <a href="roadmap.html">Lộ trình</a>
-    <a href="technique.html">Kỹ thuật</a>
-    <a href="nutrition.html">Dinh dưỡng</a>
-    <a href="safety.html" class="active">An toàn</a>
-  </div>
-</nav>
+      @media (max-width: 900px) {
+        nav {
+          padding: 0 20px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .page-header,
+        .rules-section,
+        .injury-section,
+        .warmup,
+        .readiness,
+        .doctor,
+        .final-cta {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+        .emergency {
+          padding: 20px 24px;
+        }
+        .wu-grid,
+        .checker-grid {
+          grid-template-columns: 1fr;
+        }
+        .injury-row {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          flex-direction: column;
+          gap: 12px;
+          padding: 32px 24px;
+        }
+        .divider {
+          margin: 0 24px;
+        }
+      }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G8R2RZ8G73"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-<div class="page-header">
-  <div class="breadcrumb"><a href="index.html">Trang chủ</a> / An toàn</div>
-  <h1>AN TOÀN<br><span>& CHẤN THƯƠNG</span></h1>
-  <p>Chấn thương không chỉ đau đớn — nó có thể lấy đi nhiều tháng tập luyện, thậm chí ảnh hưởng đến sự phát triển thể chất. Biết dừng đúng lúc là dấu hiệu của một vận động viên thông minh.</p>
-</div>
-
-<div class="emergency">
-  <div class="emergency-icon">🚨</div>
-  <div class="emergency-text">
-    <strong>TRƯỜNG HỢP KHẨN CẤP — Gặp bác sĩ NGAY nếu:</strong>
-    <p>Đau cấp tính đột ngột khi đang tập • Nghe tiếng "pop" hoặc "snap" ở khớp • Tê hoặc mất cảm giác ở tay/vai • Đau ngực hoặc khó thở khi tập nặng • Sưng to, bầm tím nhanh sau va chạm</p>
-  </div>
-</div>
-
-<!-- GOLDEN RULES -->
-<div class="rules-section">
-  <div class="section-h">10 NGUYÊN TẮC VÀNG AN TOÀN</div>
-  <div class="section-sub">Không có ngoại lệ — vi phạm bất kỳ quy tắc nào đều có thể gây hậu quả nghiêm trọng</div>
-  <div class="rules-grid">
-    <div class="rule-card">
-      <div class="rule-num">01</div>
-      <div class="rule-icon">👤</div>
-      <h3>Luôn có người giám sát</h3>
-      <p>Tuyệt đối không tập bench press một mình. Spotter phải hiểu nhiệm vụ: đứng sau đầu, hai tay sẵn sàng đỡ bar, không cầm trước khi cần thiết.</p>
-    </div>
-    <div class="rule-card">
-      <div class="rule-num">02</div>
-      <div class="rule-icon">🔒</div>
-      <h3>Khóa đĩa tạ</h3>
-      <p>Luôn dùng collar/clamp để khóa đĩa tạ vào bar. Đĩa trượt ra một bên làm mất cân bằng — nguy hiểm tính mạng.</p>
-    </div>
-    <div class="rule-card">
-      <div class="rule-num">03</div>
-      <div class="rule-icon">🧘</div>
-      <h3>Khởi động kỹ 10–15 phút</h3>
-      <p>Cardio nhẹ 5 phút + dynamic stretching + warm-up sets với trọng lượng nhẹ trước khi tập nặng. Cơ lạnh = nguy cơ chấn thương.</p>
-    </div>
-    <div class="rule-card">
-      <div class="rule-num">04</div>
-      <div class="rule-icon">📏</div>
-      <h3>Kỹ thuật trước, trọng lượng sau</h3>
-      <p>Nếu phải chọn giữa tăng tạ và giữ form — luôn chọn form. Một tháng tập đúng kỹ thuật tốt hơn 6 tháng tập sai.</p>
-    </div>
-    <div class="rule-card">
-      <div class="rule-num">05</div>
-      <div class="rule-icon">📈</div>
-      <h3>Tăng tải từ từ — Không nhảy cóc</h3>
-      <p>Tối đa tăng 5–10% trọng lượng mỗi tuần. Nhảy từ 50kg lên 70kg trong một tuần là công thức chấn thương gân và xương.</p>
-    </div>
-    <div class="rule-card">
-      <div class="rule-num">06</div>
-      <div class="rule-icon">😴</div>
-      <h3>Nghỉ ngơi đủ giữa các buổi</h3>
-      <p>Cơ bắp cần 48–72 tiếng để phục hồi sau khi tập nặng. Tập quá nhiều (overtraining) không giúp tăng sức mạnh — nó phá hủy cơ.</p>
-    </div>
-    <div class="rule-card">
-      <div class="rule-num">07</div>
-      <div class="rule-icon">🎧</div>
-      <h3>Tập trung 100% khi tập</h3>
-      <p>Không dùng điện thoại khi đang tập. Mất tập trung khi có tạ trên tay là nguyên nhân hàng đầu của tai nạn phòng gym.</p>
-    </div>
-    <div class="rule-card">
-      <div class="rule-num">08</div>
-      <div class="rule-icon">🛑</div>
-      <h3>Biết khi nào phải dừng</h3>
-      <p>Đau nhói, đau lan, đau khác với đau cơ bình thường → dừng ngay. "Push through the pain" không áp dụng cho đau khớp hay gân.</p>
-    </div>
-    <div class="rule-card">
-      <div class="rule-num">09</div>
-      <div class="rule-icon">🩺</div>
-      <h3>Khám sức khỏe định kỳ</h3>
-      <p>Mỗi 6 tháng một lần với bác sĩ thể thao hoặc bác sĩ nhi khoa. Kiểm tra cột sống, vai, đầu gối và tim mạch.</p>
-    </div>
-    <div class="rule-card">
-      <div class="rule-num">10</div>
-      <div class="rule-icon">🗣️</div>
-      <h3>Nói chuyện với người lớn</h3>
-      <p>Nếu cảm thấy đau, không thoải mái, hoặc có gì bất thường — nói ngay với huấn luyện viên hoặc phụ huynh. Không tự xử lý một mình.</p>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- INJURY GUIDE -->
-<div class="injury-section">
-  <div class="section-h">CÁC CHẤN THƯƠNG PHỔ BIẾN</div>
-  <div class="section-sub">Nhận biết triệu chứng và cách xử lý đúng</div>
-  <div class="injury-accordion">
-    <div class="injury-item open">
-      <div class="injury-header" onclick="toggleInjury(this)">
-        <div class="injury-severity sev-high"></div>
-        <div class="injury-title">Chấn thương vai — Rotator Cuff</div>
-        <span class="injury-toggle">▼</span>
+      gtag("config", "G-G8R2RZ8G73");
+    </script>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="nav-logo">IRON<span>YOUTH</span></a>
+      <div class="nav-links">
+        <a href="index.html">Tổng quan</a>
+        <a href="roadmap.html">Lộ trình</a>
+        <a href="technique.html">Kỹ thuật</a>
+        <a href="nutrition.html">Dinh dưỡng</a>
+        <a href="safety.html" class="active">An toàn</a>
       </div>
-      <div class="injury-body">
-        <p style="color:#888;font-size:.9rem;">Phổ biến nhất trong bench press. Cơ xoay khớp vai (4 cơ nhỏ) bị kéo giãn hoặc rách do kỹ thuật sai hoặc tăng tải quá nhanh.</p>
-        <div class="injury-row">
-          <div class="injury-col"><h5>🔍 Triệu chứng</h5><p>Đau sâu trong vai khi đưa tay lên cao. Yếu khi xoay vai ra ngoài. Đau ban đêm khi nằm nghiêng.</p></div>
-          <div class="injury-col"><h5>🚦 Xử lý ngay</h5><p>Dừng tập bench hoàn toàn. Chườm lạnh 15–20 phút. Không tập các bài trên đầu trong 1–2 tuần.</p></div>
-          <div class="injury-col"><h5>🛡️ Phòng ngừa</h5><p>Face pull, band pull-apart mỗi buổi. Không vung khuỷu tay ra 90°. Không tập đến hết failure.</p></div>
+    </nav>
+
+    <div class="page-header">
+      <div class="breadcrumb"><a href="index.html">Trang chủ</a> / An toàn</div>
+      <h1>AN TOÀN<br /><span>& CHẤN THƯƠNG</span></h1>
+      <p>
+        Chấn thương không chỉ đau đớn — nó có thể lấy đi nhiều tháng tập luyện,
+        thậm chí ảnh hưởng đến sự phát triển thể chất. Biết dừng đúng lúc là dấu
+        hiệu của một vận động viên thông minh.
+      </p>
+    </div>
+
+    <div class="emergency">
+      <div class="emergency-icon">🚨</div>
+      <div class="emergency-text">
+        <strong>TRƯỜNG HỢP KHẨN CẤP — Gặp bác sĩ NGAY nếu:</strong>
+        <p>
+          Đau cấp tính đột ngột khi đang tập • Nghe tiếng "pop" hoặc "snap" ở
+          khớp • Tê hoặc mất cảm giác ở tay/vai • Đau ngực hoặc khó thở khi tập
+          nặng • Sưng to, bầm tím nhanh sau va chạm
+        </p>
+      </div>
+    </div>
+
+    <!-- GOLDEN RULES -->
+    <div class="rules-section">
+      <div class="section-h">10 NGUYÊN TẮC VÀNG AN TOÀN</div>
+      <div class="section-sub">
+        Không có ngoại lệ — vi phạm bất kỳ quy tắc nào đều có thể gây hậu quả
+        nghiêm trọng
+      </div>
+      <div class="rules-grid">
+        <div class="rule-card">
+          <div class="rule-num">01</div>
+          <div class="rule-icon">👤</div>
+          <h3>Luôn có người giám sát</h3>
+          <p>
+            Tuyệt đối không tập bench press một mình. Spotter phải hiểu nhiệm
+            vụ: đứng sau đầu, hai tay sẵn sàng đỡ bar, không cầm trước khi cần
+            thiết.
+          </p>
         </div>
-        <span class="stop-tag">🛑 Gặp bác sĩ nếu đau kéo dài hơn 1 tuần</span>
-      </div>
-    </div>
-
-    <div class="injury-item">
-      <div class="injury-header" onclick="toggleInjury(this)">
-        <div class="injury-severity sev-high"></div>
-        <div class="injury-title">Chấn thương cổ tay — Đau khi gập cổ tay</div>
-        <span class="injury-toggle">▼</span>
-      </div>
-      <div class="injury-body">
-        <p style="color:#888;font-size:.9rem;">Thường do grip sai — bar không nằm trên lòng bàn tay mà trên đầu ngón tay, tạo áp lực lớn lên cổ tay.</p>
-        <div class="injury-row">
-          <div class="injury-col"><h5>🔍 Triệu chứng</h5><p>Đau cổ tay khi gập hoặc uốn. Yếu grip. Đau khi chống tay xuống sàn (push-up).</p></div>
-          <div class="injury-col"><h5>🚦 Xử lý ngay</h5><p>Giảm tạ về mức không đau. Dùng wrist wraps hỗ trợ tạm thời. Kiểm tra lại vị trí grip.</p></div>
-          <div class="injury-col"><h5>🛡️ Phòng ngừa</h5><p>Bar luôn nằm sát gốc ngón cái trên lòng bàn tay. Grip chắc chắn. Cổ tay thẳng với cẳng tay.</p></div>
+        <div class="rule-card">
+          <div class="rule-num">02</div>
+          <div class="rule-icon">🔒</div>
+          <h3>Khóa đĩa tạ</h3>
+          <p>
+            Luôn dùng collar/clamp để khóa đĩa tạ vào bar. Đĩa trượt ra một bên
+            làm mất cân bằng — nguy hiểm tính mạng.
+          </p>
         </div>
-        <span class="stop-tag">⚠️ Đau dai dẳng hoặc sưng → Chụp X-quang</span>
-      </div>
-    </div>
-
-    <div class="injury-item">
-      <div class="injury-header" onclick="toggleInjury(this)">
-        <div class="injury-severity sev-med"></div>
-        <div class="injury-title">Đau cơ ngực — Pectoral Strain</div>
-        <span class="injury-toggle">▼</span>
-      </div>
-      <div class="injury-body">
-        <p style="color:#888;font-size:.9rem;">Cơ ngực bị kéo giãn quá mức. Thường xảy ra khi tập quá tải đột ngột, bouncing bar hoặc không khởi động.</p>
-        <div class="injury-row">
-          <div class="injury-col"><h5>🔍 Triệu chứng</h5><p>Đau nhói ở ngực khi đẩy. Bầm tím xuất hiện sau vài giờ. Yếu một bên khi đẩy.</p></div>
-          <div class="injury-col"><h5>🚦 Xử lý ngay</h5><p>DỪNG TẬP NGAY. Chườm lạnh. Không kéo giãn ngực trong 48 tiếng đầu. Đến bác sĩ nếu có bầm tím.</p></div>
-          <div class="injury-col"><h5>🛡️ Phòng ngừa</h5><p>Khởi động kỹ. Không bouncing bar. Không tập max bench khi đói hoặc mệt mỏi.</p></div>
+        <div class="rule-card">
+          <div class="rule-num">03</div>
+          <div class="rule-icon">🧘</div>
+          <h3>Khởi động kỹ 10–15 phút</h3>
+          <p>
+            Cardio nhẹ 5 phút + dynamic stretching + warm-up sets với trọng
+            lượng nhẹ trước khi tập nặng. Cơ lạnh = nguy cơ chấn thương.
+          </p>
         </div>
-        <span class="stop-tag">🛑 Bầm tím lan rộng → Cấp cứu ngay — có thể rách cơ</span>
-      </div>
-    </div>
-
-    <div class="injury-item">
-      <div class="injury-header" onclick="toggleInjury(this)">
-        <div class="injury-severity sev-med"></div>
-        <div class="injury-title">Đau lưng dưới khi bench press</div>
-        <span class="injury-toggle">▼</span>
-      </div>
-      <div class="injury-body">
-        <p style="color:#888;font-size:.9rem;">Arch lưng quá mức hoặc hông rời khỏi bench gây căng thẳng cho cột sống thắt lưng. Phổ biến ở thiếu niên chưa đủ độ linh hoạt.</p>
-        <div class="injury-row">
-          <div class="injury-col"><h5>🔍 Triệu chứng</h5><p>Đau thắt lưng trong hoặc sau khi bench. Cứng lưng vào buổi sáng hôm sau.</p></div>
-          <div class="injury-col"><h5>🚦 Xử lý ngay</h5><p>Giảm trọng lượng, giảm arch. Tập core strengthening. Kéo giãn hip flexor và thoracic spine.</p></div>
-          <div class="injury-col"><h5>🛡️ Phòng ngừa</h5><p>Tập deadlift và squat để tăng sức mạnh lưng. Kiểm tra mobility hip và thoracic.</p></div>
+        <div class="rule-card">
+          <div class="rule-num">04</div>
+          <div class="rule-icon">📏</div>
+          <h3>Kỹ thuật trước, trọng lượng sau</h3>
+          <p>
+            Nếu phải chọn giữa tăng tạ và giữ form — luôn chọn form. Một tháng
+            tập đúng kỹ thuật tốt hơn 6 tháng tập sai.
+          </p>
         </div>
-        <span class="stop-tag">⚠️ Đau lan xuống chân hoặc tê → Khám ngay có thể liên quan đĩa đệm</span>
-      </div>
-    </div>
-
-    <div class="injury-item">
-      <div class="injury-header" onclick="toggleInjury(this)">
-        <div class="injury-severity sev-low"></div>
-        <div class="injury-title">Đau cơ thông thường (DOMS)</div>
-        <span class="injury-toggle">▼</span>
-      </div>
-      <div class="injury-body">
-        <p style="color:#888;font-size:.9rem;">Delayed Onset Muscle Soreness — đau cơ bình thường 24–72 tiếng sau tập. Hoàn toàn bình thường và là dấu hiệu cơ đang phát triển.</p>
-        <div class="injury-row">
-          <div class="injury-col"><h5>🔍 Triệu chứng</h5><p>Đau âm ỉ, cảm giác căng cơ khi chạm vào. Xuất hiện 12–24h sau tập. Tự khỏi trong 2–3 ngày.</p></div>
-          <div class="injury-col"><h5>🚦 Xử lý</h5><p>Nghỉ ngơi hoặc tập nhẹ (active recovery). Protein đầy đủ. Ngủ nhiều. Tắm nước ấm giúp giảm.</p></div>
-          <div class="injury-col"><h5>✅ Dấu hiệu bình thường</h5><p>Đau đối xứng hai bên. Không đau khớp. Giảm dần sau ngày thứ 2. Không ảnh hưởng cử động bình thường.</p></div>
+        <div class="rule-card">
+          <div class="rule-num">05</div>
+          <div class="rule-icon">📈</div>
+          <h3>Tăng tải từ từ — Không nhảy cóc</h3>
+          <p>
+            Tối đa tăng 5–10% trọng lượng mỗi tuần. Nhảy từ 50kg lên 70kg trong
+            một tuần là công thức chấn thương gân và xương.
+          </p>
         </div>
-        <span class="stop-tag" style="background:rgba(0,212,106,.12);color:var(--green);">✅ BÌNH THƯỜNG — Không cần lo lắng</span>
+        <div class="rule-card">
+          <div class="rule-num">06</div>
+          <div class="rule-icon">😴</div>
+          <h3>Nghỉ ngơi đủ giữa các buổi</h3>
+          <p>
+            Cơ bắp cần 48–72 tiếng để phục hồi sau khi tập nặng. Tập quá nhiều
+            (overtraining) không giúp tăng sức mạnh — nó phá hủy cơ.
+          </p>
+        </div>
+        <div class="rule-card">
+          <div class="rule-num">07</div>
+          <div class="rule-icon">🎧</div>
+          <h3>Tập trung 100% khi tập</h3>
+          <p>
+            Không dùng điện thoại khi đang tập. Mất tập trung khi có tạ trên tay
+            là nguyên nhân hàng đầu của tai nạn phòng gym.
+          </p>
+        </div>
+        <div class="rule-card">
+          <div class="rule-num">08</div>
+          <div class="rule-icon">🛑</div>
+          <h3>Biết khi nào phải dừng</h3>
+          <p>
+            Đau nhói, đau lan, đau khác với đau cơ bình thường → dừng ngay.
+            "Push through the pain" không áp dụng cho đau khớp hay gân.
+          </p>
+        </div>
+        <div class="rule-card">
+          <div class="rule-num">09</div>
+          <div class="rule-icon">🩺</div>
+          <h3>Khám sức khỏe định kỳ</h3>
+          <p>
+            Mỗi 6 tháng một lần với bác sĩ thể thao hoặc bác sĩ nhi khoa. Kiểm
+            tra cột sống, vai, đầu gối và tim mạch.
+          </p>
+        </div>
+        <div class="rule-card">
+          <div class="rule-num">10</div>
+          <div class="rule-icon">🗣️</div>
+          <h3>Nói chuyện với người lớn</h3>
+          <p>
+            Nếu cảm thấy đau, không thoải mái, hoặc có gì bất thường — nói ngay
+            với huấn luyện viên hoặc phụ huynh. Không tự xử lý một mình.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="divider"></div>
+    <div class="divider"></div>
 
-<!-- WARM UP / COOL DOWN -->
-<div class="warmup">
-  <div class="section-h">KHỞI ĐỘNG & THẢ LỎNG</div>
-  <div class="section-sub">Đầu tư 15 phút khởi động để tập an toàn hơn và hiệu quả hơn</div>
-  <div class="wu-grid">
-    <div class="wu-card">
-      <div class="wu-header"><span class="wu-icon">🔥</span><div><div class="wu-title">KHỞI ĐỘNG — 12 PHÚT</div><div class="wu-sub">Trước mỗi buổi tập</div></div></div>
-      <ul class="wu-list">
-        <li class="wu-item"><span class="wu-time">3 min</span><div class="wu-ex"><strong>Chạy tại chỗ / Jumping Jacks</strong><span>Tăng nhiệt độ cơ thể và nhịp tim</span></div></li>
-        <li class="wu-item"><span class="wu-time">2 min</span><div class="wu-ex"><strong>Arm Circles + Shoulder Rotations</strong><span>Kích hoạt khớp vai, tăng range of motion</span></div></li>
-        <li class="wu-item"><span class="wu-time">1 min</span><div class="wu-ex"><strong>Band Pull-Apart × 20 reps</strong><span>Kích hoạt cơ vai sau và rotator cuff</span></div></li>
-        <li class="wu-item"><span class="wu-time">2 min</span><div class="wu-ex"><strong>Push-up nhẹ × 2 sets × 10</strong><span>Warm-up cụ thể cho bench press</span></div></li>
-        <li class="wu-item"><span class="wu-time">2 min</span><div class="wu-ex"><strong>Bench Press — Thanh rỗng × 10 reps</strong><span>Tập lại kỹ thuật với tạ siêu nhẹ</span></div></li>
-        <li class="wu-item"><span class="wu-time">2 min</span><div class="wu-ex"><strong>Warm-up set 50–60% × 5 reps</strong><span>Chuẩn bị hệ thần kinh cho tạ nặng</span></div></li>
-      </ul>
-    </div>
-    <div class="wu-card">
-      <div class="wu-header"><span class="wu-icon">❄️</span><div><div class="wu-title">THẢ LỎNG — 10 PHÚT</div><div class="wu-sub">Sau mỗi buổi tập</div></div></div>
-      <ul class="wu-list">
-        <li class="wu-item"><span class="wu-time">2 min</span><div class="wu-ex"><strong>Đi bộ nhẹ</strong><span>Hạ nhịp tim từ từ, không dừng đột ngột</span></div></li>
-        <li class="wu-item"><span class="wu-time">2 min</span><div class="wu-ex"><strong>Chest Doorway Stretch</strong><span>Dựa tay vào cửa, nghiêng người về trước</span></div></li>
-        <li class="wu-item"><span class="wu-time">1 min</span><div class="wu-ex"><strong>Child's Pose</strong><span>Giải phóng lưng sau và vai</span></div></li>
-        <li class="wu-item"><span class="wu-time">2 min</span><div class="wu-ex"><strong>Cross-Body Shoulder Stretch</strong><span>Mỗi bên 30 giây, giữ nhẹ nhàng</span></div></li>
-        <li class="wu-item"><span class="wu-time">1 min</span><div class="wu-ex"><strong>Triceps Overhead Stretch</strong><span>Mỗi bên 30 giây</span></div></li>
-        <li class="wu-item"><span class="wu-time">2 min</span><div class="wu-ex"><strong>Deep breathing × 5–6 lần</strong><span>Hít sâu vào bụng, thở ra hoàn toàn — thư giãn thần kinh</span></div></li>
-      </ul>
-    </div>
-  </div>
-</div>
+    <!-- INJURY GUIDE -->
+    <div class="injury-section">
+      <div class="section-h">CÁC CHẤN THƯƠNG PHỔ BIẾN</div>
+      <div class="section-sub">Nhận biết triệu chứng và cách xử lý đúng</div>
+      <div class="injury-accordion">
+        <div class="injury-item open">
+          <div class="injury-header" onclick="toggleInjury(this)">
+            <div class="injury-severity sev-high"></div>
+            <div class="injury-title">Chấn thương vai — Rotator Cuff</div>
+            <span class="injury-toggle">▼</span>
+          </div>
+          <div class="injury-body">
+            <p style="color: #888; font-size: 0.9rem">
+              Phổ biến nhất trong bench press. Cơ xoay khớp vai (4 cơ nhỏ) bị
+              kéo giãn hoặc rách do kỹ thuật sai hoặc tăng tải quá nhanh.
+            </p>
+            <div class="injury-row">
+              <div class="injury-col">
+                <h5>🔍 Triệu chứng</h5>
+                <p>
+                  Đau sâu trong vai khi đưa tay lên cao. Yếu khi xoay vai ra
+                  ngoài. Đau ban đêm khi nằm nghiêng.
+                </p>
+              </div>
+              <div class="injury-col">
+                <h5>🚦 Xử lý ngay</h5>
+                <p>
+                  Dừng tập bench hoàn toàn. Chườm lạnh 15–20 phút. Không tập các
+                  bài trên đầu trong 1–2 tuần.
+                </p>
+              </div>
+              <div class="injury-col">
+                <h5>🛡️ Phòng ngừa</h5>
+                <p>
+                  Face pull, band pull-apart mỗi buổi. Không vung khuỷu tay ra
+                  90°. Không tập đến hết failure.
+                </p>
+              </div>
+            </div>
+            <span class="stop-tag"
+              >🛑 Gặp bác sĩ nếu đau kéo dài hơn 1 tuần</span
+            >
+          </div>
+        </div>
 
-<div class="divider"></div>
+        <div class="injury-item">
+          <div class="injury-header" onclick="toggleInjury(this)">
+            <div class="injury-severity sev-high"></div>
+            <div class="injury-title">
+              Chấn thương cổ tay — Đau khi gập cổ tay
+            </div>
+            <span class="injury-toggle">▼</span>
+          </div>
+          <div class="injury-body">
+            <p style="color: #888; font-size: 0.9rem">
+              Thường do grip sai — bar không nằm trên lòng bàn tay mà trên đầu
+              ngón tay, tạo áp lực lớn lên cổ tay.
+            </p>
+            <div class="injury-row">
+              <div class="injury-col">
+                <h5>🔍 Triệu chứng</h5>
+                <p>
+                  Đau cổ tay khi gập hoặc uốn. Yếu grip. Đau khi chống tay xuống
+                  sàn (push-up).
+                </p>
+              </div>
+              <div class="injury-col">
+                <h5>🚦 Xử lý ngay</h5>
+                <p>
+                  Giảm tạ về mức không đau. Dùng wrist wraps hỗ trợ tạm thời.
+                  Kiểm tra lại vị trí grip.
+                </p>
+              </div>
+              <div class="injury-col">
+                <h5>🛡️ Phòng ngừa</h5>
+                <p>
+                  Bar luôn nằm sát gốc ngón cái trên lòng bàn tay. Grip chắc
+                  chắn. Cổ tay thẳng với cẳng tay.
+                </p>
+              </div>
+            </div>
+            <span class="stop-tag"
+              >⚠️ Đau dai dẳng hoặc sưng → Chụp X-quang</span
+            >
+          </div>
+        </div>
 
-<!-- READINESS CHECKER -->
-<div class="readiness">
-  <div class="section-h">HÔM NAY CÓ NÊN TẬP NẶNG KHÔNG?</div>
-  <div class="section-sub">Kiểm tra các dấu hiệu này trước khi quyết định</div>
-  <div class="checker-grid">
-    <div>
-      <h3 style="color:var(--green);margin-bottom:16px;">✅ ĐÈN XANH — AN TOÀN TẬP NẶNG</h3>
-      <ul class="check-list">
-        <li class="check-item go"><span class="check-icon">✅</span><div class="check-text"><strong>Ngủ đủ 8+ tiếng đêm qua</strong><span>Cơ thể đã phục hồi đầy đủ</span></div></li>
-        <li class="check-item go"><span class="check-icon">✅</span><div class="check-text"><strong>Không đau khớp từ buổi tập trước</strong><span>Chỉ đau cơ nhẹ là bình thường</span></div></li>
-        <li class="check-item go"><span class="check-icon">✅</span><div class="check-text"><strong>Ăn uống đầy đủ, không bỏ bữa</strong><span>Có đủ nhiên liệu cho buổi tập</span></div></li>
-        <li class="check-item go"><span class="check-icon">✅</span><div class="check-text"><strong>Tâm trạng tích cực, tập trung</strong><span>Tinh thần tốt = buổi tập an toàn</span></div></li>
-        <li class="check-item go"><span class="check-icon">✅</span><div class="check-text"><strong>Không bị bệnh, sốt, hoặc mệt mỏi quá</strong><span>Sức khỏe bình thường</span></div></li>
-      </ul>
-    </div>
-    <div>
-      <h3 style="color:var(--red);margin-bottom:16px;">🛑 ĐÈN ĐỎ — DỪNG HOẶC TẬP NHẸ THÔI</h3>
-      <ul class="check-list">
-        <li class="check-item stop"><span class="check-icon">❌</span><div class="check-text"><strong>Ngủ dưới 6 tiếng</strong><span>Tập nặng sẽ làm tổn hại hơn là giúp ích</span></div></li>
-        <li class="check-item stop"><span class="check-icon">❌</span><div class="check-text"><strong>Đau khớp vai, khuỷu, cổ tay</strong><span>Không "push through" — dừng tập bài đó</span></div></li>
-        <li class="check-item stop"><span class="check-icon">❌</span><div class="check-text"><strong>Đang bị cảm, sốt, ho</strong><span>Cơ thể đang dùng năng lượng để kháng bệnh</span></div></li>
-        <li class="check-item stop"><span class="check-icon">❌</span><div class="check-text"><strong>Căng thẳng cực độ, mất tập trung</strong><span>Dễ tai nạn khi tâm trí không ở đây</span></div></li>
-        <li class="check-item stop"><span class="check-icon">❌</span><div class="check-text"><strong>Bỏ bữa, đói hoặc mất nước</strong><span>Không đủ nhiên liệu = hiệu suất kém và nguy hiểm</span></div></li>
-      </ul>
-    </div>
-  </div>
-</div>
+        <div class="injury-item">
+          <div class="injury-header" onclick="toggleInjury(this)">
+            <div class="injury-severity sev-med"></div>
+            <div class="injury-title">Đau cơ ngực — Pectoral Strain</div>
+            <span class="injury-toggle">▼</span>
+          </div>
+          <div class="injury-body">
+            <p style="color: #888; font-size: 0.9rem">
+              Cơ ngực bị kéo giãn quá mức. Thường xảy ra khi tập quá tải đột
+              ngột, bouncing bar hoặc không khởi động.
+            </p>
+            <div class="injury-row">
+              <div class="injury-col">
+                <h5>🔍 Triệu chứng</h5>
+                <p>
+                  Đau nhói ở ngực khi đẩy. Bầm tím xuất hiện sau vài giờ. Yếu
+                  một bên khi đẩy.
+                </p>
+              </div>
+              <div class="injury-col">
+                <h5>🚦 Xử lý ngay</h5>
+                <p>
+                  DỪNG TẬP NGAY. Chườm lạnh. Không kéo giãn ngực trong 48 tiếng
+                  đầu. Đến bác sĩ nếu có bầm tím.
+                </p>
+              </div>
+              <div class="injury-col">
+                <h5>🛡️ Phòng ngừa</h5>
+                <p>
+                  Khởi động kỹ. Không bouncing bar. Không tập max bench khi đói
+                  hoặc mệt mỏi.
+                </p>
+              </div>
+            </div>
+            <span class="stop-tag"
+              >🛑 Bầm tím lan rộng → Cấp cứu ngay — có thể rách cơ</span
+            >
+          </div>
+        </div>
 
-<div class="divider"></div>
+        <div class="injury-item">
+          <div class="injury-header" onclick="toggleInjury(this)">
+            <div class="injury-severity sev-med"></div>
+            <div class="injury-title">Đau lưng dưới khi bench press</div>
+            <span class="injury-toggle">▼</span>
+          </div>
+          <div class="injury-body">
+            <p style="color: #888; font-size: 0.9rem">
+              Arch lưng quá mức hoặc hông rời khỏi bench gây căng thẳng cho cột
+              sống thắt lưng. Phổ biến ở thiếu niên chưa đủ độ linh hoạt.
+            </p>
+            <div class="injury-row">
+              <div class="injury-col">
+                <h5>🔍 Triệu chứng</h5>
+                <p>
+                  Đau thắt lưng trong hoặc sau khi bench. Cứng lưng vào buổi
+                  sáng hôm sau.
+                </p>
+              </div>
+              <div class="injury-col">
+                <h5>🚦 Xử lý ngay</h5>
+                <p>
+                  Giảm trọng lượng, giảm arch. Tập core strengthening. Kéo giãn
+                  hip flexor và thoracic spine.
+                </p>
+              </div>
+              <div class="injury-col">
+                <h5>🛡️ Phòng ngừa</h5>
+                <p>
+                  Tập deadlift và squat để tăng sức mạnh lưng. Kiểm tra mobility
+                  hip và thoracic.
+                </p>
+              </div>
+            </div>
+            <span class="stop-tag"
+              >⚠️ Đau lan xuống chân hoặc tê → Khám ngay có thể liên quan đĩa
+              đệm</span
+            >
+          </div>
+        </div>
 
-<!-- WHEN TO SEE A DOCTOR -->
-<div class="doctor">
-  <div class="section-h">KHI NÀO CẦN GẶP BÁC SĨ?</div>
-  <div class="section-sub">Đừng bao giờ xem thường dấu hiệu bất thường từ cơ thể</div>
-  <div class="doctor-grid">
-    <div class="doctor-card urgent">
-      <div class="doctor-header"><span class="doctor-label label-urgent">🚨 CẤP CỨU NGAY</span><h4>Không chờ đợi</h4></div>
-      <div class="doctor-body">
-        <ul>
-          <li>Nghe tiếng "pop" kèm đau dữ dội ở vai hoặc ngực</li>
-          <li>Tê hoặc mất cảm giác ở cánh tay hoặc ngón tay</li>
-          <li>Đau ngực hoặc khó thở khi tập</li>
-          <li>Mất ý thức hoặc choáng váng nặng</li>
-          <li>Sưng to và bầm tím xuất hiện nhanh</li>
-        </ul>
+        <div class="injury-item">
+          <div class="injury-header" onclick="toggleInjury(this)">
+            <div class="injury-severity sev-low"></div>
+            <div class="injury-title">Đau cơ thông thường (DOMS)</div>
+            <span class="injury-toggle">▼</span>
+          </div>
+          <div class="injury-body">
+            <p style="color: #888; font-size: 0.9rem">
+              Delayed Onset Muscle Soreness — đau cơ bình thường 24–72 tiếng sau
+              tập. Hoàn toàn bình thường và là dấu hiệu cơ đang phát triển.
+            </p>
+            <div class="injury-row">
+              <div class="injury-col">
+                <h5>🔍 Triệu chứng</h5>
+                <p>
+                  Đau âm ỉ, cảm giác căng cơ khi chạm vào. Xuất hiện 12–24h sau
+                  tập. Tự khỏi trong 2–3 ngày.
+                </p>
+              </div>
+              <div class="injury-col">
+                <h5>🚦 Xử lý</h5>
+                <p>
+                  Nghỉ ngơi hoặc tập nhẹ (active recovery). Protein đầy đủ. Ngủ
+                  nhiều. Tắm nước ấm giúp giảm.
+                </p>
+              </div>
+              <div class="injury-col">
+                <h5>✅ Dấu hiệu bình thường</h5>
+                <p>
+                  Đau đối xứng hai bên. Không đau khớp. Giảm dần sau ngày thứ 2.
+                  Không ảnh hưởng cử động bình thường.
+                </p>
+              </div>
+            </div>
+            <span
+              class="stop-tag"
+              style="background: rgba(0, 212, 106, 0.12); color: var(--green)"
+              >✅ BÌNH THƯỜNG — Không cần lo lắng</span
+            >
+          </div>
+        </div>
       </div>
     </div>
-    <div class="doctor-card soon">
-      <div class="doctor-header"><span class="doctor-label label-soon">⚠️ GẶP TRONG 24–48H</span><h4>Đừng trì hoãn</h4></div>
-      <div class="doctor-body">
-        <ul>
-          <li>Đau khớp kéo dài hơn 5 ngày sau khi nghỉ</li>
-          <li>Sưng nhẹ ở khớp không giảm sau 2–3 ngày</li>
-          <li>Đau khi không tập (cả khi nghỉ)</li>
-          <li>Cảm giác khớp không ổn định hoặc lỏng lẻo</li>
-          <li>Đau lưng lan xuống mông hoặc chân</li>
-        </ul>
+
+    <div class="divider"></div>
+
+    <!-- WARM UP / COOL DOWN -->
+    <div class="warmup">
+      <div class="section-h">KHỞI ĐỘNG & THẢ LỎNG</div>
+      <div class="section-sub">
+        Đầu tư 15 phút khởi động để tập an toàn hơn và hiệu quả hơn
+      </div>
+      <div class="wu-grid">
+        <div class="wu-card">
+          <div class="wu-header">
+            <span class="wu-icon">🔥</span>
+            <div>
+              <div class="wu-title">KHỞI ĐỘNG — 12 PHÚT</div>
+              <div class="wu-sub">Trước mỗi buổi tập</div>
+            </div>
+          </div>
+          <ul class="wu-list">
+            <li class="wu-item">
+              <span class="wu-time">3 min</span>
+              <div class="wu-ex">
+                <strong>Chạy tại chỗ / Jumping Jacks</strong
+                ><span>Tăng nhiệt độ cơ thể và nhịp tim</span>
+              </div>
+            </li>
+            <li class="wu-item">
+              <span class="wu-time">2 min</span>
+              <div class="wu-ex">
+                <strong>Arm Circles + Shoulder Rotations</strong
+                ><span>Kích hoạt khớp vai, tăng range of motion</span>
+              </div>
+            </li>
+            <li class="wu-item">
+              <span class="wu-time">1 min</span>
+              <div class="wu-ex">
+                <strong>Band Pull-Apart × 20 reps</strong
+                ><span>Kích hoạt cơ vai sau và rotator cuff</span>
+              </div>
+            </li>
+            <li class="wu-item">
+              <span class="wu-time">2 min</span>
+              <div class="wu-ex">
+                <strong>Push-up nhẹ × 2 sets × 10</strong
+                ><span>Warm-up cụ thể cho bench press</span>
+              </div>
+            </li>
+            <li class="wu-item">
+              <span class="wu-time">2 min</span>
+              <div class="wu-ex">
+                <strong>Bench Press — Thanh rỗng × 10 reps</strong
+                ><span>Tập lại kỹ thuật với tạ siêu nhẹ</span>
+              </div>
+            </li>
+            <li class="wu-item">
+              <span class="wu-time">2 min</span>
+              <div class="wu-ex">
+                <strong>Warm-up set 50–60% × 5 reps</strong
+                ><span>Chuẩn bị hệ thần kinh cho tạ nặng</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="wu-card">
+          <div class="wu-header">
+            <span class="wu-icon">❄️</span>
+            <div>
+              <div class="wu-title">THẢ LỎNG — 10 PHÚT</div>
+              <div class="wu-sub">Sau mỗi buổi tập</div>
+            </div>
+          </div>
+          <ul class="wu-list">
+            <li class="wu-item">
+              <span class="wu-time">2 min</span>
+              <div class="wu-ex">
+                <strong>Đi bộ nhẹ</strong
+                ><span>Hạ nhịp tim từ từ, không dừng đột ngột</span>
+              </div>
+            </li>
+            <li class="wu-item">
+              <span class="wu-time">2 min</span>
+              <div class="wu-ex">
+                <strong>Chest Doorway Stretch</strong
+                ><span>Dựa tay vào cửa, nghiêng người về trước</span>
+              </div>
+            </li>
+            <li class="wu-item">
+              <span class="wu-time">1 min</span>
+              <div class="wu-ex">
+                <strong>Child's Pose</strong
+                ><span>Giải phóng lưng sau và vai</span>
+              </div>
+            </li>
+            <li class="wu-item">
+              <span class="wu-time">2 min</span>
+              <div class="wu-ex">
+                <strong>Cross-Body Shoulder Stretch</strong
+                ><span>Mỗi bên 30 giây, giữ nhẹ nhàng</span>
+              </div>
+            </li>
+            <li class="wu-item">
+              <span class="wu-time">1 min</span>
+              <div class="wu-ex">
+                <strong>Triceps Overhead Stretch</strong
+                ><span>Mỗi bên 30 giây</span>
+              </div>
+            </li>
+            <li class="wu-item">
+              <span class="wu-time">2 min</span>
+              <div class="wu-ex">
+                <strong>Deep breathing × 5–6 lần</strong
+                ><span
+                  >Hít sâu vào bụng, thở ra hoàn toàn — thư giãn thần kinh</span
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="doctor-card monitor">
-      <div class="doctor-header"><span class="doctor-label label-monitor">📅 ĐẶT LỊCH KHÁM</span><h4>Trong tuần này</h4></div>
-      <div class="doctor-body">
-        <ul>
-          <li>Đau cơ kéo dài hơn 1 tuần sau buổi tập</li>
-          <li>Tiến bộ chậm bất thường dù ăn uống đầy đủ</li>
-          <li>Mệt mỏi kinh niên, không hồi phục được</li>
-          <li>Cảm giác "lạo xạo" ở vai khi xoay</li>
-          <li>Đau tái phát ở cùng một vị trí</li>
-        </ul>
+
+    <div class="divider"></div>
+
+    <!-- READINESS CHECKER -->
+    <div class="readiness">
+      <div class="section-h">HÔM NAY CÓ NÊN TẬP NẶNG KHÔNG?</div>
+      <div class="section-sub">
+        Kiểm tra các dấu hiệu này trước khi quyết định
+      </div>
+      <div class="checker-grid">
+        <div>
+          <h3 style="color: var(--green); margin-bottom: 16px">
+            ✅ ĐÈN XANH — AN TOÀN TẬP NẶNG
+          </h3>
+          <ul class="check-list">
+            <li class="check-item go">
+              <span class="check-icon">✅</span>
+              <div class="check-text">
+                <strong>Ngủ đủ 8+ tiếng đêm qua</strong
+                ><span>Cơ thể đã phục hồi đầy đủ</span>
+              </div>
+            </li>
+            <li class="check-item go">
+              <span class="check-icon">✅</span>
+              <div class="check-text">
+                <strong>Không đau khớp từ buổi tập trước</strong
+                ><span>Chỉ đau cơ nhẹ là bình thường</span>
+              </div>
+            </li>
+            <li class="check-item go">
+              <span class="check-icon">✅</span>
+              <div class="check-text">
+                <strong>Ăn uống đầy đủ, không bỏ bữa</strong
+                ><span>Có đủ nhiên liệu cho buổi tập</span>
+              </div>
+            </li>
+            <li class="check-item go">
+              <span class="check-icon">✅</span>
+              <div class="check-text">
+                <strong>Tâm trạng tích cực, tập trung</strong
+                ><span>Tinh thần tốt = buổi tập an toàn</span>
+              </div>
+            </li>
+            <li class="check-item go">
+              <span class="check-icon">✅</span>
+              <div class="check-text">
+                <strong>Không bị bệnh, sốt, hoặc mệt mỏi quá</strong
+                ><span>Sức khỏe bình thường</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color: var(--red); margin-bottom: 16px">
+            🛑 ĐÈN ĐỎ — DỪNG HOẶC TẬP NHẸ THÔI
+          </h3>
+          <ul class="check-list">
+            <li class="check-item stop">
+              <span class="check-icon">❌</span>
+              <div class="check-text">
+                <strong>Ngủ dưới 6 tiếng</strong
+                ><span>Tập nặng sẽ làm tổn hại hơn là giúp ích</span>
+              </div>
+            </li>
+            <li class="check-item stop">
+              <span class="check-icon">❌</span>
+              <div class="check-text">
+                <strong>Đau khớp vai, khuỷu, cổ tay</strong
+                ><span>Không "push through" — dừng tập bài đó</span>
+              </div>
+            </li>
+            <li class="check-item stop">
+              <span class="check-icon">❌</span>
+              <div class="check-text">
+                <strong>Đang bị cảm, sốt, ho</strong
+                ><span>Cơ thể đang dùng năng lượng để kháng bệnh</span>
+              </div>
+            </li>
+            <li class="check-item stop">
+              <span class="check-icon">❌</span>
+              <div class="check-text">
+                <strong>Căng thẳng cực độ, mất tập trung</strong
+                ><span>Dễ tai nạn khi tâm trí không ở đây</span>
+              </div>
+            </li>
+            <li class="check-item stop">
+              <span class="check-icon">❌</span>
+              <div class="check-text">
+                <strong>Bỏ bữa, đói hoặc mất nước</strong
+                ><span>Không đủ nhiên liệu = hiệu suất kém và nguy hiểm</span>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- FINAL CTA -->
-<div class="final-cta">
-  <h2>SẴN SÀNG BẮT ĐẦU<br>HÀNH TRÌNH?</h2>
-  <p>Bạn đã có đủ thông tin. Bước tiếp theo là xem lộ trình phù hợp với độ tuổi của bạn và bắt đầu — an toàn, khoa học, và kiên nhẫn.</p>
-  <div class="cta-buttons">
-    <a href="roadmap.html" class="btn btn-primary">Xem Lộ Trình →</a>
-    <a href="technique.html" class="btn btn-outline">Học Kỹ Thuật</a>
-  </div>
-</div>
+    <div class="divider"></div>
 
-<footer>
-  <p>IRON YOUTH — An toàn là nền tảng của sức mạnh.</p>
-  <div style="display:flex;gap:20px;">
-    <a href="index.html" style="color:var(--muted);font-size:.85rem;text-decoration:none;">← Trang chủ</a>
-    <a href="nutrition.html" style="color:var(--muted);font-size:.85rem;text-decoration:none;">← Dinh dưỡng</a>
-  </div>
-</footer>
+    <!-- WHEN TO SEE A DOCTOR -->
+    <div class="doctor">
+      <div class="section-h">KHI NÀO CẦN GẶP BÁC SĨ?</div>
+      <div class="section-sub">
+        Đừng bao giờ xem thường dấu hiệu bất thường từ cơ thể
+      </div>
+      <div class="doctor-grid">
+        <div class="doctor-card urgent">
+          <div class="doctor-header">
+            <span class="doctor-label label-urgent">🚨 CẤP CỨU NGAY</span>
+            <h4>Không chờ đợi</h4>
+          </div>
+          <div class="doctor-body">
+            <ul>
+              <li>Nghe tiếng "pop" kèm đau dữ dội ở vai hoặc ngực</li>
+              <li>Tê hoặc mất cảm giác ở cánh tay hoặc ngón tay</li>
+              <li>Đau ngực hoặc khó thở khi tập</li>
+              <li>Mất ý thức hoặc choáng váng nặng</li>
+              <li>Sưng to và bầm tím xuất hiện nhanh</li>
+            </ul>
+          </div>
+        </div>
+        <div class="doctor-card soon">
+          <div class="doctor-header">
+            <span class="doctor-label label-soon">⚠️ GẶP TRONG 24–48H</span>
+            <h4>Đừng trì hoãn</h4>
+          </div>
+          <div class="doctor-body">
+            <ul>
+              <li>Đau khớp kéo dài hơn 5 ngày sau khi nghỉ</li>
+              <li>Sưng nhẹ ở khớp không giảm sau 2–3 ngày</li>
+              <li>Đau khi không tập (cả khi nghỉ)</li>
+              <li>Cảm giác khớp không ổn định hoặc lỏng lẻo</li>
+              <li>Đau lưng lan xuống mông hoặc chân</li>
+            </ul>
+          </div>
+        </div>
+        <div class="doctor-card monitor">
+          <div class="doctor-header">
+            <span class="doctor-label label-monitor">📅 ĐẶT LỊCH KHÁM</span>
+            <h4>Trong tuần này</h4>
+          </div>
+          <div class="doctor-body">
+            <ul>
+              <li>Đau cơ kéo dài hơn 1 tuần sau buổi tập</li>
+              <li>Tiến bộ chậm bất thường dù ăn uống đầy đủ</li>
+              <li>Mệt mỏi kinh niên, không hồi phục được</li>
+              <li>Cảm giác "lạo xạo" ở vai khi xoay</li>
+              <li>Đau tái phát ở cùng một vị trí</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<script>
-function toggleInjury(header) {
-  const item = header.parentElement;
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.injury-item').forEach(i => i.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
-}
-</script>
-</body>
+    <!-- FINAL CTA -->
+    <div class="final-cta">
+      <h2>SẴN SÀNG BẮT ĐẦU<br />HÀNH TRÌNH?</h2>
+      <p>
+        Bạn đã có đủ thông tin. Bước tiếp theo là xem lộ trình phù hợp với độ
+        tuổi của bạn và bắt đầu — an toàn, khoa học, và kiên nhẫn.
+      </p>
+      <div class="cta-buttons">
+        <a href="roadmap.html" class="btn btn-primary">Xem Lộ Trình →</a>
+        <a href="technique.html" class="btn btn-outline">Học Kỹ Thuật</a>
+      </div>
+    </div>
+
+    <footer>
+      <p>IRON YOUTH — An toàn là nền tảng của sức mạnh.</p>
+      <div style="display: flex; gap: 20px">
+        <a
+          href="index.html"
+          style="color: var(--muted); font-size: 0.85rem; text-decoration: none"
+          >← Trang chủ</a
+        >
+        <a
+          href="nutrition.html"
+          style="color: var(--muted); font-size: 0.85rem; text-decoration: none"
+          >← Dinh dưỡng</a
+        >
+      </div>
+    </footer>
+
+    <script>
+      function toggleInjury(header) {
+        const item = header.parentElement;
+        const isOpen = item.classList.contains("open");
+        document
+          .querySelectorAll(".injury-item")
+          .forEach((i) => i.classList.remove("open"));
+        if (!isOpen) item.classList.add("open");
+      }
+    </script>
+  </body>
 </html>
