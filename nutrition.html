@@ -636,32 +636,41 @@
 
     <div class="page-header">
       <div class="breadcrumb">
-        <a href="index.html">Trang chủ</a> / Dinh dưỡng
+        <a href="index.html">Trang chủ</a> / Dinh dưỡng & Phục hồi
       </div>
-      <h1>DINH DƯỠNG<br /><span>& PHỤC HỒI</span></h1>
+      <h1>
+        DINH DƯỠNG & PHỤC HỒI CHO THIẾU NIÊN TẬP GYM<br />
+        <span>Thực đơn tăng cơ tuổi dậy thì</span>
+      </h1>
       <p>
-        Bạn có thể tập cật lực nhưng nếu ăn uống và ngủ nghỉ sai, kết quả sẽ chỉ
-        bằng 50%. Dinh dưỡng là đòn bẩy quan trọng nhất để tăng trưởng cơ bắp ở
-        thiếu niên.
+        Bạn có thể tập cật lực nhưng nếu ăn uống và ngủ nghỉ sai cách, kết quả
+        sẽ chỉ bằng 50%.
+        <strong>Dinh dưỡng tuổi dậy thì</strong> và phục hồi là yếu tố quan
+        trọng nhất giúp học sinh tăng cơ bắp, tăng sức mạnh và phát triển chiều
+        cao tối ưu khi tập gym.
       </p>
     </div>
 
     <!-- MACRO CALCULATOR -->
+    <!-- MACRO CALCULATOR -->
     <div class="macro-section">
-      <div class="section-h">TÍNH TOÁN LƯỢNG ĂN</div>
+      <div class="section-h">
+        MÁY TÍNH DINH DƯỠNG - TÍNH LƯỢNG ĂN CHO HỌC SINH TẬP GYM
+      </div>
       <div class="section-sub">
-        Nhập thông số để xem nhu cầu dinh dưỡng khuyến nghị
+        Nhập thông số để tính calo, protein, carbs, fat phù hợp với tuổi dậy thì
+        và lịch tập sức mạnh
       </div>
       <div class="calc-wrapper">
         <div class="calc-card">
           <h3>THÔNG SỐ CỦA BẠN</h3>
           <div class="form-group">
-            <label class="form-label">Độ tuổi</label>
+            <label class="form-label">Độ tuổi (8 - 15)</label>
             <input
               type="number"
               class="form-input"
               id="age"
-              placeholder="VD: 13"
+              placeholder="VD: 14"
               min="8"
               max="15"
             />
@@ -689,38 +698,46 @@
             <select class="form-input form-select" id="activity">
               <option value="1.4">Ít vận động (ít hơn 2 buổi/tuần)</option>
               <option value="1.55" selected>
-                Vận động vừa (2–3 buổi/tuần)
+                Vận động vừa (2–3 buổi tập gym/tuần)
               </option>
               <option value="1.7">Vận động nhiều (4+ buổi/tuần)</option>
-              <option value="1.9">Vận động rất nhiều (thi đấu)</option>
+              <option value="1.9">
+                Vận động rất nhiều (thi đấu hoặc tập 5-6 buổi)
+              </option>
             </select>
           </div>
-          <button class="btn-calc" onclick="calculate()">TÍNH TOÁN NGAY</button>
+          <button class="btn-calc" onclick="calculate()">
+            TÍNH CALO & MACRO NGAY
+          </button>
         </div>
+
         <div class="results-panel" id="results-panel">
-          <h3>NHẬP THÔNG SỐ ĐỂ XEM KẾT QUẢ</h3>
+          <h3>NHẬP THÔNG SỐ ĐỂ XEM KẾT QUẢ DINH DƯỠNG</h3>
           <div class="macro-display">
             <div class="macro-item">
               <div class="macro-val protein" id="r-protein">—</div>
-              <div class="macro-label">Protein (g)</div>
+              <div class="macro-label">Protein (g/ngày)</div>
             </div>
             <div class="macro-item">
               <div class="macro-val carbs" id="r-carbs">—</div>
-              <div class="macro-label">Carbs (g)</div>
+              <div class="macro-label">Carbs (g/ngày)</div>
             </div>
             <div class="macro-item">
               <div class="macro-val fat" id="r-fat">—</div>
-              <div class="macro-label">Chất béo (g)</div>
+              <div class="macro-label">Chất béo (g/ngày)</div>
             </div>
           </div>
           <div class="kcal-display">
             <div class="kcal-val" id="r-kcal">— kcal</div>
-            <div class="kcal-label">Tổng lượng calo mỗi ngày</div>
+            <div class="kcal-label">
+              Tổng calo mỗi ngày (TDEE) cho học sinh tập gym
+            </div>
           </div>
           <p class="result-note" id="r-note">
-            Đây là ước tính cho trẻ đang tập luyện sức mạnh. Hãy điều chỉnh theo
-            phản hồi cơ thể (tăng cân, cảm giác năng lượng). Tham khảo chuyên
-            gia dinh dưỡng để có kế hoạch cá nhân hóa.
+            Đây là lượng dinh dưỡng khuyến nghị cho thiếu niên 8–15 tuổi đang
+            tập gym tăng cơ. Hãy điều chỉnh theo cảm giác năng lượng và tốc độ
+            tăng cân. Nên tham khảo chuyên gia dinh dưỡng để có thực đơn cá nhân
+            hóa.
           </p>
         </div>
       </div>
@@ -730,9 +747,12 @@
 
     <!-- MEAL PLAN -->
     <div class="meal-section">
-      <div class="section-h">THỰC ĐƠN MẪU 1 NGÀY</div>
+      <div class="section-h">
+        THỰC ĐƠN MẪU 1 NGÀY - TĂNG CƠ CHO HỌC SINH TẬP GYM
+      </div>
       <div class="section-sub">
-        Dành cho thiếu niên 12–14 tuổi, ~2400–2600 kcal
+        Dành cho thiếu niên 12–15 tuổi, khoảng 2400–2600 kcal/ngày - Tiết kiệm
+        và dễ làm tại Việt Nam
       </div>
       <div class="meal-grid">
         <div class="meal-card">
@@ -740,7 +760,7 @@
             <span class="meal-time">06:30 — Bữa sáng</span
             ><span class="meal-kcal">~600 kcal</span>
           </div>
-          <div class="meal-name">NĂNG LƯỢNG KHỞI ĐỘNG</div>
+          <div class="meal-name">BỮA SÁNG TĂNG CƠ - NĂNG LƯỢNG KHỞI ĐỘNG</div>
           <ul class="meal-items">
             <li><strong>Cơm trắng</strong><span>150g (nấu chín)</span></li>
             <li>
@@ -824,9 +844,12 @@
 
     <!-- KEY NUTRIENTS -->
     <div class="nutrients">
-      <div class="section-h">DƯỠNG CHẤT THIẾT YẾU</div>
+      <div class="section-h">
+        DƯỠNG CHẤT THIẾT YẾU CHO THIẾU NIÊN TẬP SỨC MẠNH
+      </div>
       <div class="section-sub">
-        Những gì thiếu niên tập sức mạnh cần đặc biệt chú trọng
+        Những dưỡng chất quan trọng nhất giúp học sinh tăng cơ, phát triển xương
+        và phục hồi nhanh khi tập gym tuổi dậy thì
       </div>
       <div class="nutrient-grid">
         <div class="nutrient-card">
@@ -834,8 +857,9 @@
             <div class="nutrient-icon">🥩</div>
             <h3>Protein — Xây cơ</h3>
             <p>
-              1.4–1.8g protein / kg cân nặng mỗi ngày. Phân bổ đều qua 4–5 bữa
-              ăn để tối ưu tổng hợp cơ. Trẻ 50kg cần ~75–90g/ngày.
+              1.4–1.8g protein mỗi kg cân nặng. Thiếu niên 50kg cần khoảng
+              70–90g protein/ngày. Phân bổ đều 4–5 bữa để tối ưu tổng hợp cơ
+              bắp.
             </p>
           </div>
           <div class="nutrient-sources">
@@ -914,10 +938,12 @@
 
     <!-- SLEEP -->
     <div class="sleep-section">
-      <div class="section-h">NGỦ — VŨ KHÍ BÍ MẬT</div>
+      <div class="section-h">
+        NGỦ ĐỦ GIẤC — VŨ KHÍ BÍ MẬT ĐỂ TĂNG CƠ VÀ TĂNG CHIỀU CAO
+      </div>
       <div class="section-sub">
-        Cơ bắp phát triển khi ngủ, không phải khi tập. Không ngủ đủ = không tăng
-        sức mạnh.
+        Cơ bắp và hormone tăng trưởng chỉ phát triển mạnh khi ngủ đủ. Học sinh
+        tập gym cần ngủ 8–10 tiếng mỗi đêm.
       </div>
       <div class="sleep-grid">
         <div class="sleep-timeline">
@@ -1023,10 +1049,12 @@
 
     <!-- SUPPLEMENTS -->
     <div class="supps">
-      <div class="section-h">SUPPLEMENT — CÁI NÀO PHÙ HỢP?</div>
+      <div class="section-h">
+        SUPPLEMENT NÀO PHÙ HỢP VỚI THIẾU NIÊN 13-15 TUỔI?
+      </div>
       <div class="section-sub">
-        Hầu hết thiếu niên không cần supplement — thực phẩm thật luôn là ưu tiên
-        hàng đầu
+        Thực phẩm thật luôn là ưu tiên. Hầu hết thiếu niên không cần supplement
+        đắt tiền khi tập gym.
       </div>
       <div class="supp-grid">
         <div class="supp-card">
@@ -1081,7 +1109,10 @@
     </div>
 
     <footer>
-      <p>IRON YOUTH — Ăn đúng, ngủ đủ, tập sức mạnh.</p>
+      <p>
+        IRON YOUTH — Ăn đúng, ngủ đủ, tập sức mạnh để phát triển toàn diện ở
+        tuổi dậy thì.
+      </p>
       <div style="display: flex; gap: 20px">
         <a
           href="safety.html"
