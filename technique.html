@@ -23,10 +23,6 @@
       rel="canonical"
       href="https://fastidious-druid-5e4324.netlify.app/technique"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap"
-      rel="stylesheet"
-    />
     <style>
       :root {
         --red: #ff2d00;
@@ -39,6 +35,58 @@
         --border: rgba(255, 255, 255, 0.07);
         --green: #00d46a;
       }
+      /* =======================
+   Barlow Family
+======================= */
+
+      /* Regular - 400 */
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* SemiBold - 600 */
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-SemiBold.woff2") format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Bold - 700 */
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-Bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Black - 900 */
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-Black.woff2") format("woff2");
+        font-weight: 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Italic - 400 italic */
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-Italic.woff2") format("woff2");
+        font-weight: 400;
+        font-style: italic;
+        font-display: swap;
+      }
+
+      /* =======================
+======================= */
+
       *,
       *::before,
       *::after {
@@ -52,6 +100,22 @@
         font-family: "Barlow", sans-serif;
         overflow-x: hidden;
       }
+      p a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 20px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--red);
+        text-decoration: none;
+      }
+      p a:hover {
+        color: var(--yellow);
+      }
+
       nav {
         position: fixed;
         top: 0;
@@ -68,7 +132,7 @@
         border-bottom: 1px solid var(--border);
       }
       .nav-logo {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 1.6rem;
         letter-spacing: 2px;
         color: var(--text);
@@ -119,7 +183,7 @@
         position: absolute;
         right: 40px;
         bottom: -20px;
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 10rem;
         color: rgba(255, 255, 255, 0.025);
         line-height: 1;
@@ -139,7 +203,7 @@
         text-decoration: none;
       }
       .page-header h1 {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: clamp(3rem, 8vw, 7rem);
         line-height: 0.95;
       }
@@ -184,7 +248,7 @@
         );
       }
       .body-label {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 5rem;
         letter-spacing: -2px;
         color: rgba(255, 255, 255, 0.12);
@@ -205,13 +269,13 @@
         border-bottom: none;
       }
       .cue-num {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 1.6rem;
         color: var(--red);
         min-width: 32px;
         line-height: 1;
       }
-      .cue-text h4 {
+      .cue-text h3 {
         font-weight: 700;
         font-size: 0.95rem;
         margin-bottom: 3px;
@@ -223,7 +287,7 @@
       }
 
       .bench-steps h2 {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 3rem;
         line-height: 1;
         margin-bottom: 8px;
@@ -268,7 +332,7 @@
         justify-content: center;
         font-size: 1.3rem;
       }
-      .step-body h4 {
+      .step-body h3 {
         font-weight: 700;
         font-size: 1rem;
         margin-bottom: 4px;
@@ -284,7 +348,7 @@
         padding: 0 60px 80px;
       }
       .section-h {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 2rem;
         margin-bottom: 8px;
       }
@@ -408,7 +472,7 @@
         padding: 20px;
       }
       .ex-info h3 {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 1.4rem;
         margin-bottom: 6px;
       }
@@ -451,13 +515,13 @@
         background: var(--surface);
       }
       .breath-phase {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 1rem;
         letter-spacing: 2px;
         margin-bottom: 8px;
       }
       .breath-action {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 2.2rem;
         line-height: 1;
         margin-bottom: 8px;
@@ -558,7 +622,7 @@
       </div>
     </nav>
 
-    <div class="page-header">
+    <section class="page-header">
       <div class="breadcrumb">
         <a href="index.html">Trang chủ</a> / Kỹ thuật Bench Press
       </div>
@@ -573,9 +637,9 @@
         tiến bộ. Học đúng <strong>cách đẩy ngực đúng cách</strong> ngay từ đầu
         là cực kỳ quan trọng với học sinh, thiếu niên đang tập gym.
       </p>
-    </div>
+    </section>
 
-    <div class="bench-hero">
+    <section class="bench-hero">
       <div class="bench-visual">
         <div class="bench-diagram">
           <div class="body-label">SETUP BENCH PRESS CHUẨN</div>
@@ -583,7 +647,7 @@
             <li class="cue-item">
               <div class="cue-num">01</div>
               <div class="cue-text">
-                <h4>Mắt nằm dưới thanh tạ</h4>
+                <h3>Mắt nằm dưới thanh tạ</h3>
                 <p>
                   Nằm xuống bench sao cho thanh tạ thẳng đứng ngang tầm mắt —
                   đây là set up bench press chuẩn cho người mới.
@@ -593,7 +657,7 @@
             <li class="cue-item">
               <div class="cue-num">02</div>
               <div class="cue-text">
-                <h4>Vị trí grip</h4>
+                <h3>Vị trí grip</h3>
                 <p>
                   Grip rộng hơn vai khoảng một nắm tay mỗi bên. Ngón cái phải ôm
                   vòng quanh bar (thumbless grip rất nguy hiểm).
@@ -603,7 +667,7 @@
             <li class="cue-item">
               <div class="cue-num">03</div>
               <div class="cue-text">
-                <h4>Vai thu vào và xuống</h4>
+                <h3>Vai thu vào và xuống</h3>
                 <p>
                   Kéo vai về phía sau lưng và ép chặt vào bench. Đây là mẹo quan
                   trọng giúp <strong>đẩy ngực không đau vai</strong>.
@@ -613,7 +677,7 @@
             <li class="cue-item">
               <div class="cue-num">04</div>
               <div class="cue-text">
-                <h4>Bàn chân chắc trên sàn</h4>
+                <h3>Bàn chân chắc trên sàn</h3>
                 <p>
                   Cả hai bàn chân đặt chắc chắn trên sàn. Dùng
                   <strong>leg drive</strong> — đẩy mạnh chân xuống sàn khi đẩy
@@ -624,7 +688,7 @@
             <li class="cue-item">
               <div class="cue-num">05</div>
               <div class="cue-text">
-                <h4>Giữ 5 điểm tiếp xúc</h4>
+                <h3>Giữ 5 điểm tiếp xúc</h3>
                 <p>
                   Đầu - vai - hai mông - hai bàn chân luôn chạm bench/sàn. Kết
                   hợp với <strong>cách gồng core khi đẩy ngực</strong> để giữ ổn
@@ -646,7 +710,7 @@
           <div class="step-card">
             <div class="step-icon">🫁</div>
             <div class="step-body">
-              <h4>Hít thở & gồng core khi bench press</h4>
+              <h3>Hít thở & gồng core khi bench press</h3>
               <p>
                 Hít sâu vào bụng, giữ hơi (brace core) trước khi unrack. Đây là
                 cách gồng core khi đẩy ngực giúp bảo vệ cột sống và tăng sức
@@ -657,7 +721,7 @@
           <div class="step-card">
             <div class="step-icon">⬇️</div>
             <div class="step-body">
-              <h4>Unrack bar an toàn</h4>
+              <h3>Unrack bar an toàn</h3>
               <p>
                 Đẩy thanh tạ ra khỏi rack, giữ thẳng hàng với cổ tay. Giữ im 1
                 giây để ổn định trước khi hạ.
@@ -667,7 +731,7 @@
           <div class="step-card">
             <div class="step-icon">📐</div>
             <div class="step-body">
-              <h4>Hạ bar xuống có kiểm soát</h4>
+              <h3>Hạ bar xuống có kiểm soát</h3>
               <p>
                 Hạ bar về phía ngực giữa-dưới (ngang núm vú), khuỷu tay tạo góc
                 45–75° với thân người, không vung rộng ra.
@@ -677,7 +741,7 @@
           <div class="step-card">
             <div class="step-icon">💥</div>
             <div class="step-body">
-              <h4>Chạm ngực — Pause 1 giây</h4>
+              <h3>Chạm ngực — Pause 1 giây</h3>
               <p>
                 Bar chạm nhẹ vào ngực (không bouncing). Giữ hơi và áp lực. Bắt
                 đầu đẩy ngay sau đó.
@@ -687,7 +751,7 @@
           <div class="step-card">
             <div class="step-icon">⬆️</div>
             <div class="step-body">
-              <h4>Đẩy lên mạnh — Thở ra</h4>
+              <h3>Đẩy lên mạnh — Thở ra</h3>
               <p>
                 Đẩy bar lên và hơi về phía sau (arc movement), thở ra khi bar
                 qua điểm giữa. Không để hông rời khỏi bench.
@@ -696,11 +760,11 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="divider"></div>
 
-    <div class="errors-section">
+    <section class="errors-section">
       <div class="section-h">LỖI SAI PHỔ BIẾN KHI BENCH PRESS & CÁCH SỬA</div>
       <div class="section-sub">
         Nhận biết và sửa ngay các lỗi thường gặp để tránh chấn thương vai và
@@ -782,11 +846,11 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="divider"></div>
 
-    <div class="breathing">
+    <section class="breathing">
       <div class="section-h">KỸ THUẬT HÍT THỞ & GỒNG CORE KHI BENCH PRESS</div>
       <div class="section-sub">
         Hít thở đúng cách giúp tăng 5–10% sức mạnh và bảo vệ cột sống khi đẩy
@@ -826,11 +890,11 @@
           </p>
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="divider"></div>
 
-    <div class="catalog">
+    <section class="catalog">
       <div class="section-h">CÁC BÀI TẬP HỖ TRỢ TĂNG BENCH PRESS NHANH</div>
       <div class="section-sub">
         Những bài tập phụ giúp cải thiện kỹ thuật bench press và tăng mức tạ đẩy
@@ -928,7 +992,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <footer>
       <p>IRON YOUTH — Kỹ thuật đúng, tập mãi không sợ chấn thương.</p>

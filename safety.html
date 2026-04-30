@@ -23,10 +23,6 @@
       rel="canonical"
       href="https://fastidious-druid-5e4324.netlify.app/safety"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap"
-      rel="stylesheet"
-    />
     <style>
       :root {
         --red: #ff2d00;
@@ -40,6 +36,58 @@
         --green: #00d46a;
         --orange: #ff8c00;
       }
+      /* =======================
+   Barlow Family
+======================= */
+
+      /* Regular - 400 */
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* SemiBold - 600 */
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-SemiBold.woff2") format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Bold - 700 */
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-Bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Black - 900 */
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-Black.woff2") format("woff2");
+        font-weight: 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Italic - 400 italic */
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-Italic.woff2") format("woff2");
+        font-weight: 400;
+        font-style: italic;
+        font-display: swap;
+      }
+
+      /* =======================
+======================= */
+
       *,
       *::before,
       *::after {
@@ -53,6 +101,21 @@
         font-family: "Noto Sans", sans-serif;
         overflow-x: hidden;
       }
+      p a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--red);
+        text-decoration: none;
+      }
+      p a:hover {
+        color: var(--yellow);
+      }
+
       nav {
         position: fixed;
         top: 0;
@@ -69,7 +132,7 @@
         border-bottom: 1px solid var(--border);
       }
       .nav-logo {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 1.6rem;
         letter-spacing: 2px;
         color: var(--text);
@@ -120,7 +183,7 @@
         position: absolute;
         right: 40px;
         bottom: -20px;
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 18rem;
         color: rgba(255, 255, 255, 0.02);
         line-height: 1;
@@ -139,7 +202,7 @@
         text-decoration: none;
       }
       .page-header h1 {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: clamp(3rem, 8vw, 7rem);
         line-height: 0.95;
       }
@@ -185,7 +248,7 @@
         padding: 80px 60px;
       }
       .section-h {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 2.2rem;
         margin-bottom: 8px;
       }
@@ -212,7 +275,7 @@
         background: var(--surface2);
       }
       .rule-num {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 4rem;
         color: rgba(255, 140, 0, 0.15);
         position: absolute;
@@ -225,7 +288,7 @@
         margin-bottom: 14px;
       }
       .rule-card h3 {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 1.4rem;
         margin-bottom: 8px;
         color: var(--orange);
@@ -282,7 +345,7 @@
       }
       .injury-title {
         flex: 1;
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 1.3rem;
       }
       .injury-toggle {
@@ -359,7 +422,7 @@
         font-size: 1.5rem;
       }
       .wu-title {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 1.4rem;
       }
       .wu-sub {
@@ -384,7 +447,7 @@
         border-bottom: none;
       }
       .wu-time {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 1.2rem;
         color: var(--yellow);
         min-width: 56px;
@@ -412,7 +475,7 @@
         margin-top: 32px;
       }
       .checker-side h3 {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: 1.6rem;
         margin-bottom: 16px;
       }
@@ -549,7 +612,7 @@
         border-top: 1px solid var(--border);
       }
       .final-cta h2 {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: sans-serif;
         font-size: clamp(2.5rem, 6vw, 5rem);
         margin-bottom: 16px;
       }
@@ -678,7 +741,7 @@
       </div>
     </nav>
 
-    <div class="page-header">
+    <section class="page-header">
       <div class="breadcrumb">
         <a href="index.html">Trang chủ</a> / An toàn khi tập gym
       </div>
@@ -697,11 +760,11 @@
           rel="noopener noreferrer"
           class="external-link"
         >
-          🔗 Nguồn y khoa: NHS – Exercise & Injury Prevention
+          Nguồn y khoa: NHS – Exercise & Injury Prevention
         </a>
       </p>
-    </div>
-    <div class="emergency">
+    </section>
+    <section class="emergency">
       <div class="emergency-icon">🚨</div>
       <div class="emergency-text">
         <strong>TRƯỜNG HỢP KHẨN CẤP — Gặp bác sĩ NGAY nếu:</strong>
@@ -711,10 +774,10 @@
           nặng • Sưng to, bầm tím nhanh sau va chạm
         </p>
       </div>
-    </div>
+    </section>
 
     <!-- GOLDEN RULES -->
-    <div class="rules-section">
+    <section class="rules-section">
       <div class="section-h">
         10 NGUYÊN TẮC VÀNG AN TOÀN KHI TẬP GYM TUỔI DẬY THÌ
       </div>
@@ -815,12 +878,12 @@
           </p>
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="divider"></div>
 
     <!-- INJURY GUIDE -->
-    <div class="injury-section">
+    <section class="injury-section">
       <div class="section-h">
         CÁC CHẤN THƯƠNG PHỔ BIẾN KHI TẬP BENCH PRESS & TẬP GYM
       </div>
@@ -1044,12 +1107,12 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="divider"></div>
 
     <!-- WARM UP / COOL DOWN -->
-    <div class="warmup">
+    <section class="warmup">
       <div class="section-h">
         KHỞI ĐỘNG & THẢ LỎNG ĐÚNG CÁCH ĐỂ TRÁNH CHẤN THƯƠNG
       </div>
@@ -1167,12 +1230,12 @@
           </ul>
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="divider"></div>
 
     <!-- READINESS CHECKER -->
-    <div class="readiness">
+    <section class="readiness">
       <div class="section-h">
         HÔM NAY CÓ NÊN TẬP NẶNG KHÔNG? — KIỂM TRA SẴN SÀNG
       </div>
@@ -1266,12 +1329,12 @@
           </ul>
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="divider"></div>
 
     <!-- WHEN TO SEE A DOCTOR -->
-    <div class="doctor">
+    <section class="doctor">
       <div class="section-h">KHI NÀO CẦN GẶP BÁC SĨ?</div>
       <div class="section-sub">
         Đừng bao giờ xem thường dấu hiệu bất thường từ cơ thể
@@ -1323,10 +1386,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- FINAL CTA -->
-    <div class="final-cta">
+    <section class="final-cta">
       <h2>SẴN SÀNG BẮT ĐẦU <br />HÀNH TRÌNH TẬP GYM AN TOÀN?</h2>
       <p>
         Bạn đã có đủ thông tin. Bước tiếp theo là xem lộ trình phù hợp với độ
@@ -1336,7 +1399,7 @@
         <a href="roadmap.html" class="btn btn-primary">Xem Lộ Trình →</a>
         <a href="technique.html" class="btn btn-outline">Học Kỹ Thuật</a>
       </div>
-    </div>
+    </section>
 
     <footer>
       <p>
