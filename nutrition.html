@@ -216,7 +216,12 @@
       .macro-section {
         padding: 80px 60px;
       }
-      .section-h {
+      .section-h,
+      .macro-section h2,
+      .meal-section h2,
+      .nutrients h2,
+      .sleep-section h2,
+      .supps h2 {
         font-family: sans-serif;
         font-size: 2.2rem;
         margin-bottom: 8px;
@@ -623,7 +628,7 @@
         background: rgba(255, 45, 0, 0.12);
         color: var(--red);
       }
-      .supp-card h4 {
+      .supp-card h3 {
         font-family: sans-serif;
         font-size: 1.3rem;
         margin-bottom: 6px;
@@ -719,505 +724,507 @@
         <a href="safety.html">An toàn</a>
       </div>
     </nav>
+    <main>
 
-    <section class="page-header">
-      <div class="breadcrumb">
-        <a href="index.html">Trang chủ</a> / Dinh dưỡng & Phục hồi
-      </div>
-      <h1>
-        DINH DƯỠNG & PHỤC HỒI CHO THIẾU NIÊN TẬP GYM<br />
-        <span>Thực đơn tăng cơ tuổi dậy thì</span>
-      </h1>
-      <p>
-        Bạn có thể tập cật lực nhưng nếu ăn uống và ngủ nghỉ sai cách, kết quả
-        sẽ chỉ bằng 50%.
-        <strong>Dinh dưỡng tuổi dậy thì</strong> và phục hồi là yếu tố quan
-        trọng nhất giúp học sinh tăng cơ bắp, tăng sức mạnh và phát triển chiều
-        cao tối ưu khi tập gym. Theo
-        <a
-          href="https://www.who.int/news-room/fact-sheets/detail/physical-activity"
-          target="_blank"
-          rel="noopener"
-        >
-          khuyến nghị từ Tổ chức Y tế Thế giới (WHO) </a
-        >, trẻ em và thanh thiếu niên cần vận động và dinh dưỡng hợp lý mỗi
-        ngày.
-      </p>
-    </section>
-
-    <!-- MACRO CALCULATOR -->
-    <!-- MACRO CALCULATOR -->
-    <section class="macro-section">
-      <div class="section-h">
-        MÁY TÍNH DINH DƯỠNG - TÍNH LƯỢNG ĂN CHO HỌC SINH TẬP GYM
-      </div>
-      <div class="section-sub">
-        Nhập thông số để tính calo, protein, carbs, fat phù hợp với tuổi dậy thì
-        và lịch tập sức mạnh
-      </div>
-      <div class="calc-wrapper">
-        <div class="calc-card">
-          <h2>THÔNG SỐ CỦA BẠN</h2>
-          <div class="form-group">
-            <label class="form-label">Độ tuổi (8 - 15)</label>
-            <input
-              type="number"
-              class="form-input"
-              id="age"
-              placeholder="VD: 14"
-              min="8"
-              max="15"
-            />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Cân nặng (kg)</label>
-            <input
-              type="number"
-              class="form-input"
-              id="weight"
-              placeholder="VD: 50"
-            />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Chiều cao (cm)</label>
-            <input
-              type="number"
-              class="form-input"
-              id="height"
-              placeholder="VD: 160"
-            />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="activity">Mức độ hoạt động</label>
-            <select class="form-input form-select" id="activity">
-              <option value="1.4">Ít vận động (ít hơn 2 buổi/tuần)</option>
-              <option value="1.55" selected>
-                Vận động vừa (2–3 buổi tập gym/tuần)
-              </option>
-              <option value="1.7">Vận động nhiều (4+ buổi/tuần)</option>
-              <option value="1.9">
-                Vận động rất nhiều (thi đấu hoặc tập 5-6 buổi)
-              </option>
-            </select>
-          </div>
-          <button class="btn-calc" onclick="calculate()">
-            TÍNH CALO & MACRO NGAY
-          </button>
+      <section class="page-header">
+        <div class="breadcrumb">
+          <a href="index.html">Trang chủ</a> / Dinh dưỡng & Phục hồi
         </div>
-
-        <div class="results-panel" id="results-panel">
-          <h3>NHẬP THÔNG SỐ ĐỂ XEM KẾT QUẢ DINH DƯỠNG</h3>
-          <div class="macro-display">
-            <div class="macro-item">
-              <div class="macro-val protein" id="r-protein">—</div>
-              <div class="macro-label">Protein (g/ngày)</div>
-            </div>
-            <div class="macro-item">
-              <div class="macro-val carbs" id="r-carbs">—</div>
-              <div class="macro-label">Carbs (g/ngày)</div>
-            </div>
-            <div class="macro-item">
-              <div class="macro-val fat" id="r-fat">—</div>
-              <div class="macro-label">Chất béo (g/ngày)</div>
-            </div>
-          </div>
-          <div class="kcal-display">
-            <div class="kcal-val" id="r-kcal">— kcal</div>
-            <div class="kcal-label">
-              Tổng calo mỗi ngày (TDEE) cho học sinh tập gym
-            </div>
-          </div>
-          <p class="result-note" id="r-note">
-            Đây là lượng dinh dưỡng khuyến nghị cho thiếu niên 8–15 tuổi đang
-            tập gym tăng cơ. Hãy điều chỉnh theo cảm giác năng lượng và tốc độ
-            tăng cân. Nên tham khảo chuyên gia dinh dưỡng để có thực đơn cá nhân
-            hóa.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- MEAL PLAN -->
-    <section class="meal-section">
-      <div class="section-h">
-        THỰC ĐƠN MẪU 1 NGÀY - TĂNG CƠ CHO HỌC SINH TẬP GYM
-      </div>
-      <div class="section-sub">
-        Dành cho thiếu niên 12–15 tuổi, khoảng 2400–2600 kcal/ngày - Tiết kiệm
-        và dễ làm tại Việt Nam
-      </div>
-      <div class="meal-grid">
-        <div class="meal-card">
-          <div class="meal-header">
-            <span class="meal-time">06:30 — Bữa sáng</span
-            ><span class="meal-kcal">~600 kcal</span>
-          </div>
-          <div class="meal-name">BỮA SÁNG TĂNG CƠ - NĂNG LƯỢNG KHỞI ĐỘNG</div>
-          <ul class="meal-items">
-            <li><strong>Cơm trắng</strong><span>150g (nấu chín)</span></li>
-            <li>
-              <strong>Trứng gà</strong><span>3 quả luộc/chiên ít dầu</span>
-            </li>
-            <li><strong>Đậu phụ / Thịt gà</strong><span>100g</span></li>
-            <li><strong>Rau luộc</strong><span>1 chén</span></li>
-            <li><strong>Sữa tươi không đường</strong><span>240ml</span></li>
-          </ul>
-        </div>
-        <div class="meal-card">
-          <div class="meal-header">
-            <span class="meal-time">10:00 — Bữa phụ sáng</span
-            ><span class="meal-kcal">~300 kcal</span>
-          </div>
-          <div class="meal-name">SNACK PROTEIN</div>
-          <ul class="meal-items">
-            <li><strong>Chuối</strong><span>2 quả vừa</span></li>
-            <li><strong>Bơ đậu phộng</strong><span>2 muỗng canh</span></li>
-            <li><strong>Yaourt không đường</strong><span>150g</span></li>
-          </ul>
-        </div>
-        <div class="meal-card">
-          <div class="meal-header">
-            <span class="meal-time">12:00 — Bữa trưa</span
-            ><span class="meal-kcal">~700 kcal</span>
-          </div>
-          <div class="meal-name">NẠP NHIÊN LIỆU CHÍNH</div>
-          <ul class="meal-items">
-            <li><strong>Cơm trắng</strong><span>200g</span></li>
-            <li><strong>Thịt bò/gà/cá</strong><span>150g</span></li>
-            <li><strong>Rau xào / luộc</strong><span>1 đĩa</span></li>
-            <li><strong>Canh</strong><span>1 tô</span></li>
-            <li><strong>Trái cây</strong><span>1 phần</span></li>
-          </ul>
-        </div>
-        <div class="meal-card">
-          <div class="meal-header">
-            <span class="meal-time">Pre-workout — 30–60 phút trước tập</span
-            ><span class="meal-kcal">~350 kcal</span>
-          </div>
-          <div class="meal-name">FUEL TRƯỚC TẬP</div>
-          <ul class="meal-items">
-            <li><strong>Bánh mì nguyên cám</strong><span>2 lát</span></li>
-            <li><strong>Trứng</strong><span>2 quả</span></li>
-            <li><strong>Chuối</strong><span>1 quả</span></li>
-            <li><strong>Nước</strong><span>500ml</span></li>
-          </ul>
-        </div>
-        <div class="meal-card">
-          <div class="meal-header">
-            <span class="meal-time">Post-workout — Trong 30 phút sau tập</span
-            ><span class="meal-kcal">~350 kcal</span>
-          </div>
-          <div class="meal-name">PHỤC HỒI SAU TẬP</div>
-          <ul class="meal-items">
-            <li><strong>Sữa tươi hoặc sữa chua</strong><span>400ml</span></li>
-            <li><strong>Chuối hoặc gạo</strong><span>50–100g carbs</span></li>
-            <li><strong>Nước</strong><span>500–750ml</span></li>
-          </ul>
-        </div>
-        <div class="meal-card">
-          <div class="meal-header">
-            <span class="meal-time">19:00 — Bữa tối</span
-            ><span class="meal-kcal">~600 kcal</span>
-          </div>
-          <div class="meal-name">XÂY DỰNG QUA ĐÊM</div>
-          <ul class="meal-items">
-            <li><strong>Cơm trắng</strong><span>150g</span></li>
-            <li><strong>Cá / Tôm / Thịt gà</strong><span>150g</span></li>
-            <li><strong>Rau luộc</strong><span>1 đĩa</span></li>
-            <li>
-              <strong>Sữa ấm trước ngủ</strong><span>240ml (casein)</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- KEY NUTRIENTS -->
-    <section class="nutrients">
-      <div class="section-h">
-        DƯỠNG CHẤT THIẾT YẾU CHO THIẾU NIÊN TẬP SỨC MẠNH
-      </div>
-      <div class="section-sub">
-        Những dưỡng chất quan trọng nhất giúp học sinh tăng cơ, phát triển xương
-        và phục hồi nhanh khi tập gym tuổi dậy thì
-      </div>
-      <div class="nutrient-grid">
-        <div class="nutrient-card">
-          <div class="nutrient-top">
-            <div class="nutrient-icon">🥩</div>
-            <h3>Protein — Xây cơ</h3>
-            <p>
-              1.4–1.8g protein mỗi kg cân nặng. Thiếu niên 50kg cần khoảng
-              70–90g protein/ngày. Phân bổ đều 4–5 bữa để tối ưu tổng hợp cơ
-              bắp. Theo
-              <a
-                href="https://www.cdc.gov/nutrition/php/about/index.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fnutrition%2Findex.html"
-                target="_blank"
-                rel="noopener"
-              >
-                khuyến nghị từ NIH </a
-              >, protein đóng vai trò quan trọng trong phát triển cơ bắp và phục
-              hồi.
-            </p>
-          </div>
-          <div class="nutrient-sources">
-            <div class="source-label">Nguồn tốt nhất</div>
-            <div class="source-tags">
-              <span class="source-tag">🥚 Trứng</span>
-              <span class="source-tag">🍗 Ức gà</span>
-              <span class="source-tag">🐟 Cá</span>
-              <span class="source-tag">🥛 Sữa</span>
-              <span class="source-tag">🫘 Đậu</span>
-            </div>
-          </div>
-        </div>
-        <div class="nutrient-card">
-          <div class="nutrient-top">
-            <div class="nutrient-icon">🍚</div>
-            <h3>Carbohydrate — Nhiên liệu</h3>
-            <p>
-              50–60% tổng calo. Không cắt carbs khi đang ở độ tuổi phát triển và
-              tập luyện. Carbs là nhiên liệu chính cho cơ và não bộ.
-            </p>
-          </div>
-          <div class="nutrient-sources">
-            <div class="source-label">Nguồn tốt nhất</div>
-            <div class="source-tags">
-              <span class="source-tag">🍚 Cơm</span>
-              <span class="source-tag">🍞 Bánh mì</span>
-              <span class="source-tag">🍠 Khoai</span>
-              <span class="source-tag">🍌 Trái cây</span>
-              <span class="source-tag">🌽 Ngô</span>
-            </div>
-          </div>
-        </div>
-        <div class="nutrient-card">
-          <div class="nutrient-top">
-            <div class="nutrient-icon">🦴</div>
-            <h3>Calcium & Vitamin D — Xương</h3>
-            <p>
-              Cực kỳ quan trọng vì xương đang phát triển! 1200–1500mg Ca/ngày.
-              Thiếu calcium khi tập tạ nặng là nguy cơ stress fracture.
-            </p>
-          </div>
-          <div class="nutrient-sources">
-            <div class="source-label">Nguồn tốt nhất</div>
-            <div class="source-tags">
-              <span class="source-tag">🥛 Sữa</span>
-              <span class="source-tag">🧀 Phô mai</span>
-              <span class="source-tag">🥦 Bông cải</span>
-              <span class="source-tag">☀️ Ánh nắng</span>
-              <span class="source-tag">🐟 Cá béo</span>
-            </div>
-          </div>
-        </div>
-        <div class="nutrient-card">
-          <div class="nutrient-top">
-            <div class="nutrient-icon">💧</div>
-            <h3>Nước — Hiệu suất & Phục hồi</h3>
-            <p>
-              Mất 2% nước = giảm 10% sức mạnh. Uống 2.5–3 lít mỗi ngày khi tập.
-              Thêm 500ml cho mỗi giờ tập. Nước tiểu màu vàng nhạt = đủ nước.
-            </p>
-          </div>
-          <div class="nutrient-sources">
-            <div class="source-label">Uống thế nào</div>
-            <div class="source-tags">
-              <span class="source-tag">💧 Trước tập: 500ml</span>
-              <span class="source-tag">🏋️ Trong tập: từng ngụm</span>
-              <span class="source-tag">✅ Sau tập: 500–750ml</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- SLEEP -->
-    <section class="sleep-section">
-      <div class="section-h">
-        NGỦ ĐỦ GIẤC — VŨ KHÍ BÍ MẬT ĐỂ TĂNG CƠ VÀ TĂNG CHIỀU CAO
-      </div>
-      <div class="section-sub">
+        <h1>
+          DINH DƯỠNG & PHỤC HỒI CHO THIẾU NIÊN TẬP GYM<br />
+          <span>Thực đơn tăng cơ tuổi dậy thì</span>
+        </h1>
         <p>
-          Cơ bắp và hormone tăng trưởng chỉ phát triển mạnh khi ngủ đủ. Học sinh
-          tập gym cần ngủ 8–10 tiếng mỗi đêm.
+          Bạn có thể tập cật lực nhưng nếu ăn uống và ngủ nghỉ sai cách, kết quả
+          sẽ chỉ bằng 50%.
+          <strong>Dinh dưỡng tuổi dậy thì</strong> và phục hồi là yếu tố quan
+          trọng nhất giúp học sinh tăng cơ bắp, tăng sức mạnh và phát triển chiều
+          cao tối ưu khi tập gym. Theo
           <a
-            href="https://www.sleepfoundation.org/how-sleep-works/why-do-we-need-sleep"
+            href="https://www.who.int/news-room/fact-sheets/detail/physical-activity"
             target="_blank"
             rel="noopener"
           >
-            nghiên cứu về giấc ngủ và hormone tăng trưởng
-          </a>
+            khuyến nghị từ Tổ chức Y tế Thế giới (WHO) </a
+          >, trẻ em và thanh thiếu niên cần vận động và dinh dưỡng hợp lý mỗi
+          ngày.
         </p>
-      </div>
-      <div class="sleep-grid">
-        <div class="sleep-timeline">
-          <h3>LỊCH TRÌNH LÝ TƯỞNG</h3>
-          <div class="time-row">
-            <span class="time-clock">20:30</span>
-            <div class="time-event">
-              <strong>Giảm màn hình</strong
-              ><span>Tắt điện thoại, tivi, máy tính</span>
+      </section>
+  
+      <!-- MACRO CALCULATOR -->
+      <!-- MACRO CALCULATOR -->
+      <section class="macro-section">
+        <h2>
+          MÁY TÍNH DINH DƯỠNG - TÍNH LƯỢNG ĂN CHO HỌC SINH TẬP GYM
+        </h2>
+        <div class="section-sub">
+          Nhập thông số để tính calo, protein, carbs, fat phù hợp với tuổi dậy thì
+          và lịch tập sức mạnh
+        </div>
+        <div class="calc-wrapper">
+          <div class="calc-card">
+            <h2>THÔNG SỐ CỦA BẠN</h2>
+            <div class="form-group">
+              <label class="form-label">Độ tuổi (8 - 15)</label>
+              <input
+                type="number"
+                class="form-input"
+                id="age"
+                placeholder="VD: 14"
+                min="8"
+                max="15"
+              />
             </div>
+            <div class="form-group">
+              <label class="form-label">Cân nặng (kg)</label>
+              <input
+                type="number"
+                class="form-input"
+                id="weight"
+                placeholder="VD: 50"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Chiều cao (cm)</label>
+              <input
+                type="number"
+                class="form-input"
+                id="height"
+                placeholder="VD: 160"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="activity">Mức độ hoạt động</label>
+              <select class="form-input form-select" id="activity">
+                <option value="1.4">Ít vận động (ít hơn 2 buổi/tuần)</option>
+                <option value="1.55" selected>
+                  Vận động vừa (2–3 buổi tập gym/tuần)
+                </option>
+                <option value="1.7">Vận động nhiều (4+ buổi/tuần)</option>
+                <option value="1.9">
+                  Vận động rất nhiều (thi đấu hoặc tập 5-6 buổi)
+                </option>
+              </select>
+            </div>
+            <button class="btn-calc" onclick="calculate()">
+              TÍNH CALO & MACRO NGAY
+            </button>
           </div>
-          <div class="time-row">
-            <span class="time-clock">21:00</span>
-            <div class="time-event">
-              <strong>Uống sữa ấm</strong
-              ><span>Casein protein giúp phục hồi qua đêm</span>
+  
+          <div class="results-panel" id="results-panel">
+            <h3>NHẬP THÔNG SỐ ĐỂ XEM KẾT QUẢ DINH DƯỠNG</h3>
+            <div class="macro-display">
+              <div class="macro-item">
+                <div class="macro-val protein" id="r-protein">—</div>
+                <div class="macro-label">Protein (g/ngày)</div>
+              </div>
+              <div class="macro-item">
+                <div class="macro-val carbs" id="r-carbs">—</div>
+                <div class="macro-label">Carbs (g/ngày)</div>
+              </div>
+              <div class="macro-item">
+                <div class="macro-val fat" id="r-fat">—</div>
+                <div class="macro-label">Chất béo (g/ngày)</div>
+              </div>
             </div>
-          </div>
-          <div class="time-row">
-            <span class="time-clock">21:30</span>
-            <div class="time-event">
-              <strong>Đọc sách / Thư giãn</strong
-              ><span>Không xem video hay game</span>
+            <div class="kcal-display">
+              <div class="kcal-val" id="r-kcal">— kcal</div>
+              <div class="kcal-label">
+                Tổng calo mỗi ngày (TDEE) cho học sinh tập gym
+              </div>
             </div>
-          </div>
-          <div class="time-row">
-            <span class="time-clock">22:00</span>
-            <div class="time-event">
-              <strong>ĐI NGỦ</strong><span>🎯 8–10 tiếng cho thiếu niên</span>
-            </div>
-          </div>
-          <div class="time-row">
-            <span class="time-clock">01:00</span>
-            <div class="time-event">
-              <strong>GH Peak — Đỉnh tăng trưởng</strong
-              ><span>Growth hormone tiết ra nhiều nhất trong giấc ngủ sâu</span>
-            </div>
-          </div>
-          <div class="time-row">
-            <span class="time-clock">06:00</span>
-            <div class="time-event">
-              <strong>Thức dậy tự nhiên</strong
-              ><span>Không dùng báo thức nếu có thể</span>
-            </div>
+            <p class="result-note" id="r-note">
+              Đây là lượng dinh dưỡng khuyến nghị cho thiếu niên 8–15 tuổi đang
+              tập gym tăng cơ. Hãy điều chỉnh theo cảm giác năng lượng và tốc độ
+              tăng cân. Nên tham khảo chuyên gia dinh dưỡng để có thực đơn cá nhân
+              hóa.
+            </p>
           </div>
         </div>
-        <div class="sleep-tips">
-          <div class="sleep-tip">
-            <span class="tip-ic">🌡️</span>
-            <div class="tip-t">
-              <strong>Nhiệt độ phòng mát</strong>
+      </section>
+  
+      <div class="divider"></div>
+  
+      <!-- MEAL PLAN -->
+      <section class="meal-section">
+        <h2>
+          THỰC ĐƠN MẪU 1 NGÀY - TĂNG CƠ CHO HỌC SINH TẬP GYM
+        </h2>
+        <div class="section-sub">
+          Dành cho thiếu niên 12–15 tuổi, khoảng 2400–2600 kcal/ngày - Tiết kiệm
+          và dễ làm tại Việt Nam
+        </div>
+        <div class="meal-grid">
+          <div class="meal-card">
+            <div class="meal-header">
+              <span class="meal-time">06:30 — Bữa sáng</span
+              ><span class="meal-kcal">~600 kcal</span>
+            </div>
+            <div class="meal-name">BỮA SÁNG TĂNG CƠ - NĂNG LƯỢNG KHỞI ĐỘNG</div>
+            <ul class="meal-items">
+              <li><strong>Cơm trắng</strong><span>150g (nấu chín)</span></li>
+              <li>
+                <strong>Trứng gà</strong><span>3 quả luộc/chiên ít dầu</span>
+              </li>
+              <li><strong>Đậu phụ / Thịt gà</strong><span>100g</span></li>
+              <li><strong>Rau luộc</strong><span>1 chén</span></li>
+              <li><strong>Sữa tươi không đường</strong><span>240ml</span></li>
+            </ul>
+          </div>
+          <div class="meal-card">
+            <div class="meal-header">
+              <span class="meal-time">10:00 — Bữa phụ sáng</span
+              ><span class="meal-kcal">~300 kcal</span>
+            </div>
+            <div class="meal-name">SNACK PROTEIN</div>
+            <ul class="meal-items">
+              <li><strong>Chuối</strong><span>2 quả vừa</span></li>
+              <li><strong>Bơ đậu phộng</strong><span>2 muỗng canh</span></li>
+              <li><strong>Yaourt không đường</strong><span>150g</span></li>
+            </ul>
+          </div>
+          <div class="meal-card">
+            <div class="meal-header">
+              <span class="meal-time">12:00 — Bữa trưa</span
+              ><span class="meal-kcal">~700 kcal</span>
+            </div>
+            <div class="meal-name">NẠP NHIÊN LIỆU CHÍNH</div>
+            <ul class="meal-items">
+              <li><strong>Cơm trắng</strong><span>200g</span></li>
+              <li><strong>Thịt bò/gà/cá</strong><span>150g</span></li>
+              <li><strong>Rau xào / luộc</strong><span>1 đĩa</span></li>
+              <li><strong>Canh</strong><span>1 tô</span></li>
+              <li><strong>Trái cây</strong><span>1 phần</span></li>
+            </ul>
+          </div>
+          <div class="meal-card">
+            <div class="meal-header">
+              <span class="meal-time">Pre-workout — 30–60 phút trước tập</span
+              ><span class="meal-kcal">~350 kcal</span>
+            </div>
+            <div class="meal-name">FUEL TRƯỚC TẬP</div>
+            <ul class="meal-items">
+              <li><strong>Bánh mì nguyên cám</strong><span>2 lát</span></li>
+              <li><strong>Trứng</strong><span>2 quả</span></li>
+              <li><strong>Chuối</strong><span>1 quả</span></li>
+              <li><strong>Nước</strong><span>500ml</span></li>
+            </ul>
+          </div>
+          <div class="meal-card">
+            <div class="meal-header">
+              <span class="meal-time">Post-workout — Trong 30 phút sau tập</span
+              ><span class="meal-kcal">~350 kcal</span>
+            </div>
+            <div class="meal-name">PHỤC HỒI SAU TẬP</div>
+            <ul class="meal-items">
+              <li><strong>Sữa tươi hoặc sữa chua</strong><span>400ml</span></li>
+              <li><strong>Chuối hoặc gạo</strong><span>50–100g carbs</span></li>
+              <li><strong>Nước</strong><span>500–750ml</span></li>
+            </ul>
+          </div>
+          <div class="meal-card">
+            <div class="meal-header">
+              <span class="meal-time">19:00 — Bữa tối</span
+              ><span class="meal-kcal">~600 kcal</span>
+            </div>
+            <div class="meal-name">XÂY DỰNG QUA ĐÊM</div>
+            <ul class="meal-items">
+              <li><strong>Cơm trắng</strong><span>150g</span></li>
+              <li><strong>Cá / Tôm / Thịt gà</strong><span>150g</span></li>
+              <li><strong>Rau luộc</strong><span>1 đĩa</span></li>
+              <li>
+                <strong>Sữa ấm trước ngủ</strong><span>240ml (casein)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+  
+      <div class="divider"></div>
+  
+      <!-- KEY NUTRIENTS -->
+      <section class="nutrients">
+        <h2>
+          DƯỠNG CHẤT THIẾT YẾU CHO THIẾU NIÊN TẬP SỨC MẠNH
+        </h2>
+        <div class="section-sub">
+          Những dưỡng chất quan trọng nhất giúp học sinh tăng cơ, phát triển xương
+          và phục hồi nhanh khi tập gym tuổi dậy thì
+        </div>
+        <div class="nutrient-grid">
+          <div class="nutrient-card">
+            <div class="nutrient-top">
+              <div class="nutrient-icon">🥩</div>
+              <h3>Protein — Xây cơ</h3>
               <p>
-                18–22°C là lý tưởng cho giấc ngủ sâu. Nhiệt độ thấp giúp cơ thể
-                tiết melatonin tốt hơn.
+                1.4–1.8g protein mỗi kg cân nặng. Thiếu niên 50kg cần khoảng
+                70–90g protein/ngày. Phân bổ đều 4–5 bữa để tối ưu tổng hợp cơ
+                bắp. Theo
+                <a
+                  href="https://www.cdc.gov/nutrition/php/about/index.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fnutrition%2Findex.html"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  khuyến nghị từ NIH </a
+                >, protein đóng vai trò quan trọng trong phát triển cơ bắp và phục
+                hồi.
               </p>
             </div>
-          </div>
-          <div class="sleep-tip">
-            <span class="tip-ic">📵</span>
-            <div class="tip-t">
-              <strong>Không điện thoại 1 tiếng trước khi ngủ</strong>
-              <p>
-                Ánh sáng xanh từ màn hình ức chế melatonin, làm khó ngủ sâu và
-                ảnh hưởng đến tiết growth hormone.
-              </p>
+            <div class="nutrient-sources">
+              <div class="source-label">Nguồn tốt nhất</div>
+              <div class="source-tags">
+                <span class="source-tag">🥚 Trứng</span>
+                <span class="source-tag">🍗 Ức gà</span>
+                <span class="source-tag">🐟 Cá</span>
+                <span class="source-tag">🥛 Sữa</span>
+                <span class="source-tag">🫘 Đậu</span>
+              </div>
             </div>
           </div>
-          <div class="sleep-tip">
-            <span class="tip-ic">⏰</span>
-            <div class="tip-t">
-              <strong>Giờ ngủ cố định</strong>
+          <div class="nutrient-card">
+            <div class="nutrient-top">
+              <div class="nutrient-icon">🍚</div>
+              <h3>Carbohydrate — Nhiên liệu</h3>
               <p>
-                Ngủ và thức dậy cùng một giờ mỗi ngày — kể cả cuối tuần. Đồng hồ
-                sinh học ổn định = ngủ sâu hơn.
+                50–60% tổng calo. Không cắt carbs khi đang ở độ tuổi phát triển và
+                tập luyện. Carbs là nhiên liệu chính cho cơ và não bộ.
               </p>
             </div>
-          </div>
-          <div class="sleep-tip">
-            <span class="tip-ic">🚫</span>
-            <div class="tip-t">
-              <strong>Không tập nặng sau 19:00</strong>
-              <p>
-                Tập tạ nặng kích hoạt cortisol và adrenaline, khiến khó ngủ. Tập
-                nhẹ hoặc stretching thì được.
-              </p>
+            <div class="nutrient-sources">
+              <div class="source-label">Nguồn tốt nhất</div>
+              <div class="source-tags">
+                <span class="source-tag">🍚 Cơm</span>
+                <span class="source-tag">🍞 Bánh mì</span>
+                <span class="source-tag">🍠 Khoai</span>
+                <span class="source-tag">🍌 Trái cây</span>
+                <span class="source-tag">🌽 Ngô</span>
+              </div>
             </div>
           </div>
-          <div class="sleep-tip">
-            <span class="tip-ic">😴</span>
-            <div class="tip-t">
-              <strong>Nap trưa 20–30 phút</strong>
+          <div class="nutrient-card">
+            <div class="nutrient-top">
+              <div class="nutrient-icon">🦴</div>
+              <h3>Calcium & Vitamin D — Xương</h3>
               <p>
-                Nếu điều kiện cho phép, nap ngắn giúp phục hồi cơ và cải thiện
-                hiệu suất tập chiều rất nhiều.
+                Cực kỳ quan trọng vì xương đang phát triển! 1200–1500mg Ca/ngày.
+                Thiếu calcium khi tập tạ nặng là nguy cơ stress fracture.
               </p>
+            </div>
+            <div class="nutrient-sources">
+              <div class="source-label">Nguồn tốt nhất</div>
+              <div class="source-tags">
+                <span class="source-tag">🥛 Sữa</span>
+                <span class="source-tag">🧀 Phô mai</span>
+                <span class="source-tag">🥦 Bông cải</span>
+                <span class="source-tag">☀️ Ánh nắng</span>
+                <span class="source-tag">🐟 Cá béo</span>
+              </div>
+            </div>
+          </div>
+          <div class="nutrient-card">
+            <div class="nutrient-top">
+              <div class="nutrient-icon">💧</div>
+              <h3>Nước — Hiệu suất & Phục hồi</h3>
+              <p>
+                Mất 2% nước = giảm 10% sức mạnh. Uống 2.5–3 lít mỗi ngày khi tập.
+                Thêm 500ml cho mỗi giờ tập. Nước tiểu màu vàng nhạt = đủ nước.
+              </p>
+            </div>
+            <div class="nutrient-sources">
+              <div class="source-label">Uống thế nào</div>
+              <div class="source-tags">
+                <span class="source-tag">💧 Trước tập: 500ml</span>
+                <span class="source-tag">🏋️ Trong tập: từng ngụm</span>
+                <span class="source-tag">✅ Sau tập: 500–750ml</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- SUPPLEMENTS -->
-    <section class="supps">
-      <div class="section-h">
-        SUPPLEMENT NÀO PHÙ HỢP VỚI THIẾU NIÊN 13-15 TUỔI?
-      </div>
-      <div class="section-sub">
-        Thực phẩm thật luôn là ưu tiên. Hầu hết thiếu niên không cần supplement
-        đắt tiền khi tập gym.
-      </div>
-      <div class="supp-grid">
-        <div class="supp-card">
-          <span class="supp-status status-ok">✅ An toàn & Phù hợp</span>
-          <h4>Sữa tươi / Sữa chua</h4>
+      </section>
+  
+      <div class="divider"></div>
+  
+      <!-- SLEEP -->
+      <section class="sleep-section">
+        <h2>
+          NGỦ ĐỦ GIẤC — VŨ KHÍ BÍ MẬT ĐỂ TĂNG CƠ VÀ TĂNG CHIỀU CAO
+        </h2>
+        <div class="section-sub">
           <p>
-            Nguồn protein và calcium tuyệt vời. Uống sau tập cực kỳ hiệu quả.
-            Whey từ sữa tươi đủ tốt.
+            Cơ bắp và hormone tăng trưởng chỉ phát triển mạnh khi ngủ đủ. Học sinh
+            tập gym cần ngủ 8–10 tiếng mỗi đêm.
+            <a
+              href="https://www.sleepfoundation.org/how-sleep-works/why-do-we-need-sleep"
+              target="_blank"
+              rel="noopener"
+            >
+              nghiên cứu về giấc ngủ và hormone tăng trưởng
+            </a>
           </p>
         </div>
-        <div class="supp-card">
-          <span class="supp-status status-ok">✅ An toàn & Phù hợp</span>
-          <h4>Vitamin D3</h4>
-          <p>
-            Nếu ít ra nắng, bổ sung 1000–2000 IU/ngày với bữa ăn. Hỗ trợ calcium
-            hấp thu và tăng trưởng xương.
-          </p>
+        <div class="sleep-grid">
+          <div class="sleep-timeline">
+            <h3>LỊCH TRÌNH LÝ TƯỞNG</h3>
+            <div class="time-row">
+              <span class="time-clock">20:30</span>
+              <div class="time-event">
+                <strong>Giảm màn hình</strong
+                ><span>Tắt điện thoại, tivi, máy tính</span>
+              </div>
+            </div>
+            <div class="time-row">
+              <span class="time-clock">21:00</span>
+              <div class="time-event">
+                <strong>Uống sữa ấm</strong
+                ><span>Casein protein giúp phục hồi qua đêm</span>
+              </div>
+            </div>
+            <div class="time-row">
+              <span class="time-clock">21:30</span>
+              <div class="time-event">
+                <strong>Đọc sách / Thư giãn</strong
+                ><span>Không xem video hay game</span>
+              </div>
+            </div>
+            <div class="time-row">
+              <span class="time-clock">22:00</span>
+              <div class="time-event">
+                <strong>ĐI NGỦ</strong><span>🎯 8–10 tiếng cho thiếu niên</span>
+              </div>
+            </div>
+            <div class="time-row">
+              <span class="time-clock">01:00</span>
+              <div class="time-event">
+                <strong>GH Peak — Đỉnh tăng trưởng</strong
+                ><span>Growth hormone tiết ra nhiều nhất trong giấc ngủ sâu</span>
+              </div>
+            </div>
+            <div class="time-row">
+              <span class="time-clock">06:00</span>
+              <div class="time-event">
+                <strong>Thức dậy tự nhiên</strong
+                ><span>Không dùng báo thức nếu có thể</span>
+              </div>
+            </div>
+          </div>
+          <div class="sleep-tips">
+            <div class="sleep-tip">
+              <span class="tip-ic">🌡️</span>
+              <div class="tip-t">
+                <strong>Nhiệt độ phòng mát</strong>
+                <p>
+                  18–22°C là lý tưởng cho giấc ngủ sâu. Nhiệt độ thấp giúp cơ thể
+                  tiết melatonin tốt hơn.
+                </p>
+              </div>
+            </div>
+            <div class="sleep-tip">
+              <span class="tip-ic">📵</span>
+              <div class="tip-t">
+                <strong>Không điện thoại 1 tiếng trước khi ngủ</strong>
+                <p>
+                  Ánh sáng xanh từ màn hình ức chế melatonin, làm khó ngủ sâu và
+                  ảnh hưởng đến tiết growth hormone.
+                </p>
+              </div>
+            </div>
+            <div class="sleep-tip">
+              <span class="tip-ic">⏰</span>
+              <div class="tip-t">
+                <strong>Giờ ngủ cố định</strong>
+                <p>
+                  Ngủ và thức dậy cùng một giờ mỗi ngày — kể cả cuối tuần. Đồng hồ
+                  sinh học ổn định = ngủ sâu hơn.
+                </p>
+              </div>
+            </div>
+            <div class="sleep-tip">
+              <span class="tip-ic">🚫</span>
+              <div class="tip-t">
+                <strong>Không tập nặng sau 19:00</strong>
+                <p>
+                  Tập tạ nặng kích hoạt cortisol và adrenaline, khiến khó ngủ. Tập
+                  nhẹ hoặc stretching thì được.
+                </p>
+              </div>
+            </div>
+            <div class="sleep-tip">
+              <span class="tip-ic">😴</span>
+              <div class="tip-t">
+                <strong>Nap trưa 20–30 phút</strong>
+                <p>
+                  Nếu điều kiện cho phép, nap ngắn giúp phục hồi cơ và cải thiện
+                  hiệu suất tập chiều rất nhiều.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="supp-card">
-          <span class="supp-status status-ok">✅ An toàn & Phù hợp</span>
-          <h4>Omega-3 (Dầu cá)</h4>
-          <p>
-            Giảm viêm, hỗ trợ phục hồi khớp và não bộ. 1–2g EPA+DHA mỗi ngày.
-            Hoặc ăn cá 3 lần/tuần.
-          </p>
+      </section>
+  
+      <div class="divider"></div>
+  
+      <!-- SUPPLEMENTS -->
+      <section class="supps">
+        <h2>
+          SUPPLEMENT NÀO PHÙ HỢP VỚI THIẾU NIÊN 13-15 TUỔI?
+        </h2>
+        <div class="section-sub">
+          Thực phẩm thật luôn là ưu tiên. Hầu hết thiếu niên không cần supplement
+          đắt tiền khi tập gym.
         </div>
-        <div class="supp-card">
-          <span class="supp-status status-maybe">⚠️ Cân nhắc cẩn thận</span>
-          <h4>Creatine Monohydrate</h4>
-          <p>
-            An toàn với người trên 16 tuổi theo nghiên cứu. Dưới 16 tuổi: tham
-            khảo bác sĩ trước. Không cần loading phase.
-          </p>
+        <div class="supp-grid">
+          <div class="supp-card">
+            <span class="supp-status status-ok">✅ An toàn & Phù hợp</span>
+            <h3>Sữa tươi / Sữa chua</h3>
+            <p>
+              Nguồn protein và calcium tuyệt vời. Uống sau tập cực kỳ hiệu quả.
+              Whey từ sữa tươi đủ tốt.
+            </p>
+          </div>
+          <div class="supp-card">
+            <span class="supp-status status-ok">✅ An toàn & Phù hợp</span>
+            <h3>Vitamin D3</h3>
+            <p>
+              Nếu ít ra nắng, bổ sung 1000–2000 IU/ngày với bữa ăn. Hỗ trợ calcium
+              hấp thu và tăng trưởng xương.
+            </p>
+          </div>
+          <div class="supp-card">
+            <span class="supp-status status-ok">✅ An toàn & Phù hợp</span>
+            <h3>Omega-3 (Dầu cá)</h3>
+            <p>
+              Giảm viêm, hỗ trợ phục hồi khớp và não bộ. 1–2g EPA+DHA mỗi ngày.
+              Hoặc ăn cá 3 lần/tuần.
+            </p>
+          </div>
+          <div class="supp-card">
+            <span class="supp-status status-maybe">⚠️ Cân nhắc cẩn thận</span>
+            <h3>Creatine Monohydrate</h3>
+            <p>
+              An toàn với người trên 16 tuổi theo nghiên cứu. Dưới 16 tuổi: tham
+              khảo bác sĩ trước. Không cần loading phase.
+            </p>
+          </div>
+          <div class="supp-card">
+            <span class="supp-status status-no">❌ Không phù hợp</span>
+            <h3>Pre-workout có caffeine</h3>
+            <p>
+              Caffeine liều cao ảnh hưởng tiêu cực đến tim mạch và giấc ngủ của
+              thiếu niên. Hoàn toàn không cần thiết.
+            </p>
+          </div>
+          <div class="supp-card">
+            <span class="supp-status status-no">❌ Tuyệt đối không</span>
+            <h3>Hormone / Steroid</h3>
+            <p>
+              Cực kỳ nguy hiểm cho thiếu niên — làm đóng sụn tăng trưởng sớm, ảnh
+              hưởng nội tiết tố suốt đời. KHÔNG BAO GIỜ.
+            </p>
+          </div>
         </div>
-        <div class="supp-card">
-          <span class="supp-status status-no">❌ Không phù hợp</span>
-          <h4>Pre-workout có caffeine</h4>
-          <p>
-            Caffeine liều cao ảnh hưởng tiêu cực đến tim mạch và giấc ngủ của
-            thiếu niên. Hoàn toàn không cần thiết.
-          </p>
-        </div>
-        <div class="supp-card">
-          <span class="supp-status status-no">❌ Tuyệt đối không</span>
-          <h4>Hormone / Steroid</h4>
-          <p>
-            Cực kỳ nguy hiểm cho thiếu niên — làm đóng sụn tăng trưởng sớm, ảnh
-            hưởng nội tiết tố suốt đời. KHÔNG BAO GIỜ.
-          </p>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <footer>
       <p>
