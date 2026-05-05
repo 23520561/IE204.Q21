@@ -35,49 +35,12 @@
       /* =======================
    Barlow Family
 ======================= */
-
-      /* Regular - 400 */
-      @font-face {
-        font-family: "Barlow";
-        src: url("/fonts/Barlow-Regular.woff2") format("woff2");
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      /* SemiBold - 600 */
-      @font-face {
-        font-family: "Barlow";
-        src: url("/fonts/Barlow-SemiBold.woff2") format("woff2");
-        font-weight: 600;
-        font-style: normal;
-        font-display: swap;
-      }
-
       /* Bold - 700 */
       @font-face {
         font-family: "Barlow";
         src: url("/fonts/Barlow-Bold.woff2") format("woff2");
         font-weight: 700;
         font-style: normal;
-        font-display: swap;
-      }
-
-      /* Black - 900 */
-      @font-face {
-        font-family: "Barlow";
-        src: url("/fonts/Barlow-Black.woff2") format("woff2");
-        font-weight: 900;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      /* Italic - 400 italic */
-      @font-face {
-        font-family: "Barlow";
-        src: url("/fonts/Barlow-Italic.woff2") format("woff2");
-        font-weight: 400;
-        font-style: italic;
         font-display: swap;
       }
 
@@ -365,7 +328,7 @@
         gap: 16px;
         margin-top: 16px;
       }
-      .injury-col h5 {
+      .injury-col h4 {
         font-size: 0.7rem;
         font-weight: 700;
         letter-spacing: 2px;
@@ -576,8 +539,9 @@
         background: rgba(255, 209, 0, 0.15);
         color: var(--yellow);
       }
-      .doctor-header h4 {
+      .doctor-header h3 {
         font-weight: 700;
+        font-size: 1.1rem;
       }
       .doctor-body {
         padding: 16px 20px;
@@ -615,6 +579,18 @@
         font-family: sans-serif;
         font-size: clamp(2.5rem, 6vw, 5rem);
         margin-bottom: 16px;
+      }
+      .readiness-go {
+        color: var(--green);
+        margin-bottom: 16px;
+        font-family: sans-serif;
+        font-size: 1.6rem;
+      }
+      .readiness-stop {
+        color: var(--red);
+        margin-bottom: 16px;
+        font-family: sans-serif;
+        font-size: 1.6rem;
       }
       .final-cta p {
         color: #888;
@@ -911,21 +887,21 @@
               </p>
               <div class="injury-row">
                 <div class="injury-col">
-                  <h5>🔍 Triệu chứng</h5>
+                  <h4>🔍 Triệu chứng</h4>
                   <p>
                     Đau sâu trong vai khi đưa tay lên cao. Yếu khi xoay vai ra
                     ngoài. Đau ban đêm khi nằm nghiêng.
                   </p>
                 </div>
                 <div class="injury-col">
-                  <h5>🚦 Xử lý ngay</h5>
+                  <h4>🚦 Xử lý ngay</h4>
                   <p>
                     Dừng tập bench hoàn toàn. Chườm lạnh 15–20 phút. Không tập
                     các bài trên đầu trong 1–2 tuần.
                   </p>
                 </div>
                 <div class="injury-col">
-                  <h5>🛡️ Phòng ngừa</h5>
+                  <h4>🛡️ Phòng ngừa</h4>
                   <p>
                     Face pull, band pull-apart mỗi buổi. Không vung khuỷu tay ra
                     90°. Không tập đến hết failure.
@@ -953,21 +929,21 @@
               </p>
               <div class="injury-row">
                 <div class="injury-col">
-                  <h5>🔍 Triệu chứng</h5>
+                  <h4>🔍 Triệu chứng</h4>
                   <p>
                     Đau cổ tay khi gập hoặc uốn. Yếu grip. Đau khi chống tay
                     xuống sàn (push-up).
                   </p>
                 </div>
                 <div class="injury-col">
-                  <h5>🚦 Xử lý ngay</h5>
+                  <h4>🚦 Xử lý ngay</h4>
                   <p>
                     Giảm tạ về mức không đau. Dùng wrist wraps hỗ trợ tạm thời.
                     Kiểm tra lại vị trí grip.
                   </p>
                 </div>
                 <div class="injury-col">
-                  <h5>🛡️ Phòng ngừa</h5>
+                  <h4>🛡️ Phòng ngừa</h4>
                   <p>
                     Bar luôn nằm sát gốc ngón cái trên lòng bàn tay. Grip chắc
                     chắn. Cổ tay thẳng với cẳng tay.
@@ -993,21 +969,21 @@
               </p>
               <div class="injury-row">
                 <div class="injury-col">
-                  <h5>🔍 Triệu chứng</h5>
+                  <h4>🔍 Triệu chứng</h4>
                   <p>
                     Đau nhói ở ngực khi đẩy. Bầm tím xuất hiện sau vài giờ. Yếu
                     một bên khi đẩy.
                   </p>
                 </div>
                 <div class="injury-col">
-                  <h5>🚦 Xử lý ngay</h5>
+                  <h4>🚦 Xử lý ngay</h4>
                   <p>
                     DỪNG TẬP NGAY. Chườm lạnh. Không kéo giãn ngực trong 48
                     tiếng đầu. Đến bác sĩ nếu có bầm tím.
                   </p>
                 </div>
                 <div class="injury-col">
-                  <h5>🛡️ Phòng ngừa</h5>
+                  <h4>🛡️ Phòng ngừa</h4>
                   <p>
                     Khởi động kỹ. Không bouncing bar. Không tập max bench khi
                     đói hoặc mệt mỏi.
@@ -1033,21 +1009,21 @@
               </p>
               <div class="injury-row">
                 <div class="injury-col">
-                  <h5>🔍 Triệu chứng</h5>
+                  <h4>🔍 Triệu chứng</h4>
                   <p>
                     Đau thắt lưng trong hoặc sau khi bench. Cứng lưng vào buổi
                     sáng hôm sau.
                   </p>
                 </div>
                 <div class="injury-col">
-                  <h5>🚦 Xử lý ngay</h5>
+                  <h4>🚦 Xử lý ngay</h4>
                   <p>
                     Giảm trọng lượng, giảm arch. Tập core strengthening. Kéo
                     giãn hip flexor và thoracic spine.
                   </p>
                 </div>
                 <div class="injury-col">
-                  <h5>🛡️ Phòng ngừa</h5>
+                  <h4>🛡️ Phòng ngừa</h4>
                   <p>
                     Tập deadlift và squat để tăng sức mạnh lưng. Kiểm tra
                     mobility hip và thoracic.
@@ -1075,21 +1051,21 @@
               </p>
               <div class="injury-row">
                 <div class="injury-col">
-                  <h5>🔍 Triệu chứng</h5>
+                  <h4>🔍 Triệu chứng</h4>
                   <p>
                     Đau âm ỉ, cảm giác căng cơ khi chạm vào. Xuất hiện 12–24h
                     sau tập. Tự khỏi trong 2–3 ngày.
                   </p>
                 </div>
                 <div class="injury-col">
-                  <h5>🚦 Xử lý</h5>
+                  <h4>🚦 Xử lý</h4>
                   <p>
                     Nghỉ ngơi hoặc tập nhẹ (active recovery). Protein đầy đủ.
                     Ngủ nhiều. Tắm nước ấm giúp giảm.
                   </p>
                 </div>
                 <div class="injury-col">
-                  <h5>✅ Dấu hiệu bình thường</h5>
+                  <h4>✅ Dấu hiệu bình thường</h4>
                   <p>
                     Đau đối xứng hai bên. Không đau khớp. Giảm dần sau ngày thứ
                     2. Không ảnh hưởng cử động bình thường.
@@ -1239,9 +1215,7 @@
         </p>
         <div class="checker-grid">
           <div>
-            <h3 style="color: var(--green); margin-bottom: 16px">
-              ✅ ĐÈN XANH — AN TOÀN TẬP NẶNG
-            </h3>
+            <h3 class="readiness-go">✅ ĐÈN XANH — AN TOÀN TẬP NẶNG</h3>
             <ul class="check-list">
               <li class="check-item go">
                 <span class="check-icon">✅</span>
@@ -1281,9 +1255,7 @@
             </ul>
           </div>
           <div>
-            <h3 style="color: var(--red); margin-bottom: 16px">
-              🛑 ĐÈN ĐỎ — DỪNG HOẶC TẬP NHẸ THÔI
-            </h3>
+            <h3 class="readiness-stop">🛑 ĐÈN ĐỎ — DỪNG HOẶC TẬP NHẸ THÔI</h3>
             <ul class="check-list">
               <li class="check-item stop">
                 <span class="check-icon">❌</span>
@@ -1337,7 +1309,7 @@
           <div class="doctor-card urgent">
             <div class="doctor-header">
               <span class="doctor-label label-urgent">🚨 CẤP CỨU NGAY</span>
-              <h4>Không chờ đợi</h4>
+              <h3>Không chờ đợi</h3>
             </div>
             <div class="doctor-body">
               <ul>
@@ -1352,7 +1324,7 @@
           <div class="doctor-card soon">
             <div class="doctor-header">
               <span class="doctor-label label-soon">⚠️ GẶP TRONG 24–48H</span>
-              <h4>Đừng trì hoãn</h4>
+              <h3>Đừng trì hoãn</h3>
             </div>
             <div class="doctor-body">
               <ul>
@@ -1367,7 +1339,7 @@
           <div class="doctor-card monitor">
             <div class="doctor-header">
               <span class="doctor-label label-monitor">📅 ĐẶT LỊCH KHÁM</span>
-              <h4>Trong tuần này</h4>
+              <h3>Trong tuần này</h3>
             </div>
             <div class="doctor-body">
               <ul>
