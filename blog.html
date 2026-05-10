@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - IRON YOUTH</title>
+    <meta
+      name="description"
+      content="Những bài viết về tập gym, dinh dưỡng và sức khỏe cho học sinh."
+    />
+    <meta property="og:title" content="Blog - IRON YOUTH" />
+    <meta
+      property="og:description"
+      content="Bài viết hữu ích về tập gym và phát triển cơ thể ở tuổi dậy thì."
+    />
+    <link rel="canonical" href="https://iron-youth.netlify.app/blog" />
+    <style>
+      :root {
+        --red: #ff2d00;
+        --yellow: #ffd100;
+        --black: #080808;
+        --surface: #111111;
+        --surface2: #1a1a1a;
+        --text: #f0ede8;
+        --muted: #888;
+        --border: rgba(255, 255, 255, 0.07);
+        --green: #00d46a;
+        --orange: #ff8c00;
+      }
+
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-SemiBold.woff2") format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-Bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--black);
+        color: var(--text);
+        font-family: "Barlow", sans-serif;
+        overflow-x: hidden;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        height: 64px;
+        background: rgba(8, 8, 8, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        font-family: sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .nav-logo span {
+        color: var(--red);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 8px;
+      }
+
+      .nav-links a {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 6px 14px;
+        border-radius: 4px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--text);
+        background: var(--surface2);
+      }
+
+      .nav-links a.active {
+        color: var(--yellow);
+      }
+
+      .page-header {
+        padding: 120px 60px 60px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 45, 0, 0.05) 0%,
+          transparent 100%
+        );
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page-header::before {
+        content: "BLOG";
+        position: absolute;
+        right: 40px;
+        bottom: -20px;
+        font-family: sans-serif;
+        font-size: 16rem;
+        color: rgba(255, 255, 255, 0.02);
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .breadcrumb {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+
+      .breadcrumb a {
+        color: var(--red);
+        text-decoration: none;
+      }
+
+      .page-header h1 {
+        font-family: "Bsebas Neue", sans-serif;
+        font-size: clamp(3rem, 8vw, 7rem);
+        line-height: 0.95;
+      }
+
+      .page-header h1 span {
+        color: var(--red);
+      }
+
+      .page-header p {
+        margin-top: 20px;
+        color: #999;
+        max-width: 620px;
+        line-height: 1.8;
+      }
+
+      .blog-section {
+        padding: 80px 60px;
+      }
+
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 24px;
+        margin-top: 32px;
+      }
+
+      .blog-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .blog-card:hover {
+        border-color: var(--red);
+        background: var(--surface2);
+        transform: translateY(-4px);
+      }
+
+      .blog-card-title {
+        font-family: sans-serif;
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        color: var(--text);
+        line-height: 1.4;
+      }
+
+      .blog-card-excerpt {
+        color: #999;
+        font-size: 0.88rem;
+        line-height: 1.7;
+        flex-grow: 1;
+        margin-bottom: 16px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .blog-card-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--red);
+        text-decoration: none;
+        align-self: flex-start;
+        transition: color 0.2s;
+      }
+
+      .blog-card-link:hover {
+        color: var(--yellow);
+      }
+
+      .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 60px;
+        flex-wrap: wrap;
+      }
+
+      .pagination button,
+      .pagination a {
+        padding: 10px 14px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text);
+        font-family: "Barlow", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+
+      .pagination button:hover,
+      .pagination a:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+
+      .pagination button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      .pagination .active {
+        background: var(--red);
+        border-color: var(--red);
+        color: var(--black);
+        font-weight: 700;
+        pointer-events: none;
+      }
+
+      .pagination-info {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .divider {
+        height: 1px;
+        background: var(--border);
+        margin: 0 60px;
+      }
+
+      footer {
+        padding: 40px 60px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      footer p {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      @media (max-width: 900px) {
+        nav {
+          padding: 0 20px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .page-header,
+        .blog-section {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+        .blog-grid {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          flex-direction: column;
+          gap: 12px;
+          padding: 32px 24px;
+        }
+        .divider {
+          margin: 0 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="nav-logo">IRON<span>YOUTH</span></a>
+      <div class="nav-links">
+        <a href="index.html">Tổng quan</a>
+        <a href="roadmap.html">Lộ trình</a>
+        <a href="technique.html">Kỹ thuật</a>
+        <a href="nutrition.html">Dinh dưỡng</a>
+        <a href="safety.html">An toàn</a>
+        <a href="blog.html" class="active">Blog</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="page-header">
+        <div class="breadcrumb"><a href="index.html">Trang chủ</a> / Blog</div>
+        <h1>
+          BLOG TẬP GYM<br />
+          <span>Mẹo, kiến thức & kinh nghiệm</span>
+        </h1>
+        <p>
+          Khám phá những bài viết chi tiết về cách tập luyện hiệu quả, dinh
+          dưỡng đúng cách, và phương pháp phục hồi tối ưu cho thiếu niên.
+        </p>
+      </section>
+
+      <section class="blog-section">
+        <div class="blog-grid" id="blog-grid"></div>
+        <div class="pagination" id="pagination"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        IRON YOUTH — Ăn đúng, ngủ đủ, tập sức mạnh để phát triển toàn diện ở
+        tuổi dậy thì.
+      </p>
+    </footer>
+
+    <script>
+      const POSTS_PER_PAGE = 18;
+      let allPosts = [];
+      let currentPage = 1;
+
+      async function loadPosts() {
+        // Get all post filenames from posts folder
+        const postFiles = await (await fetch("index.json")).json();
+
+        for (const file of postFiles) {
+          try {
+            const response = await fetch(`/posts/${file}`);
+            const content = await response.text();
+
+            // Extract title (first H1) and first few lines
+            const lines = content.split("\n");
+            const titleMatch = content.match(/^#\s+(.+?)$/m);
+            const title = titleMatch ? titleMatch[1] : file;
+
+            // Get excerpt (first 2-3 lines after title)
+            let excerpt = "";
+            let lineCount = 0;
+            for (let i = 0; i < lines.length && lineCount < 2; i++) {
+              const line = lines[i].trim();
+              if (line && !line.startsWith("#")) {
+                excerpt += (excerpt ? " " : "") + line;
+                lineCount++;
+              }
+            }
+
+            allPosts.push({
+              id: file.replace(".md", ""),
+              filename: file,
+              title: title,
+              excerpt:
+                excerpt.substring(0, 150) + (excerpt.length > 150 ? "..." : ""),
+            });
+          } catch (error) {
+            console.error(`Failed to load ${file}:`, error);
+          }
+        }
+
+        renderBlogGrid();
+        renderPagination();
+      }
+
+      function renderBlogGrid() {
+        const start = (currentPage - 1) * POSTS_PER_PAGE;
+        const end = start + POSTS_PER_PAGE;
+        const postsToShow = allPosts.slice(start, end);
+
+        const grid = document.getElementById("blog-grid");
+        grid.innerHTML = postsToShow
+          .map(
+            (post) => `
+          <div class="blog-card" onclick="goToPost('${post.id}')">
+            <h3 class="blog-card-title">${post.title}</h3>
+            <p class="blog-card-excerpt">${post.excerpt}</p>
+            <a href="blogpage?post=${post.id}" class="blog-card-link">Đọc tiếp →</a>
+          </div>
+        `,
+          )
+          .join("");
+      }
+
+      function renderPagination() {
+        const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+        const paginationDiv = document.getElementById("pagination");
+
+        let html = "";
+
+        // Previous button
+        if (currentPage > 1) {
+          html += `<button onclick="goToPage(${currentPage - 1})">← Trang trước</button>`;
+        }
+
+        // Page numbers
+        const startPage = Math.max(1, currentPage - 2);
+        const endPage = Math.min(totalPages, currentPage + 2);
+
+        if (startPage > 1) {
+          html += `<a onclick="goToPage(1)">1</a>`;
+          if (startPage > 2) html += `<span class="pagination-info">...</span>`;
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+          if (i === currentPage) {
+            html += `<a class="active">${i}</a>`;
+          } else {
+            html += `<a onclick="goToPage(${i})">${i}</a>`;
+          }
+        }
+
+        if (endPage < totalPages) {
+          if (endPage < totalPages - 1)
+            html += `<span class="pagination-info">...</span>`;
+          html += `<a onclick="goToPage(${totalPages})">${totalPages}</a>`;
+        }
+
+        // Next button
+        if (currentPage < totalPages) {
+          html += `<button onclick="goToPage(${currentPage + 1})">Trang sau →</button>`;
+        }
+
+        paginationDiv.innerHTML = html;
+      }
+
+      function goToPage(pageNum) {
+        currentPage = pageNum;
+        renderBlogGrid();
+        renderPagination();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function goToPost(postId) {
+        window.location.href = `blogpage?post=${postId}`;
+        console.log(`blogpage?post=${postId}`);
+      }
+
+      // Load posts on page load
+      loadPosts();
+    </script>
+  </body>
+</html>

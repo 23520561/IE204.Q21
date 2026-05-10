@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <title>Blog - IRON YOUTH</title>
+    <meta
+      name="description"
+      content="Bài viết chi tiết về tập gym, dinh dưỡng và phát triển cơ thể."
+    />
+    <link rel="canonical" href="https://iron-youth.netlify.app/blogpage" />
+    <style>
+      :root {
+        --red: #ff2d00;
+        --yellow: #ffd100;
+        --black: #080808;
+        --surface: #111111;
+        --surface2: #1a1a1a;
+        --text: #f0ede8;
+        --muted: #888;
+        --border: rgba(255, 255, 255, 0.07);
+        --green: #00d46a;
+        --orange: #ff8c00;
+      }
+
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-SemiBold.woff2") format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Barlow";
+        src: url("/fonts/Barlow-Bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--black);
+        color: var(--text);
+        font-family: "Barlow", sans-serif;
+        overflow-x: hidden;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        height: 64px;
+        background: rgba(8, 8, 8, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        font-family: sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .nav-logo span {
+        color: var(--red);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 8px;
+      }
+
+      .nav-links a {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 6px 14px;
+        border-radius: 4px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--text);
+        background: var(--surface2);
+      }
+
+      .nav-links a.active {
+        color: var(--yellow);
+      }
+
+      .page-header {
+        padding: 120px 60px 60px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 45, 0, 0.05) 0%,
+          transparent 100%
+        );
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page-header::before {
+        content: attr(data-title);
+        position: absolute;
+        right: 40px;
+        bottom: -20px;
+        font-family: sans-serif;
+        font-size: 16rem;
+        color: rgba(255, 255, 255, 0.02);
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .breadcrumb {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+
+      .breadcrumb a {
+        color: var(--red);
+        text-decoration: none;
+      }
+
+      .page-header h1 {
+        font-family: "Bsebas Neue", sans-serif;
+        font-size: clamp(3rem, 8vw, 7rem);
+        line-height: 0.95;
+      }
+
+      .page-header h1 span {
+        color: var(--red);
+      }
+
+      .blog-content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 80px 60px;
+      }
+
+      .blog-content h1 {
+        font-family: sans-serif;
+        font-size: 2.5rem;
+        margin-bottom: 32px;
+        line-height: 1.3;
+      }
+
+      .blog-content h2,
+      .blog-content h3,
+      .blog-content h4,
+      .blog-content h5,
+      .blog-content h6 {
+        font-family: sans-serif;
+        margin-top: 32px;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .blog-content h2 {
+        font-size: 1.8rem;
+      }
+
+      .blog-content h3 {
+        font-size: 1.4rem;
+      }
+
+      .blog-content p {
+        font-size: 1rem;
+        line-height: 1.8;
+        margin-bottom: 16px;
+        color: #ccc;
+      }
+
+      .blog-content ul,
+      .blog-content ol {
+        margin-left: 20px;
+        margin-bottom: 16px;
+      }
+
+      .blog-content li {
+        font-size: 1rem;
+        line-height: 1.8;
+        margin-bottom: 8px;
+        color: #ccc;
+      }
+
+      .blog-content a {
+        color: var(--red);
+        text-decoration: underline;
+        transition: color 0.2s;
+      }
+
+      .blog-content a:hover {
+        color: var(--yellow);
+      }
+
+      .blog-content blockquote {
+        border-left: 4px solid var(--red);
+        padding-left: 20px;
+        margin-left: 0;
+        margin-bottom: 16px;
+        color: #999;
+        font-style: italic;
+      }
+
+      .blog-content code {
+        background: var(--surface);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9em;
+      }
+
+      .blog-content pre {
+        background: var(--surface);
+        padding: 16px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin-bottom: 16px;
+      }
+
+      .blog-content pre code {
+        background: none;
+        padding: 0;
+      }
+
+      .blog-nav {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 60px;
+        padding-top: 40px;
+        border-top: 1px solid var(--border);
+        gap: 20px;
+      }
+
+      .blog-nav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--red);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .blog-nav a:hover {
+        color: var(--yellow);
+      }
+
+      footer {
+        padding: 40px 60px;
+        border-top: 1px solid var(--border);
+        text-align: center;
+      }
+
+      footer p {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      @media (max-width: 900px) {
+        nav {
+          padding: 0 20px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .page-header,
+        .blog-content {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+        .blog-nav {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="nav-logo">IRON<span>YOUTH</span></a>
+      <div class="nav-links">
+        <a href="index.html">Tổng quan</a>
+        <a href="roadmap.html">Lộ trình</a>
+        <a href="technique.html">Kỹ thuật</a>
+        <a href="nutrition.html">Dinh dưỡng</a>
+        <a href="safety.html">An toàn</a>
+        <a href="blog.html" class="active">Blog</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="page-header" id="page-header">
+        <div class="breadcrumb">
+          <a href="index.html">Trang chủ</a> / <a href="blog.html">Blog</a> /
+          <span id="breadcrumb-title">Bài viết</span>
+        </div>
+        <h1 id="page-title">BLOG</h1>
+      </section>
+
+      <article class="blog-content" id="content"></article>
+
+      <section class="blog-content">
+        <div class="blog-nav">
+          <a href="blog.html">← Quay lại danh sách</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        IRON YOUTH — Ăn đúng, ngủ đủ, tập sức mạnh để phát triển toàn diện ở
+        tuổi dậy thì.
+      </p>
+    </footer>
+
+    <script>
+      async function render() {
+        // Get post ID from URL parameter
+        const params = new URLSearchParams(window.location.search);
+        console.log(params);
+        const postId = params.get("post") || "post-1";
+        const postFile = `${postId}.md`;
+
+        try {
+          const response = await fetch(`/posts/${postFile}`);
+          if (!response.ok) throw new Error("Post not found");
+
+          const md = await response.text();
+          const html = marked.parse(md);
+          document.getElementById("content").innerHTML = html;
+
+          // Extract title from markdown and update page header
+          const titleMatch = md.match(/^#\s+(.+?)$/m);
+          const title = titleMatch ? titleMatch[1] : "Bài viết";
+
+          document.getElementById("page-title").textContent =
+            title.toUpperCase();
+          document.getElementById("breadcrumb-title").textContent = title;
+          document.title = `${title} - IRON YOUTH`;
+        } catch (error) {
+          document.getElementById("content").innerHTML =
+            `<h2>Lỗi: Không tìm thấy bài viết</h2><p>Bài viết này không tồn tại.</p>`;
+          console.error("Error loading post:", error);
+        }
+      }
+
+      render();
+    </script>
+  </body>
+</html>
