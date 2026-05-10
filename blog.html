@@ -381,46 +381,11 @@
 
     <script>
       const POSTS_PER_PAGE = 18;
-      let allPosts = [];
+      let allPosts;
       let currentPage = 1;
 
       async function loadPosts() {
-        // Get all post filenames from posts folder
-        const postFiles = await (await fetch("index.json")).json();
-
-        for (const file of postFiles) {
-          try {
-            const response = await fetch(`/posts/${file}`);
-            const content = await response.text();
-
-            // Extract title (first H1) and first few lines
-            const lines = content.split("\n");
-            const titleMatch = content.match(/^#\s+(.+?)$/m);
-            const title = titleMatch ? titleMatch[1] : file;
-
-            // Get excerpt (first 2-3 lines after title)
-            let excerpt = "";
-            let lineCount = 0;
-            for (let i = 0; i < lines.length && lineCount < 2; i++) {
-              const line = lines[i].trim();
-              if (line && !line.startsWith("#")) {
-                excerpt += (excerpt ? " " : "") + line;
-                lineCount++;
-              }
-            }
-
-            allPosts.push({
-              id: file.replace(".md", ""),
-              filename: file,
-              title: title,
-              excerpt:
-                excerpt.substring(0, 150) + (excerpt.length > 150 ? "..." : ""),
-            });
-          } catch (error) {
-            console.error(`Failed to load ${file}:`, error);
-          }
-        }
-
+        allPosts = await (await fetch("index.json")).json();
         renderBlogGrid();
         renderPagination();
       }
