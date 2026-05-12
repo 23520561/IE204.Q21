@@ -150,7 +150,7 @@
         letter-spacing: 2px;
         text-transform: uppercase;
         color: var(--muted);
-        margin-bottom: 16px;
+        margin-bottom: 2rem;
       }
 
       .breadcrumb a {
@@ -377,6 +377,79 @@
             title.toUpperCase();
           document.getElementById("breadcrumb-title").textContent = title;
           document.title = `${title} - IRON YOUTH`;
+          // --- After updating title and breadcrumb ---
+          const contentContainer = document.getElementById("content");
+
+          // Create structured data
+          const structuredData = {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": window.location.href,
+            },
+            headline: title,
+            description: md.substring(0, 160).replace(/\n/g, " "), // first 160 chars as description
+            image: "https://iron-youth.netlify.app/images/blog-cover.jpg", // replace if you have post-specific images
+            author: {
+              "@type": "Person",
+              name: "IRON YOUTH",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "IRON YOUTH",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://iron-youth.netlify.app/images/logo.png",
+              },
+            },
+            datePublished: "2026-05-12", // optional: dynamically if you store dates
+            dateModified: "2026-05-12",
+          };
+
+          // Append JSON-LD to the head
+          const script = document.createElement("script");
+          script.type = "application/ld+json";
+          script.text = JSON.stringify(structuredData);
+          document.head.appendChild(script);
+          function addMetaProperty(name, content) {
+            const meta = document.createElement("meta");
+            meta.setAttribute("property", name);
+            meta.content = content;
+            document.head.appendChild(meta);
+          }
+
+          function addMetaName(name, content) {
+            const meta = document.createElement("meta");
+            meta.setAttribute("name", name);
+            meta.content = content;
+            document.head.appendChild(meta);
+          }
+
+          // Open Graph
+          addMetaProperty("og:title", title);
+          addMetaProperty(
+            "og:description",
+            md.substring(0, 160).replace(/\n/g, " "),
+          );
+          addMetaProperty("og:type", "article");
+          addMetaProperty("og:url", window.location.href);
+          addMetaProperty(
+            "og:image",
+            "https://iron-youth.netlify.app/images/blog-cover.jpg",
+          );
+
+          // Twitter card
+          addMetaName("twitter:card", "summary_large_image");
+          addMetaName("twitter:title", title);
+          addMetaName(
+            "twitter:description",
+            md.substring(0, 160).replace(/\n/g, " "),
+          );
+          addMetaName(
+            "twitter:image",
+            "https://iron-youth.netlify.app/images/blog-cover.jpg",
+          );
         } catch (error) {
           document.getElementById("content").innerHTML =
             `<h2>Lỗi: Không tìm thấy bài viết</h2><p>Bài viết này không tồn tại.</p>`;
