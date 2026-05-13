@@ -330,6 +330,18 @@
       .blog-content p {
         margin: 1.2rem 0;
       }
+      .blog-content img {
+        display: block;
+
+        width: 100%;
+        max-width: 800px;
+
+        margin: 2rem auto;
+
+        border-radius: 20px;
+
+        object-fit: cover;
+      }
     </style>
   </head>
   <body>
@@ -394,6 +406,25 @@
             title.toUpperCase();
           document.getElementById("breadcrumb-title").textContent = title;
           document.title = `${title} - IRON YOUTH`;
+          // ADD PLACEHOLDERS
+          const placeholders = [
+            "/images/workout-1.png",
+            "/images/workout-2.png",
+            "/images/workout-3.png",
+            "/images/workout-4.png",
+          ];
+
+          const headings = document.querySelectorAll("#content h2");
+
+          headings.forEach((heading, index) => {
+            const img = document.createElement("img");
+
+            img.src = placeholders[index % placeholders.length];
+            img.alt = "IRON YOUTH illustration";
+            img.className = "inline-placeholder";
+
+            heading.insertAdjacentElement("afterend", img);
+          });
           // --- After updating title and breadcrumb ---
           const contentContainer = document.getElementById("content");
 
