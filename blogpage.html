@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <title>Blog - IRON YOUTH</title>
     <meta
       name="description"
@@ -384,7 +383,14 @@
     </footer>
 
     <script>
+      async function loadMarked() {
+        const { marked } = await import(
+          "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js"
+        );
+        return marked;
+      }
       async function render() {
+        marked = await loadMarked();
         // Get post ID from URL parameter
         const params = new URLSearchParams(window.location.search);
         console.log(params);
